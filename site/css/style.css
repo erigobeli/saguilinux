@@ -184,3 +184,7 @@ figure.com-mascotes .mascotes {
 }
 figure.com-mascotes figcaption { margin-top: 40px; }
 @media (max-width: 760px) { figure.com-mascotes .mascotes { right: -6px; width: 58%; } }
+
+/* ícone do GitHub no menu */
+nav.menu a.icone-github { display: inline-flex; align-items: center; padding: 6px 8px; color: var(--fg); }
+nav.menu a.icone-github:hover { color: var(--verde); background: var(--linha); }
