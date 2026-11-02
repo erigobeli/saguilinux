@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Créditos e avisos — Sagui Linux</title>
+<meta name="description" content="Créditos, licenças de código aberto, aviso de projeto educacional sem garantia e cuidados antes de testar o Sagui Linux.">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="faixa"></div>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="index.html"><img src="img/logo-sagui.svg" alt="">Sagui Linux</a>
+  <nav class="menu" aria-label="Principal">
+    <a href="index.html">Início</a>
+    <a href="download.html">Download</a>
+    <a href="instalar.html">Como gravar</a>
+    <a href="historia.html">Como foi feito</a>
+    <a href="sobre.html">Créditos e avisos</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Créditos e avisos</h1>
+
+  <h2 id="cuidados">Cuidados antes de testar</h2>
+  <div class="perigo"><strong>Entenda o que acontece quando você liga pelo pendrive</strong>
+    <ul style="margin:.4em 0 0">
+      <li><strong>Tudo roda na memória RAM.</strong> O sistema live monta uma camada gravável na RAM por cima do sistema que está no pendrive. Arquivos que você criar, baixar ou "salvar" — inclusive na pasta pessoal e na área de trabalho — <strong>somem quando você desliga ou reinicia</strong>. O pendrive não é alterado durante o uso.</li>
+      <li><strong>Gravar a ISO apaga o pendrive.</strong> O balenaEtcher (ou o Rufus em modo DD, ou o <code>dd</code>) substitui todo o conteúdo do pendrive pela imagem. Faça cópia do que for importante antes.</li>
+      <li><strong>Escolha o dispositivo certo.</strong> Na hora de gravar, confira o nome e o tamanho: selecionar o disco do computador por engano apaga o disco.</li>
+      <li><strong>O disco do computador não é tocado</strong> no modo live. A única exceção é o script opcional <code>instalar-no-disco</code>, que <strong>apaga o disco escolhido</strong> — use apenas em máquinas de teste.</li>
+      <li><strong>Prefira testar primeiro numa máquina virtual</strong> (VirtualBox, QEMU) ou num <strong>computador antigo</strong>, que não seja o seu de trabalho. Não há motivo para dar problema, mas é importante entender o que está acontecendo em cada passo.</li>
+      <li><strong>Secure Boot desligado.</strong> As imagens não são assinadas. Mudar configurações do firmware (BIOS/UEFI) é por sua conta; anote como estava para voltar depois.</li>
+      <li><strong>Senhas conhecidas.</strong> As senhas do live (<code>sagui</code>, <code>root</code>) são públicas. Não use o Sagui Linux para dados sensíveis, operações bancárias ou como sistema principal: ele não recebe atualizações de segurança.</li>
+    </ul>
+  </div>
+
+  <h2>Projeto educacional, sem garantia</h2>
+  <p>O Sagui Linux é um <strong>projeto educacional e experimental</strong>, sem fins comerciais, feito para mostrar como um sistema Linux é construído a partir do código-fonte. Ele é distribuído <strong>"como está" (<em>as is</em>), sem garantia de qualquer tipo</strong>, expressa ou implícita, incluindo garantias de funcionamento, adequação a um propósito específico ou ausência de defeitos. Ao baixar, gravar, executar ou instalar o Sagui Linux, você assume a responsabilidade pelo uso. Em nenhuma hipótese o autor será responsável por perda de dados, danos ao equipamento ou quaisquer outros prejuízos decorrentes do uso.</p>
+  <p>Não é uma distribuição mantida: não há atualizações automáticas, correções de segurança ou suporte. Para uso no dia a dia, use uma distribuição mantida (Debian, Ubuntu, Fedora, Linux Mint…).</p>
+
+  <h2>Tudo é software livre e de código aberto</h2>
+  <p>O Sagui Linux é composto <strong>exclusivamente por software livre e de código aberto</strong>, compilado a partir dos códigos-fonte oficiais de cada projeto, sem modificações além das descritas nos livros LFS/BLFS e na documentação do projeto. Cada componente continua sob a <strong>sua própria licença</strong>, e os textos das licenças acompanham o sistema (em <code>/usr/share/doc</code> e nos próprios pacotes). O código-fonte de cada componente está disponível nos sites oficiais dos projetos; os scripts de construção do Sagui serão publicados no <a data-config="repositorio" data-vazio="repositório do projeto (em breve)" href="#">repositório do projeto</a>.</p>
+  <div class="tabela"><table>
+    <thead><tr><th>Componente</th><th>Licença</th></tr></thead>
+    <tbody>
+      <tr><td>Kernel Linux</td><td>GNU GPL v2</td></tr>
+      <tr><td>GCC, glibc, Bash, coreutils, binutils, GRUB e demais ferramentas GNU</td><td>GNU GPL / LGPL</td></tr>
+      <tr><td>Xorg, Mesa, libdrm, libinput, D-Bus, polkit</td><td>MIT/X11, licenças permissivas, GPL/LGPL</td></tr>
+      <tr><td>GLib, GTK 3, Pango, cairo, at-spi2</td><td>GNU LGPL</td></tr>
+      <tr><td>XFCE (painel, Thunar, xfwm4, terminal, Mousepad, Ristretto…)</td><td>GNU GPL / LGPL</td></tr>
+      <tr><td>Firefox ESR, NSS, NSPR</td><td>Mozilla Public License 2.0</td></tr>
+      <tr><td>LLVM / Clang, Rust</td><td>Apache 2.0 com exceção LLVM; MIT / Apache 2.0</td></tr>
+      <tr><td>PulseAudio, ALSA</td><td>GNU LGPL</td></tr>
+      <tr><td>Fontes DejaVu</td><td>Licença livre das fontes Bitstream Vera / domínio público</td></tr>
+    </tbody>
+  </table></div>
+  <p class="pequeno mut">Lista resumida dos principais componentes; cada pacote traz sua licença completa. Em caso de divergência, vale o texto da licença distribuído com o pacote.</p>
+
+  <h2>Marcas registradas</h2>
+  <p>Linux® é marca registrada de Linus Torvalds. O Tux é criação de Larry Ewing (feito com o GIMP). Firefox e Mozilla são marcas registradas da Mozilla Foundation — por isso o navegador do Sagui foi compilado <strong>sem a marca oficial</strong> (aparece como "Nightly"), como recomendam a Mozilla e o livro BLFS para binários redistribuídos. Demais nomes e marcas pertencem aos respectivos donos. O Sagui Linux não é afiliado, patrocinado ou endossado por nenhum desses projetos ou empresas, nem pelo projeto Linux From Scratch.</p>
+
+  <h2>Créditos</h2>
+  <div class="grade-2">
+    <div class="card destaque">
+      <h3>Linux From Scratch (LFS)</h3>
+      <p>O livro que guiou toda a construção do sistema base. Versão <strong>12.4 (SysVinit)</strong>, de Gerard Beekmans e da equipe do LFS.</p>
+      <p><a href="https://www.linuxfromscratch.org/lfs/" target="_blank" rel="noopener">linuxfromscratch.org/lfs</a></p>
+    </div>
+    <div class="card destaque">
+      <h3>Beyond Linux From Scratch (BLFS)</h3>
+      <p>O livro que guiou a pilha gráfica, o XFCE, o som, a rede e o Firefox. Versão <strong>12.4 (SysVinit)</strong>, da equipe do BLFS.</p>
+      <p><a href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener">linuxfromscratch.org/blfs</a></p>
+    </div>
+    <div class="card">
+      <h3>Criação e direção</h3>
+      <p><strong data-texto="autor">Eli Rigobeli</strong> — idealizou o projeto, escreveu o PRD da Fase 1, tomou as decisões e testou em hardware real.</p>
+      <p>YouTube: <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI">@EliRigobeliAI</a></p>
+    </div>
+    <div class="card">
+      <h3>Construção</h3>
+      <p>Projeto <strong>100% feito por IA</strong>: compilado, documentado e testado pelo <strong>Claude Opus 5.5</strong> (Anthropic), agente de IA rodando no <strong>Claude Code</strong> — incluindo os scripts, as correções, a arte (via Higgsfield) e este site.</p>
+    </div>
+    <div class="card">
+      <h3>Arte</h3>
+      <p>Logotipo, mascote sagui e papel de parede gerados com o <strong>Higgsfield</strong> (modelo Recraft V4.1), a partir de descrições do projeto.</p>
+      <p><strong>Tux</strong>, o pinguim do Linux, foi criado por <strong>Larry Ewing</strong> (lewing@isc.tamu.edu) com o <strong>GIMP</strong>; usado aqui conforme a permissão do autor, com os devidos créditos.</p>
+    </div>
+    <div class="card">
+      <h3>Comunidade do software livre</h3>
+      <p>Milhares de pessoas que desenvolvem e mantêm o kernel Linux, o projeto GNU, Xorg, freedesktop.org, Mesa, GNOME/GTK, XFCE, Mozilla, LLVM, Rust e todos os demais projetos usados aqui. Obrigado!</p>
+    </div>
+  </div>
+
+  <h2>Contato e vídeo</h2>
+  <p>Dúvidas, sugestões e o vídeo do processo: canal <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI">youtube.com/@EliRigobeliAI</a>.</p>
+</main>
+
+<footer class="rodape"><div class="wrap">
+  <div><h4>Sagui Linux</h4><p>Distribuição educacional feita do zero com LFS + BLFS.<br>Criado por <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI" data-texto="autor">Eli Rigobeli</a>.</p></div>
+  <div><h4>Projeto</h4><ul><li><a href="download.html">Download</a></li><li><a href="instalar.html">Como gravar e dar boot</a></li><li><a href="historia.html">Como foi feito</a></li><li><a data-config="repositorio" data-vazio="Código-fonte (em breve)" href="#">Código-fonte</a></li></ul></div>
+  <div><h4>Créditos</h4><ul><li><a href="https://www.linuxfromscratch.org/" target="_blank" rel="noopener">Linux From Scratch</a></li><li><a href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener">Beyond Linux From Scratch</a></li><li><a href="sobre.html">Licenças e avisos</a></li></ul></div>
+</div></footer>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

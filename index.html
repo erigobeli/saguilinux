@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sagui Linux — um Linux feito do zero</title>
+<meta name="description" content="Sagui Linux: distribuição Linux educacional compilada do zero a partir dos livros Linux From Scratch (LFS) e Beyond Linux From Scratch (BLFS), com desktop XFCE. Projeto de Eli Rigobeli.">
+<meta property="og:title" content="Sagui Linux — um Linux feito do zero">
+<meta property="og:description" content="Distribuição educacional compilada do código-fonte com LFS + BLFS, desktop XFCE e as cores do Brasil.">
+<meta property="og:image" content="img/desktop.jpg">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="faixa"></div>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="index.html"><img src="img/logo-sagui.svg" alt="">Sagui Linux</a>
+  <nav class="menu" aria-label="Principal">
+    <a href="index.html">Início</a>
+    <a href="download.html">Download</a>
+    <a href="instalar.html">Como gravar</a>
+    <a href="historia.html">Como foi feito</a>
+    <a href="sobre.html">Créditos e avisos</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <img class="logo-grande" src="img/logo-sagui.svg" alt="Logo do Sagui Linux: rosto de um sagui sobre o losango da bandeira do Brasil">
+      <p class="selo-ia">🤖 Criado 100% por IA · Claude Opus 5.5</p>
+      <h1>Sagui Linux</h1>
+      <p class="lead">Um sistema operacional Linux construído <strong>do zero</strong>, pacote por pacote, a partir do código-fonte — <strong>inteiramente por uma inteligência artificial</strong>, seguindo os livros <a href="https://www.linuxfromscratch.org/lfs/" target="_blank" rel="noopener">Linux From Scratch</a> e <a href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener">Beyond Linux From Scratch</a>. Leve, com o desktop XFCE e as cores do Brasil.</p>
+      <p class="pequeno">Nenhuma linha de código, script ou comando foi escrita por uma pessoa: o <strong>Claude Opus 5.5</strong> (Anthropic), no Claude Code, leu os livros, compilou cada pacote, corrigiu os erros e testou as imagens sozinho. A parte humana foi definir o objetivo, tomar as decisões de produto e testar num computador real. <a href="historia.html">Entenda como →</a></p>
+      <div class="livros">
+        <a class="livro" href="https://www.linuxfromscratch.org/lfs/" target="_blank" rel="noopener"><span class="mut pequeno">Livro usado</span><strong>Linux From Scratch 12.4</strong><span class="mut pequeno">sistema base · SysVinit</span></a>
+        <a class="livro" href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener"><span class="mut pequeno">Livro usado</span><strong>Beyond Linux From Scratch 12.4</strong><span class="mut pequeno">gráfico, XFCE, Firefox</span></a>
+      </div>
+      <div class="botoes">
+        <a class="btn primario" href="download.html">Baixar o Sagui Linux</a>
+        <a class="btn secundario" href="historia.html">Ver como foi feito</a>
+      </div>
+      <p class="pequeno mut">Projeto educacional · roda direto do pendrive ou do CD (live) · BIOS e UEFI · x86_64</p>
+    </div>
+    <figure class="com-mascotes">
+      <div class="palco">
+      <img class="captura" src="img/desktop.jpg" width="1280" height="800" alt="Captura de tela do desktop do Sagui Linux 2.0: painel azul no topo com o botão Sagui, ícones na área de trabalho e papel de parede com uma floresta à noite e a silhueta de um sagui num galho">
+      <img class="mascotes" src="img/tux-e-sagui.png" width="720" height="370" alt="O pinguim Tux, mascote do Linux, ao lado do sagui, mascote do Sagui Linux">
+      </div>
+      <figcaption>O desktop do Sagui Linux 2.0 — captura real feita durante os testes automáticos. Ao lado, o Tux (mascote do Linux) e o sagui.</figcaption>
+    </figure>
+  </section>
+
+  <h2>O que é</h2>
+  <p>O Sagui Linux é um <strong>projeto educacional</strong>: a ideia é mostrar, na prática, como um sistema Linux é montado peça por peça — compilador, biblioteca C, kernel, sistema de inicialização, servidor gráfico, desktop e navegador — sem partir de nenhuma distribuição pronta. Todo o sistema foi compilado a partir do código-fonte, dentro de um ambiente isolado (<em>chroot</em>), seguindo os livros do projeto LFS.</p>
+  <h2>Feito 100% por IA — o que isso quer dizer</h2>
+  <div class="grade-2">
+    <div class="card destaque"><h3>O que a IA fez (Claude Opus 5.5)</h3><ul>
+      <li>Leu os livros LFS 12.4 e BLFS 12.4 e extraiu os comandos;</li>
+      <li>escreveu todos os scripts de build, de live boot e de testes;</li>
+      <li>compilou ~250 pacotes do código-fonte, dentro de um <em>chroot</em>;</li>
+      <li>leu os logs quando algo quebrou, descobriu a causa e corrigiu (26 vezes);</li>
+      <li>escreveu o PRD da Fase 2, as histórias, o diário e o painel;</li>
+      <li>gerou a arte no Higgsfield e testou as ISOs em máquinas virtuais, "olhando" capturas de tela;</li>
+      <li>e escreveu este site.</li></ul></div>
+    <div class="card terminal"><h3>O que o humano fez (<span data-texto="autor">Eli Rigobeli</span>)</h3><ul>
+      <li>Teve a ideia e escreveu o documento de requisitos (PRD) da Fase 1;</li>
+      <li>respondeu às decisões de produto (nome, autologin, Firefox, versão do livro);</li>
+      <li>liberou o acesso ao servidor e acompanhou pelo painel;</li>
+      <li>gravou o pendrive e testou em um notebook real.</li></ul>
+      <p class="pequeno mut">Nenhum código, comando ou correção foi digitado por uma pessoa.</p></div>
+  </div>
+
+  <div class="grade">
+    <div class="card destaque">
+      <span class="etiqueta verde">Desktop</span>
+      <h3>Sagui Linux 2.0</h3>
+      <p>XFCE 4.20, Firefox ESR, gerenciador de arquivos, terminal, editor de texto, visualizador de imagens, som e rede automática (DHCP).</p>
+      <a href="download.html#desktop">Baixar →</a>
+    </div>
+    <div class="card terminal">
+      <span class="etiqueta azul">Terminal</span>
+      <h3>Edição de terminal 1.0</h3>
+      <p>O sistema base do LFS, só com linha de comando: GCC, Bash, kernel 6.16 e ferramentas GNU. Ideal para estudar como o Linux funciona por baixo.</p>
+      <a href="download.html#terminal">Baixar →</a>
+    </div>
+    <div class="card">
+      <span class="etiqueta">Live</span>
+      <h3>Roda sem instalar</h3>
+      <p>Grave no pendrive (ou use numa máquina virtual) e ligue o computador por ele. Nada é gravado no seu disco — tudo fica na memória RAM.</p>
+      <a href="instalar.html">Como gravar →</a>
+    </div>
+  </div>
+
+  <h2>Acompanhe o processo de criação</h2>
+  <p>Quer ver como tudo isso foi feito? Assista ao vídeo abaixo e acompanhe o canal <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI">@EliRigobeliAI no YouTube</a>.</p>
+  <div id="video-processo" class="video-vazio">
+    <div>
+      <p><strong>Vídeo em breve</strong></p>
+      <p class="pequeno">Enquanto isso, veja o canal: <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI">youtube.com/@EliRigobeliAI</a></p>
+    </div>
+  </div>
+
+  <h2>Em números</h2>
+  <div class="grade">
+    <div class="card"><div class="numero">~250</div><div class="mut">passos de build compilados do código-fonte (LFS + BLFS)</div></div>
+    <div class="card"><div class="numero">2 fases</div><div class="mut">terminal em ~7,5 h e desktop em ~7 h de trabalho do agente</div></div>
+    <div class="card"><div class="numero">26</div><div class="mut">erros encontrados e corrigidos — todos documentados</div></div>
+    <div class="card"><div class="numero">0</div><div class="mut">binários copiados do sistema hospedeiro para o Sagui</div></div>
+  </div>
+
+  <h2>Feito com</h2>
+  <p>Linux From Scratch 12.4 · Beyond Linux From Scratch 12.4 · Linux 6.16 · GCC 15 · glibc 2.42 · Xorg · Mesa · GTK 3 · XFCE 4.20 · Firefox ESR 140 · GRUB 2.12 — e milhares de pessoas que mantêm esses projetos de código aberto. Veja todos os <a href="sobre.html">créditos e licenças</a>.</p>
+  <div class="aviso"><strong>Projeto educacional, sem garantia.</strong> Leia os <a href="sobre.html#cuidados">cuidados antes de testar</a> — em especial sobre o modo live e o que acontece com arquivos salvos.</div>
+</main>
+
+<footer class="rodape"><div class="wrap">
+  <div><h4>Sagui Linux</h4><p>Distribuição educacional feita do zero com LFS + BLFS.<br>Criado por <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI" data-texto="autor">Eli Rigobeli</a>.</p></div>
+  <div><h4>Projeto</h4><ul><li><a href="download.html">Download</a></li><li><a href="instalar.html">Como gravar e dar boot</a></li><li><a href="historia.html">Como foi feito</a></li><li><a data-config="repositorio" data-vazio="Código-fonte (em breve)" href="#">Código-fonte</a></li></ul></div>
+  <div><h4>Créditos</h4><ul><li><a href="https://www.linuxfromscratch.org/" target="_blank" rel="noopener">Linux From Scratch</a></li><li><a href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener">Beyond Linux From Scratch</a></li><li><a href="sobre.html">Licenças e avisos</a></li></ul></div>
+</div></footer>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como foi feito — Sagui Linux</title>
+<meta name="description" content="A história da criação do Sagui Linux: Linux From Scratch e BLFS compilados por um agente de IA, histórias, tempos de compilação, erros e correções.">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="faixa"></div>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="index.html"><img src="img/logo-sagui.svg" alt="">Sagui Linux</a>
+  <nav class="menu" aria-label="Principal">
+    <a href="index.html">Início</a>
+    <a href="download.html">Download</a>
+    <a href="instalar.html">Como gravar</a>
+    <a href="historia.html">Como foi feito</a>
+    <a href="sobre.html">Créditos e avisos</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Como o Sagui Linux foi feito</h1>
+  <p class="selo-ia">🤖 Criado 100% por IA · Claude Opus 5.5</p>
+  <p class="lead mut">Um sistema operacional inteiro compilado do código-fonte, em duas fases, por um agente de IA (Claude Opus 5.5) seguindo os livros do Linux From Scratch — com cada passo, erro e correção registrado.</p>
+
+  <div class="info">Prefere ver em vídeo? O processo está documentado no canal <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI">@EliRigobeliAI</a>.</div>
+  <div id="video-processo" class="video-vazio"><div><p><strong>Vídeo do processo em breve</strong></p><p class="pequeno">Acompanhe o canal: <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI">youtube.com/@EliRigobeliAI</a></p></div></div>
+
+  <h2>Os livros</h2>
+  <div class="livros">
+    <a class="livro" href="https://www.linuxfromscratch.org/lfs/" target="_blank" rel="noopener"><span class="mut pequeno">Fase 1</span><strong>Linux From Scratch 12.4 (SysVinit)</strong><span class="mut pequeno">linuxfromscratch.org/lfs</span></a>
+    <a class="livro" href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener"><span class="mut pequeno">Fase 2</span><strong>Beyond Linux From Scratch 12.4 (SysVinit)</strong><span class="mut pequeno">linuxfromscratch.org/blfs</span></a>
+  </div>
+
+  <h2>A ideia</h2>
+  <p>Distribuições como Ubuntu ou Fedora entregam milhares de pacotes já compilados. O <a href="https://www.linuxfromscratch.org/lfs/" target="_blank" rel="noopener">Linux From Scratch (LFS)</a> faz o caminho contrário: é um livro que ensina a construir um sistema Linux <strong>a partir do código-fonte</strong>, começando por um compilador temporário e terminando num sistema completo e independente. O <a href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener">Beyond Linux From Scratch (BLFS)</a> continua de onde o LFS para: rede, servidor gráfico, desktops, navegadores.</p>
+  <p>O desafio deste projeto foi entregar o trabalho inteiro a um agente de IA — o <strong>Claude Opus 5.5</strong> (Anthropic), rodando no <strong>Claude Code</strong> num servidor virtual Linux — e acompanhar tudo de fora, por documentação e por um painel de progresso. <strong data-texto="autor">Eli Rigobeli</strong> escreveu o documento de requisitos da primeira fase, tomou as decisões de produto e testou o resultado em hardware real.</p>
+
+  <h2>Como o trabalho foi organizado</h2>
+  <ol class="passos">
+    <li><strong>PRD (documento de requisitos).</strong> Define o objetivo, o ambiente, as regras (seguir o livro, nenhum binário copiado do sistema hospedeiro, documentar tudo) e os critérios de aceite. Na Fase 1 foi escrito pelo Eli; na Fase 2, pelo próprio agente, a partir de uma conversa.</li>
+    <li><strong>Histórias (marcos).</strong> O trabalho foi dividido em 13 histórias por fase, cada uma com objetivo, passos, critério de aceite, peso no progresso e link para os logs.</li>
+    <li><strong>Scripts a partir do livro.</strong> O agente extraiu os comandos do HTML do livro para scripts, revisou cada um, e montou "planos" de build. Um driver idempotente compila um pacote por vez, guarda o log completo e marca o que já terminou — se algo quebra, retoma dali.</li>
+    <li><strong>Loops.</strong> Um loop de execução avança pelos planos; um loop de monitoramento só verifica a cada minuto se o build terminou (sem ler a saída do compilador); um loop de correção lê só o trecho do log com o erro, corrige, registra e tenta de novo.</li>
+    <li><strong>Documentação contínua.</strong> Diário cronológico, registro de erros (sintoma, causa, correção), decisões técnicas, <code>STATUS.md</code> e um painel HTML atualizado a cada pacote.</li>
+    <li><strong>Testes automáticos.</strong> Cada ISO foi ligada em máquinas virtuais (QEMU) em BIOS, UEFI e como pendrive USB; um script faz login, roda comandos e, na Fase 2, tira capturas de tela do desktop e do Firefox, que o agente analisa.</li>
+    <li><strong>Teste humano.</strong> O único passo manual: gravar o pendrive e ligar num notebook de verdade.</li>
+  </ol>
+
+  <h2>Linha do tempo</h2>
+  <ul class="linha-tempo">
+    <li><time>01/11/2026 · 15:03</time><br><strong>Início da Fase 1.</strong> O agente lê o PRD, prepara o servidor, baixa o livro LFS 12.4 e os 94 pacotes (um espelho estava fora do ar; usou o espelho oficial do LFS).</li>
+    <li><time>15:18 → 16:15</time><br><strong>Toolchain cruzada e ferramentas temporárias</strong> (capítulos 5 a 7): compilador e biblioteca C construídos em etapas até o sistema poder compilar a si mesmo, dentro do chroot.</li>
+    <li><time>16:15 → 20:01</time><br><strong>Sistema base</strong> (capítulo 8): 80 pacotes, com as suítes de teste críticas da glibc, binutils e GCC — só os testes do GCC levaram mais de 2 horas.</li>
+    <li><time>20:02 → 22:33</time><br><strong>Configuração, kernel, live e ISO.</strong> Kernel 6.16 com drivers embutidos, initramfs próprio, squashfs e ISO híbrida. Testes em QEMU: BIOS, UEFI e pendrive.</li>
+    <li><time>23:58</time><br><strong>Eli confirma o boot num notebook real.</strong> Gravado com o Rufus, não funcionou; com o balenaEtcher, sim. Fase 1 em 100%.</li>
+    <li class="azul"><time>02/11/2026 · 00:20</time><br><strong>Início da Fase 2.</strong> Eli pede interface gráfica XFCE, Firefox, nome "Sagui Linux" e arte com as cores do Brasil. O agente escreve o PRD, lê as 857 páginas do BLFS e calcula a árvore de dependências.</li>
+    <li class="azul"><time>00:30</time><br><strong>Identidade visual</strong> gerada com o Higgsfield (Recraft V4.1): mascote, logotipo e papel de parede — cerca de 18 créditos.</li>
+    <li class="azul"><time>01:00 → 06:00</time><br><strong>Pilha gráfica:</strong> Xorg, LLVM e Mesa, GTK 3, XFCE, som, Node.js, Rust e Firefox — 133 passos de build.</li>
+    <li class="azul"><time>06:00 → 07:12</time><br><strong>Kernel com o logo do Sagui no boot, integração e ISO.</strong> No primeiro teste o XFCE não abriu (captura de tela mostrou o motivo); corrigido, os três testes passaram com desktop e Firefox.</li>
+    <li class="azul"><time>13:38</time><br><strong>Eli confirma o Sagui Linux 2.0 em hardware real.</strong> Fase 2 em 100%.</li>
+  </ul>
+
+  <h2>Fase 1 — edição de terminal 1.0 (LFS)</h2>
+  <p class="mut pequeno" id="periodo-fase1"></p>
+  <div class="grade" id="numeros-fase1"></div>
+  <h3>Histórias</h3>
+  <div id="marcos-fase1"></div>
+  <p class="pequeno mut">"Tempo de compilação" soma a duração registrada nos logs de cada passo. Histórias de preparação, testes e entrega não têm passos de build.</p>
+  <h3>Os passos mais demorados</h3>
+  <ul id="longos-fase1"></ul>
+  <h3>Erros encontrados e como foram corrigidos</h3>
+  <div id="erros-fase1"></div>
+  <figure>
+<pre>Semente Linux 1.0 (LFS 12.4) - ttyS0
+semente login: root
+-bash-5.3# uname -a
+Linux semente 6.16.1-semente #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux
+-bash-5.3# gcc --version
+gcc (GCC) 15.2.0
+-bash-5.3# cat /etc/os-release
+NAME="Semente Linux"
+VERSION="1.0 (fase1)"
+PRETTY_NAME="Semente Linux 1.0 (LFS 12.4, live)"</pre>
+    <figcaption>Trecho real do teste automático da edição de terminal (console serial do QEMU). "Semente" foi o nome provisório da primeira versão.</figcaption>
+  </figure>
+
+  <h2>Fase 2 — Sagui Linux 2.0 (BLFS + XFCE)</h2>
+  <p class="mut pequeno" id="periodo-fase2"></p>
+  <div class="grade" id="numeros-fase2"></div>
+  <h3>Histórias</h3>
+  <div id="marcos-fase2"></div>
+  <h3>Os passos mais demorados</h3>
+  <ul id="longos-fase2"></ul>
+  <h3>Erros encontrados e como foram corrigidos</h3>
+  <div id="erros-fase2"></div>
+  <figure><img class="captura" src="img/desktop.jpg" width="1280" height="800" loading="lazy" alt="Desktop do Sagui Linux 2.0 capturado pelo teste automático em QEMU"><figcaption>Captura feita pelo teste automático: o agente liga a ISO no QEMU e "olha" a tela pelo monitor da máquina virtual.</figcaption></figure>
+
+  <h2>Decisões que valem a pena conhecer</h2>
+  <div class="grade-2">
+    <div class="card"><h3>Hardware genérico</h3><p>O servidor de build tinha um processador AMD EPYC moderno. Bibliotecas como GMP e libffi, por padrão, se otimizam para a CPU onde são compiladas — e o sistema travaria num PC antigo. O agente usou as opções genéricas que o próprio livro indica.</p></div>
+    <div class="card"><h3>Recomendadas sob medida</h3><p>Seguir todas as dependências "recomendadas" do BLFS puxaria 281 pacotes (LibreOffice, Qt 6, GTK 4…). O agente escolheu à mão as que importam para um desktop leve: ~120 pacotes.</p></div>
+    <div class="card"><h3>Firefox sem a marca oficial</h3><p>O livro avisa que o Firefox compilado com a marca oficial não pode ser redistribuído. Como a ISO é distribuída, ele foi compilado com a marca genérica do código-fonte (aparece como "Nightly").</p></div>
+    <div class="card"><h3>Live em RAM</h3><p>Um initramfs próprio, feito só com programas do próprio sistema, procura o pendrive, monta o sistema compactado e cria uma camada gravável na memória. Funciona tanto como CD quanto gravado byte a byte num pendrive.</p></div>
+    <div class="card"><h3>Sem drivers que exigem firmware</h3><p>Placas AMD modernas precisam de firmware proprietário; sem ele a tela fica preta. Nesta versão elas usam o vídeo genérico, que sempre funciona.</p></div>
+    <div class="card"><h3>Arte com IA, com parcimônia</h3><p>Mascote, logo e wallpaper foram gerados no Higgsfield com 5 imagens no total. O logo virou também o logo de boot do kernel (no lugar do pinguim) e o fundo do menu do GRUB.</p></div>
+  </div>
+
+  <h2>Arte do projeto</h2>
+  <div class="grade">
+    <figure class="card"><img src="img/logo-sagui.svg" width="256" height="256" loading="lazy" alt="Logotipo: rosto de um sagui com tufos brancos nas orelhas sobre o losango amarelo e o círculo azul da bandeira do Brasil"><figcaption>Logotipo</figcaption></figure>
+    <figure class="card"><img src="img/tux-e-sagui.png" width="720" height="370" loading="lazy" alt="O pinguim Tux ao lado do mascote sagui azul com tufos brancos, cauda listrada e lenço verde e amarelo"><figcaption>Mascote, ao lado do Tux (Larry Ewing / GIMP)</figcaption></figure>
+    <figure class="card"><img src="img/wallpaper.jpg" width="1920" height="1097" loading="lazy" alt="Papel de parede: floresta em camadas verdes sob um céu azul-escuro com estrelas e a silhueta de um sagui num galho"><figcaption>Papel de parede</figcaption></figure>
+  </div>
+
+  <h2>O que aprender com isso</h2>
+  <ul>
+    <li>Um sistema Linux é, no fundo, um conjunto de programas independentes que se encaixam: o kernel, a biblioteca C, as ferramentas GNU, o sistema de inicialização — e, por cima, o servidor gráfico e o desktop.</li>
+    <li>A ordem importa: muitos erros vieram de um pacote compilado antes de uma dependência opcional que outro pacote, mais adiante, considerava obrigatória.</li>
+    <li>Documentar cada erro transforma tentativa e erro em conhecimento — está tudo nesta página.</li>
+  </ul>
+  <p>Quer tentar? Comece pelo livro <a href="https://www.linuxfromscratch.org/lfs/" target="_blank" rel="noopener">Linux From Scratch</a> — ele é gratuito e muito bem explicado.</p>
+</main>
+
+<footer class="rodape"><div class="wrap">
+  <div><h4>Sagui Linux</h4><p>Distribuição educacional feita do zero com LFS + BLFS.<br>Criado por <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI" data-texto="autor">Eli Rigobeli</a>.</p></div>
+  <div><h4>Projeto</h4><ul><li><a href="download.html">Download</a></li><li><a href="instalar.html">Como gravar e dar boot</a></li><li><a href="historia.html">Como foi feito</a></li><li><a data-config="repositorio" data-vazio="Código-fonte (em breve)" href="#">Código-fonte</a></li></ul></div>
+  <div><h4>Créditos</h4><ul><li><a href="https://www.linuxfromscratch.org/" target="_blank" rel="noopener">Linux From Scratch</a></li><li><a href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener">Beyond Linux From Scratch</a></li><li><a href="sobre.html">Licenças e avisos</a></li></ul></div>
+</div></footer>
+<script src="js/config.js"></script>
+<script src="js/dados.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como gravar e dar boot — Sagui Linux</title>
+<meta name="description" content="Tutorial: grave o Sagui Linux num pendrive com o balenaEtcher (recomendado), Rufus em modo DD ou dd, e dê boot em BIOS ou UEFI.">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="faixa"></div>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="index.html"><img src="img/logo-sagui.svg" alt="">Sagui Linux</a>
+  <nav class="menu" aria-label="Principal">
+    <a href="index.html">Início</a>
+    <a href="download.html">Download</a>
+    <a href="instalar.html">Como gravar</a>
+    <a href="historia.html">Como foi feito</a>
+    <a href="sobre.html">Créditos e avisos</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Como gravar no pendrive e dar boot</h1>
+  <p class="lead mut">Em resumo: baixe a ISO, grave no pendrive com o <strong>balenaEtcher</strong>, desligue o Secure Boot e ligue o computador pelo pendrive.</p>
+
+  <div class="perigo"><strong>Leia antes de começar</strong>
+    <ul style="margin:.4em 0 0">
+      <li>Gravar a ISO <strong>apaga todo o conteúdo do pendrive</strong>. Copie antes o que for importante.</li>
+      <li>O Sagui Linux roda na <strong>memória RAM</strong>: o que você fizer nele <strong>some ao desligar</strong>. Não use para guardar arquivos.</li>
+      <li>Usar o sistema live <strong>não altera o disco do computador</strong>. Só o script opcional <code>instalar-no-disco</code> mexe no disco (veja no fim da página).</li>
+      <li>De preferência, teste primeiro numa <a href="#vm">máquina virtual</a> ou num <strong>computador antigo</strong>, que não seja o seu de trabalho.</li>
+    </ul>
+  </div>
+
+  <h2>1. Baixe e confira a ISO</h2>
+  <p>Na página de <a href="download.html">download</a>, escolha a edição Desktop (recomendada) ou Terminal. Se quiser, confira o <a href="download.html#desktop">SHA-256</a> do arquivo.</p>
+
+  <h2>2. Grave no pendrive</h2>
+  <div data-abas>
+    <div class="abas" role="tablist">
+      <button type="button" role="tab" data-alvo="aba-etcher">balenaEtcher (recomendado)</button>
+      <button type="button" role="tab" data-alvo="aba-rufus">Rufus</button>
+      <button type="button" role="tab" data-alvo="aba-dd">Linux (dd)</button>
+    </div>
+
+    <section id="aba-etcher">
+      <div class="info"><strong>Por que o balenaEtcher?</strong> Ele grava a imagem byte a byte, exatamente como a ISO precisa, e confere a gravação no final. Foi o método que funcionou no primeiro teste em hardware real do projeto. Funciona no Windows, macOS e Linux.</div>
+      <ol class="passos">
+        <li>Baixe e instale o balenaEtcher em <a href="https://etcher.balena.io/" target="_blank" rel="noopener">etcher.balena.io</a>.</li>
+        <li>Conecte o pendrive (2 GB ou mais para o Desktop; 1 GB para o Terminal).</li>
+        <li>Abra o Etcher e clique em <strong>Flash from file</strong>. Escolha o arquivo <code>sagui-linux-2.0-x86_64.iso</code>.</li>
+        <li>Clique em <strong>Select target</strong> e marque <strong>o pendrive</strong>. Confira o nome e o tamanho — não escolha o HD/SSD do computador.</li>
+        <li>Clique em <strong>Flash!</strong>. O sistema pode pedir sua senha de administrador. Espere a gravação <em>e</em> a verificação (<em>Validating</em>) terminarem.</li>
+        <li>Pronto. Se o Windows disser que o pendrive "precisa ser formatado", clique em <strong>Cancelar</strong> — é normal: o Windows não entende o formato da ISO.</li>
+      </ol>
+    </section>
+
+    <section id="aba-rufus" hidden>
+      <div class="aviso"><strong>No Rufus, use o modo "Imagem DD".</strong> O modo padrão do Rufus ("modo Imagem ISO") copia arquivos para o pendrive e <strong>não funciona</strong> com o Sagui Linux (no primeiro teste do projeto, o Rufus não deu certo; o balenaEtcher, sim).</div>
+      <ol class="passos">
+        <li>Baixe o Rufus em <a href="https://rufus.ie/pt_BR/" target="_blank" rel="noopener">rufus.ie</a> (Windows).</li>
+        <li>Em <strong>Dispositivo</strong>, escolha o pendrive.</li>
+        <li>Em <strong>Seleção de boot</strong>, clique em <strong>SELECIONAR</strong> e escolha a ISO.</li>
+        <li>Clique em <strong>INICIAR</strong>. Vai aparecer a janela "Imagem ISOHybrid detectada": marque <strong>"Gravar no modo Imagem DD"</strong> e clique em OK.</li>
+        <li>Confirme que os dados do pendrive serão apagados e espere terminar.</li>
+      </ol>
+    </section>
+
+    <section id="aba-dd" hidden>
+      <p>No Linux, dá para gravar direto pelo terminal. <strong>Cuidado:</strong> errar o nome do dispositivo apaga outro disco.</p>
+      <pre data-copiar>lsblk          # descubra o pendrive, por exemplo /dev/sdb (confira o TAMANHO)
+sudo dd if=sagui-linux-2.0-x86_64.iso of=/dev/sdX bs=4M status=progress oflag=sync</pre>
+      <p>Troque <code>/dev/sdX</code> pelo pendrive e use o <strong>disco inteiro</strong> (<code>/dev/sdb</code>), não uma partição (<code>/dev/sdb1</code>).</p>
+    </section>
+  </div>
+
+  <h2>3. Prepare o computador</h2>
+  <ol class="passos">
+    <li><strong>Desligue o Secure Boot.</strong> Ao ligar o PC, entre no setup do firmware (geralmente <kbd>F2</kbd>, <kbd>Del</kbd>, <kbd>F10</kbd> ou <kbd>Esc</kbd>), procure <em>Security → Secure Boot</em> (ou <em>Boot → Secure Boot</em>) e coloque em <strong>Disabled</strong>. Salve e saia. As imagens do Sagui não são assinadas, por isso o Secure Boot as bloquearia.</li>
+    <li>Se o PC for antigo (só BIOS/Legacy), não precisa mexer em nada: a ISO também dá boot nesse modo.</li>
+  </ol>
+
+  <h2>4. Ligue pelo pendrive</h2>
+  <p>Com o pendrive conectado, ligue o computador e aperte a tecla do <strong>menu de boot</strong> logo no começo:</p>
+  <div class="tabela"><table>
+    <thead><tr><th>Fabricante</th><th>Tecla</th><th>Fabricante</th><th>Tecla</th></tr></thead>
+    <tbody>
+      <tr><td>Dell</td><td><kbd>F12</kbd></td><td>Acer</td><td><kbd>F12</kbd></td></tr>
+      <tr><td>HP</td><td><kbd>F9</kbd> (ou <kbd>Esc</kbd> → <kbd>F9</kbd>)</td><td>ASUS</td><td><kbd>F8</kbd> (desktop) / <kbd>Esc</kbd> (notebook)</td></tr>
+      <tr><td>Lenovo</td><td><kbd>F12</kbd> ou botão Novo</td><td>Positivo</td><td><kbd>F7</kbd> ou <kbd>F12</kbd></td></tr>
+      <tr><td>Samsung</td><td><kbd>F10</kbd></td><td>Placas Gigabyte/MSI/ASRock</td><td><kbd>F12</kbd> / <kbd>F11</kbd></td></tr>
+    </tbody>
+  </table></div>
+  <p>Escolha o pendrive (em PCs novos aparece como <strong>"UEFI: nome do pendrive"</strong>). Vai aparecer o menu do Sagui:</p>
+  <div class="tabela"><table>
+    <thead><tr><th>Entrada do menu</th><th>Quando usar</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Sagui Linux 2.0 (XFCE)</strong></td><td>Normal — entra sozinha em 8 segundos.</td></tr>
+      <tr><td>(modo seguro de vídeo)</td><td>Se a tela ficar preta depois do menu: usa vídeo genérico (<code>nomodeset</code>).</td></tr>
+      <tr><td>(modo texto)</td><td>Só terminal, sem interface gráfica.</td></tr>
+      <tr><td>(console serial ttyS0)</td><td>Para testes em máquina virtual sem tela.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Em 30 segundos a 1 minuto aparece o desktop (pelo USB 2.0 pode demorar um pouco mais). Na edição de terminal, entre com <code>root</code> / <code>semente</code>.</p>
+  <figure><img class="captura" src="img/firefox.jpg" width="1280" height="800" loading="lazy" alt="Captura do Sagui Linux com o Firefox aberto na página de boas-vindas, que mostra o mascote sagui, as senhas e avisos sobre o modo live"><figcaption>Ao abrir o Firefox, a página inicial lembra as senhas e os cuidados do modo live.</figcaption></figure>
+
+  <h2 id="vm">Testar numa máquina virtual (o jeito mais seguro)</h2>
+  <div class="grade-2">
+    <div class="card"><h3>VirtualBox</h3><ol>
+      <li>Novo → Tipo <em>Linux</em>, Versão <em>Other Linux (64-bit)</em>.</li>
+      <li>4 GB de RAM, 2 CPUs. Disco: pode não criar.</li>
+      <li>Tela → Controladora gráfica <em>VMSVGA</em>, 64 MB de vídeo.</li>
+      <li>Armazenamento → no drive óptico, escolha a ISO.</li>
+      <li>Para testar UEFI: Sistema → marque <em>Habilitar EFI</em>.</li>
+    </ol></div>
+    <div class="card"><h3>QEMU (Linux)</h3>
+      <pre data-copiar>qemu-system-x86_64 -enable-kvm -m 4096 -smp 2 \
+  -vga std -cdrom sagui-linux-2.0-x86_64.iso</pre>
+      <p class="pequeno mut">Para UEFI, acrescente <code>-bios /usr/share/ovmf/OVMF.fd</code>.</p></div>
+  </div>
+
+  <h2>Problemas comuns</h2>
+  <div class="tabela"><table>
+    <thead><tr><th>Sintoma</th><th>O que fazer</th></tr></thead>
+    <tbody>
+      <tr><td>O pendrive não aparece no menu de boot</td><td>Grave de novo com o balenaEtcher; tente outra porta USB (de preferência USB 2.0 traseira); confirme que o Secure Boot está desligado e que o boot por USB está habilitado.</td></tr>
+      <tr><td>"Secure Boot violation" / "Invalid signature"</td><td>Desligue o Secure Boot (passo 3).</td></tr>
+      <tr><td>Tela preta depois do menu</td><td>Use a entrada <strong>modo seguro de vídeo</strong>.</td></tr>
+      <tr><td><code>[live] ERRO: mídia não encontrada</code></td><td>O sistema não achou o pendrive em 60 s. Troque de porta USB e regrave.</td></tr>
+      <tr><td>"A sessão gráfica terminou"</td><td>Digite <code>startx</code>. O log fica em <code>~/.cache/xsession.log</code>.</td></tr>
+      <tr><td>Sem internet</td><td>Só funciona por cabo. Confira com <code>ip -br addr</code> no terminal.</td></tr>
+      <tr><td>Firefox se chama "Nightly"</td><td>Normal: é o Firefox compilado do código-fonte sem a marca registrada da Mozilla, que não pode ser redistribuída.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Opcional: instalar no disco</h2>
+  <div class="perigo"><strong>Isto apaga o disco escolhido por completo.</strong> Só faça num computador ou disco que pode ser apagado (de preferência numa máquina de testes). Não há instalação "ao lado" do Windows.</div>
+  <p>O sistema live traz o script <code>instalar-no-disco</code>, que cria as partições, copia o sistema e instala o GRUB (BIOS e UEFI). No terminal do Sagui:</p>
+  <pre data-copiar>lsblk                               # identifique o disco de destino
+sudo instalar-no-disco /dev/sdX     # pede para digitar SIM antes de apagar</pre>
+  <p>Depois, desligue, remova o pendrive e ligue de novo.</p>
+</main>
+
+<footer class="rodape"><div class="wrap">
+  <div><h4>Sagui Linux</h4><p>Distribuição educacional feita do zero com LFS + BLFS.<br>Criado por <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI" data-texto="autor">Eli Rigobeli</a>.</p></div>
+  <div><h4>Projeto</h4><ul><li><a href="download.html">Download</a></li><li><a href="instalar.html">Como gravar e dar boot</a></li><li><a href="historia.html">Como foi feito</a></li><li><a data-config="repositorio" data-vazio="Código-fonte (em breve)" href="#">Código-fonte</a></li></ul></div>
+  <div><h4>Créditos</h4><ul><li><a href="https://www.linuxfromscratch.org/" target="_blank" rel="noopener">Linux From Scratch</a></li><li><a href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener">Beyond Linux From Scratch</a></li><li><a href="sobre.html">Licenças e avisos</a></li></ul></div>
+</div></footer>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
