@@ -1,0 +1,164 @@
+# Diário
+
+Log cronológico: data e hora | marco | o que foi feito | resultado
+
+- 2026-11-01 15:10:33 | H01 | Verificado sudo -n true (OK); instaladas ferramentas do host via apt (build-essential, bison, texinfo, qemu, ovmf, xorriso, squashfs-tools, expect, mtools...); /bin/sh -> bash | ok
+- 2026-11-01 15:10:49 | H01 | version-check.sh do livro (cap. 2.2) executado: todos OK; sessão tmux 'distro' criada; estrutura de diretórios criada | ok - logs/H01-version-check.log
+- 2026-11-01 15:16:21 | H02 | Baixados 94 pacotes/patches (582 MB) do wget-list-sysv + bootscripts; ncurses via espelho alternativo; md5sum -c: 94/94 OK | ok - logs/H02-download.log, logs/H02-md5.log
+- 2026-11-01 15:16:57 | H03 | Criados /mnt/lfs (diretório no disco da VPS), layout do cap. 4.2, usuário lfs, .bash_profile/.bashrc (cap. 4.4), sources copiados para $LFS/sources; /etc/bash.bashrc do host movido para .NOUSE | ok - logs/H03-preparar.log
+- 2026-11-01 15:18:30 | H04 | Falha em ch5-binutils-pass1 (rc=2) | erro - logs/ch5-binutils-pass1.log
+- 2026-11-01 15:20:15 | H04 | ch5-binutils-pass1 compilado e instalado | ok - logs/ch5-binutils-pass1.log
+- 2026-11-01 15:28:22 | H04 | ch5-gcc-pass1 compilado e instalado | ok - logs/ch5-gcc-pass1.log
+- 2026-11-01 15:28:44 | H04 | ch5-linux-headers compilado e instalado | ok - logs/ch5-linux-headers.log
+- 2026-11-01 15:32:55 | H04 | ch5-glibc compilado e instalado | ok - logs/ch5-glibc.log
+- 2026-11-01 15:34:22 | H04 | ch5-libstdc++ compilado e instalado | ok - logs/ch5-libstdc++.log
+- 2026-11-01 15:35:04 | H05 | ch6-m4 compilado e instalado | ok - logs/ch6-m4.log
+- 2026-11-01 15:36:31 | H05 | ch6-ncurses compilado e instalado | ok - logs/ch6-ncurses.log
+- 2026-11-01 15:37:07 | H04 | Sanity check do cap. 5.5: interpretador /lib64/ld-linux-x86-64.so.2, crt*.o e libc.so.6 do $LFS encontrados | ok - logs/ch5-glibc.log
+- 2026-11-01 15:37:12 | H05 | ch6-bash compilado e instalado | ok - logs/ch6-bash.log
+- 2026-11-01 15:38:30 | H05 | ch6-coreutils compilado e instalado | ok - logs/ch6-coreutils.log
+- 2026-11-01 15:39:07 | H05 | ch6-diffutils compilado e instalado | ok - logs/ch6-diffutils.log
+- 2026-11-01 15:39:30 | H05 | ch6-file compilado e instalado | ok - logs/ch6-file.log
+- 2026-11-01 15:40:20 | H05 | ch6-findutils compilado e instalado | ok - logs/ch6-findutils.log
+- 2026-11-01 15:40:53 | H05 | ch6-gawk compilado e instalado | ok - logs/ch6-gawk.log
+- 2026-11-01 15:41:28 | H05 | ch6-grep compilado e instalado | ok - logs/ch6-grep.log
+- 2026-11-01 15:41:54 | H05 | ch6-gzip compilado e instalado | ok - logs/ch6-gzip.log
+- 2026-11-01 15:42:08 | H05 | ch6-make compilado e instalado | ok - logs/ch6-make.log
+- 2026-11-01 15:42:32 | H05 | ch6-patch compilado e instalado | ok - logs/ch6-patch.log
+- 2026-11-01 15:43:02 | H05 | ch6-sed compilado e instalado | ok - logs/ch6-sed.log
+- 2026-11-01 15:43:43 | H05 | ch6-tar compilado e instalado | ok - logs/ch6-tar.log
+- 2026-11-01 15:44:09 | H05 | ch6-xz compilado e instalado | ok - logs/ch6-xz.log
+- 2026-11-01 15:45:51 | H05 | ch6-binutils-pass2 compilado e instalado | ok - logs/ch6-binutils-pass2.log
+- 2026-11-01 15:58:40 | H05 | ch6-gcc-pass2 compilado e instalado | ok - logs/ch6-gcc-pass2.log
+- 2026-11-01 15:59:10 | H05 | Cap. 6 concluído (17 pacotes); /etc/bash.bashrc do host restaurado (só precisava ficar fora durante as etapas do usuário lfs) | ok
+- 2026-11-01 15:59:10 | H06 | ch7-changingowner compilado e instalado | ok - logs/ch7-changingowner.log
+- 2026-11-01 15:59:11 | H06 | ch7-creatingdirs compilado e instalado | ok - logs/ch7-creatingdirs.log
+- 2026-11-01 15:59:11 | H06 | ch7-createfiles compilado e instalado | ok - logs/ch7-createfiles.log
+- 2026-11-01 16:05:23 | H06 | ch7-gettext compilado e instalado | ok - logs/ch7-gettext.log
+- 2026-11-01 16:06:10 | H06 | ch7-bison compilado e instalado | ok - logs/ch7-bison.log
+- 2026-11-01 16:08:02 | H06 | ch7-perl compilado e instalado | ok - logs/ch7-perl.log
+- 2026-11-01 16:09:36 | H06 | ch7-python compilado e instalado | ok - logs/ch7-python.log
+- 2026-11-01 16:10:34 | H06 | ch7-texinfo compilado e instalado | ok - logs/ch7-texinfo.log
+- 2026-11-01 16:11:24 | H06 | ch7-util-linux compilado e instalado | ok - logs/ch7-util-linux.log
+- 2026-11-01 16:11:25 | H06 | ch7-cleanup compilado e instalado | ok - logs/ch7-cleanup.log
+- 2026-11-01 16:14:16 | H06 | ch7-backup compilado e instalado | ok - logs/ch7-backup.log
+- 2026-11-01 16:14:26 | H07 | ch8-man-pages compilado e instalado | ok - logs/ch8-man-pages.log
+- 2026-11-01 16:14:26 | H07 | ch8-iana-etc compilado e instalado | ok - logs/ch8-iana-etc.log
+- 2026-11-01 16:15:23 | H06 | Cap. 7 concluído: chroot, diretórios/arquivos essenciais, gettext, bison, perl, Python, texinfo, util-linux, limpeza; backup backups/lfs-temp-tools-12.4.tar.xz (496 MB, xz -t OK) | ok
+- 2026-11-01 16:51:57 | H07 | ch8-glibc compilado e instalado | ok - logs/ch8-glibc.log
+- 2026-11-01 16:51:59 | H07 | ch8-zlib compilado e instalado | ok - logs/ch8-zlib.log
+- 2026-11-01 16:52:04 | H07 | ch8-bzip2 compilado e instalado | ok - logs/ch8-bzip2.log
+- 2026-11-01 16:52:25 | H07 | ch8-xz compilado e instalado | ok - logs/ch8-xz.log
+- 2026-11-01 16:52:43 | H07 | ch8-lz4 compilado e instalado | ok - logs/ch8-lz4.log
+- 2026-11-01 16:53:06 | H07 | ch8-zstd compilado e instalado | ok - logs/ch8-zstd.log
+- 2026-11-01 16:53:19 | H07 | ch8-file compilado e instalado | ok - logs/ch8-file.log
+- 2026-11-01 16:53:29 | H07 | ch8-readline compilado e instalado | ok - logs/ch8-readline.log
+- 2026-11-01 16:54:29 | H07 | ch8-m4 compilado e instalado | ok - logs/ch8-m4.log
+- 2026-11-01 16:54:34 | H07 | ch8-bc compilado e instalado | ok - logs/ch8-bc.log
+- 2026-11-01 16:54:47 | H07 | ch8-flex compilado e instalado | ok - logs/ch8-flex.log
+- 2026-11-01 16:55:36 | H07 | glibc 2.42 com testes: 2 FAIL (io/tst-lchmod, esperado no chroot; nptl/tst-mutex10, temporização) e 4 XPASS; aceito | ok - logs/ch8-glibc.log
+- 2026-11-01 16:56:27 | H07 | ch8-tcl compilado e instalado | ok - logs/ch8-tcl.log
+- 2026-11-01 16:56:37 | H07 | ch8-expect compilado e instalado | ok - logs/ch8-expect.log
+- 2026-11-01 16:56:41 | H07 | ch8-dejagnu compilado e instalado | ok - logs/ch8-dejagnu.log
+- 2026-11-01 16:56:46 | H07 | ch8-pkgconf compilado e instalado | ok - logs/ch8-pkgconf.log
+- 2026-11-01 17:05:31 | H07 | ch8-binutils compilado e instalado | ok - logs/ch8-binutils.log
+- 2026-11-01 17:06:13 | H07 | ch8-gmp compilado e instalado | ok - logs/ch8-gmp.log
+- 2026-11-01 17:06:36 | H07 | ch8-mpfr compilado e instalado | ok - logs/ch8-mpfr.log
+- 2026-11-01 17:06:46 | H07 | ch8-mpc compilado e instalado | ok - logs/ch8-mpc.log
+- 2026-11-01 17:06:52 | H07 | ch8-attr compilado e instalado | ok - logs/ch8-attr.log
+- 2026-11-01 17:06:58 | H07 | ch8-acl compilado e instalado | ok - logs/ch8-acl.log
+- 2026-11-01 17:07:01 | H07 | ch8-libcap compilado e instalado | ok - logs/ch8-libcap.log
+- 2026-11-01 17:07:19 | H07 | ch8-libxcrypt compilado e instalado | ok - logs/ch8-libxcrypt.log
+- 2026-11-01 17:07:41 | H07 | ch8-shadow compilado e instalado | ok - logs/ch8-shadow.log
+- 2026-11-01 17:15:06 | H07 | binutils 2.45 com testes: nenhum FAIL | ok - logs/ch8-binutils.log
+- 2026-11-01 19:16:07 | H07 | ch8-gcc compilado e instalado | ok - logs/ch8-gcc.log
+- 2026-11-01 19:17:19 | H07 | ch8-ncurses compilado e instalado | ok - logs/ch8-ncurses.log
+- 2026-11-01 19:17:58 | H07 | ch8-sed compilado e instalado | ok - logs/ch8-sed.log
+- 2026-11-01 19:18:08 | H07 | ch8-psmisc compilado e instalado | ok - logs/ch8-psmisc.log
+- 2026-11-01 19:24:41 | H07 | ch8-gettext compilado e instalado | ok - logs/ch8-gettext.log
+- 2026-11-01 19:24:48 | H07 | gcc 15.2.0 com testes: gcc 0 falhas inesperadas, g++ 4 falhas inesperadas (aceitas, conforme o livro); sanity check OK | ok - logs/ch8-gcc.log
+- 2026-11-01 19:25:33 | H07 | ch8-bison compilado e instalado | ok - logs/ch8-bison.log
+- 2026-11-01 19:26:27 | H07 | ch8-grep compilado e instalado | ok - logs/ch8-grep.log
+- 2026-11-01 19:27:12 | H07 | ch8-bash compilado e instalado | ok - logs/ch8-bash.log
+- 2026-11-01 19:27:24 | H07 | ch8-libtool compilado e instalado | ok - logs/ch8-libtool.log
+- 2026-11-01 19:27:34 | H07 | ch8-gdbm compilado e instalado | ok - logs/ch8-gdbm.log
+- 2026-11-01 19:27:51 | H07 | ch8-gperf compilado e instalado | ok - logs/ch8-gperf.log
+- 2026-11-01 19:28:04 | H07 | ch8-expat compilado e instalado | ok - logs/ch8-expat.log
+- 2026-11-01 19:29:18 | H07 | ch8-inetutils compilado e instalado | ok - logs/ch8-inetutils.log
+- 2026-11-01 19:29:26 | H07 | ch8-less compilado e instalado | ok - logs/ch8-less.log
+- 2026-11-01 19:32:12 | H07 | ch8-perl compilado e instalado | ok - logs/ch8-perl.log
+- 2026-11-01 19:32:15 | H07 | ch8-xml-parser compilado e instalado | ok - logs/ch8-xml-parser.log
+- 2026-11-01 19:32:16 | H07 | ch8-intltool compilado e instalado | ok - logs/ch8-intltool.log
+- 2026-11-01 19:32:19 | H07 | ch8-autoconf compilado e instalado | ok - logs/ch8-autoconf.log
+- 2026-11-01 19:32:22 | H07 | ch8-automake compilado e instalado | ok - logs/ch8-automake.log
+- 2026-11-01 19:35:02 | H07 | ch8-openssl compilado e instalado | ok - logs/ch8-openssl.log
+- 2026-11-01 19:35:47 | H07 | ch8-libelf compilado e instalado | ok - logs/ch8-libelf.log
+- 2026-11-01 19:35:56 | H07 | ch8-libffi compilado e instalado | ok - logs/ch8-libffi.log
+- 2026-11-01 19:40:28 | H07 | ch8-python compilado e instalado | ok - logs/ch8-python.log
+- 2026-11-01 19:40:29 | H07 | ch8-flit-core compilado e instalado | ok - logs/ch8-flit-core.log
+- 2026-11-01 19:40:31 | H07 | ch8-packaging compilado e instalado | ok - logs/ch8-packaging.log
+- 2026-11-01 19:40:32 | H07 | ch8-wheel compilado e instalado | ok - logs/ch8-wheel.log
+- 2026-11-01 19:40:36 | H07 | ch8-setuptools compilado e instalado | ok - logs/ch8-setuptools.log
+- 2026-11-01 19:41:24 | H07 | ch8-ninja compilado e instalado | ok - logs/ch8-ninja.log
+- 2026-11-01 19:41:28 | H07 | ch8-meson compilado e instalado | ok - logs/ch8-meson.log
+- 2026-11-01 19:41:33 | H07 | ch8-kmod compilado e instalado | ok - logs/ch8-kmod.log
+- 2026-11-01 19:43:49 | H07 | ch8-coreutils compilado e instalado | ok - logs/ch8-coreutils.log
+- 2026-11-01 19:44:49 | H07 | ch8-diffutils compilado e instalado | ok - logs/ch8-diffutils.log
+- 2026-11-01 19:45:22 | H07 | ch8-gawk compilado e instalado | ok - logs/ch8-gawk.log
+- 2026-11-01 19:46:29 | H07 | ch8-findutils compilado e instalado | ok - logs/ch8-findutils.log
+- 2026-11-01 19:47:07 | H07 | ch8-groff compilado e instalado | ok - logs/ch8-groff.log
+- 2026-11-01 19:48:24 | H07 | ch8-grub compilado e instalado | ok - logs/ch8-grub.log
+- 2026-11-01 19:48:53 | H07 | ch8-gzip compilado e instalado | ok - logs/ch8-gzip.log
+- 2026-11-01 19:49:03 | H07 | ch8-iproute2 compilado e instalado | ok - logs/ch8-iproute2.log
+- 2026-11-01 19:49:23 | H07 | ch8-kbd compilado e instalado | ok - logs/ch8-kbd.log
+- 2026-11-01 19:49:52 | H07 | ch8-libpipeline compilado e instalado | ok - logs/ch8-libpipeline.log
+- 2026-11-01 19:50:08 | H07 | ch8-make compilado e instalado | ok - logs/ch8-make.log
+- 2026-11-01 19:50:45 | H07 | ch8-patch compilado e instalado | ok - logs/ch8-patch.log
+- 2026-11-01 19:51:43 | H07 | ch8-tar compilado e instalado | ok - logs/ch8-tar.log
+- 2026-11-01 19:52:45 | H07 | ch8-texinfo compilado e instalado | ok - logs/ch8-texinfo.log
+- 2026-11-01 19:53:32 | H07 | ch8-vim compilado e instalado | ok - logs/ch8-vim.log
+- 2026-11-01 19:53:34 | H07 | ch8-markupsafe compilado e instalado | ok - logs/ch8-markupsafe.log
+- 2026-11-01 19:53:35 | H07 | ch8-jinja2 compilado e instalado | ok - logs/ch8-jinja2.log
+- 2026-11-01 19:54:23 | H07 | ch8-udev compilado e instalado | ok - logs/ch8-udev.log
+- 2026-11-01 19:55:27 | H07 | ch8-man-db compilado e instalado | ok - logs/ch8-man-db.log
+- 2026-11-01 19:55:47 | H07 | ch8-procps-ng compilado e instalado | ok - logs/ch8-procps-ng.log
+- 2026-11-01 19:56:44 | H07 | ch8-util-linux compilado e instalado | ok - logs/ch8-util-linux.log
+- 2026-11-01 19:57:17 | H07 | ch8-e2fsprogs compilado e instalado | ok - logs/ch8-e2fsprogs.log
+- 2026-11-01 19:57:24 | H07 | ch8-sysklogd compilado e instalado | ok - logs/ch8-sysklogd.log
+- 2026-11-01 19:57:25 | H07 | ch8-sysvinit compilado e instalado | ok - logs/ch8-sysvinit.log
+- 2026-11-01 19:57:28 | H07 | Falha em ch8-stripping (rc=1) | erro - logs/ch8-stripping.log
+- 2026-11-01 19:58:54 | H07 | ch8-stripping compilado e instalado | ok - logs/ch8-stripping.log
+- 2026-11-01 19:58:55 | H07 | ch8-cleanup compilado e instalado | ok - logs/ch8-cleanup.log
+- 2026-11-01 20:00:51 | H07 | ch8-backup compilado e instalado | ok - logs/ch8-backup.log
+- 2026-11-01 20:01:50 | H07 | Cap. 8 concluído (80 pacotes), stripping (8.85) e limpeza (8.86); backup backups/lfs-base-ch8-12.4.tar.xz (218 MB, 53473 entradas = todos os arquivos do $LFS, xz -t OK) | ok
+- 2026-11-01 20:01:51 | H08 | ch9-config compilado e instalado | ok - logs/ch9-config.log
+- 2026-11-01 20:02:49 | H08 | Cap. 9 aplicado: lfs-bootscripts-20250827, inittab (runlevel 3, tty1-6 + ttyS0 condicional), clock, console br-abnt2, profile/locale pt_BR, inputrc, shells, fstab de live (overlay), hostname/hosts, os-release 'Semente Linux 1.0', senha do root | ok - logs/ch9-config.log
+- 2026-11-01 20:09:23 | H09 | ch10-kernel compilado e instalado | ok - logs/ch10-kernel.log
+- 2026-11-01 20:10:08 | H09 | Kernel 6.16.1-semente compilado no chroot (defconfig + opções do livro e do PRD embutidas, verificadas automaticamente); bzImage 14 MB, módulos em /lib/modules/6.16.1-semente | ok - logs/ch10-kernel.log
+- 2026-11-01 20:11:28 | H11 | iso-grub-efi compilado e instalado | ok - logs/iso-grub-efi.log
+- 2026-11-01 20:11:43 | H11 | iso-xorriso compilado e instalado | ok - logs/iso-xorriso.log
+- 2026-11-01 20:11:56 | H11 | iso-mtools compilado e instalado | ok - logs/iso-mtools.log
+- 2026-11-01 20:12:00 | H10 | live-initramfs compilado e instalado | ok - logs/live-initramfs.log
+- 2026-11-01 20:14:10 | H10 | live-squashfs compilado e instalado | ok - logs/live-squashfs.log
+- 2026-11-01 20:14:39 | H10 | Initramfs próprio (bash+util-linux do LFS, gen_init_cpio) 2,5 MB; rootfs.squashfs xz 254 MB (sem /sources, /opt/isotools, *.dbg) | ok - logs/live-initramfs.log, logs/live-squashfs.log
+- 2026-11-01 20:14:40 | H11 | Falha em iso-mkrescue (rc=1) | erro - logs/iso-mkrescue.log
+- 2026-11-01 20:14:48 | H11 | Falha em iso-mkrescue (rc=1) | erro - logs/iso-mkrescue.log
+- 2026-11-01 20:16:18 | H11 | iso-freetype compilado e instalado | ok - logs/iso-freetype.log
+- 2026-11-01 20:17:35 | H11 | iso-grub-efi2 compilado e instalado | ok - logs/iso-grub-efi2.log
+- 2026-11-01 20:19:45 | H10 | live-squashfs compilado e instalado | ok - logs/live-squashfs.log
+- 2026-11-01 20:19:46 | H11 | iso-mkrescue compilado e instalado | ok - logs/iso-mkrescue.log
+- 2026-11-01 20:20:02 | H10 | squashfs refeito após FreeType/GRUB EFI; live pronto (kernel + initrd + live/rootfs.squashfs) | ok
+- 2026-11-01 20:20:02 | H11 | ISO híbrida iso/semente-linux-1.0-x86_64.iso (295 MB, label SEMENTE_LIVE): El Torito BIOS (i386-pc) + UEFI (efi.img x86_64-efi), MBR/GPT híbrido para gravação byte a byte; menu normal + serial | ok - logs/iso-mkrescue.log
+- 2026-11-01 22:03:01 | H10 | live-initramfs compilado e instalado | ok - logs/live-initramfs.log
+- 2026-11-01 22:05:11 | H10 | live-squashfs compilado e instalado | ok - logs/live-squashfs.log
+- 2026-11-01 22:05:14 | H11 | iso-mkrescue compilado e instalado | ok - logs/iso-mkrescue.log
+- 2026-11-01 22:12:31 | H12 | Testes QEMU: bios-cdrom, uefi-cdrom, bios-usb (PRD) e uefi-usb (extra) PASSARAM: login root, uname -a, ls /, gcc --version, cat /etc/os-release | ok - logs/testes/
+- 2026-11-01 22:12:31 | H12 | Verificação: 817 binários/bibliotecas em /usr/{bin,sbin,lib} sem nenhum compilado pelo GCC do host (readelf .comment sem 'Ubuntu') | ok
+- 2026-11-01 22:14:17 | H13 | extra-mtools compilado e instalado | ok - logs/extra-mtools.log
+- 2026-11-01 22:14:17 | H13 | extra-instalador compilado e instalado | ok - logs/extra-instalador.log
+- 2026-11-01 22:16:49 | H10 | live-squashfs compilado e instalado | ok - logs/live-squashfs.log
+- 2026-11-01 22:16:50 | H11 | iso-mkrescue compilado e instalado | ok - logs/iso-mkrescue.log
+- 2026-11-01 22:32:52 | EXTRA | instalar-no-disco: mtools em /usr, script em /usr/sbin; instalação em disco virtio e boot do disco (BIOS e UEFI) PASSARAM | ok - logs/testes/instalar.log, disco-*.log
+- 2026-11-01 22:32:52 | H12 | Testes refeitos na ISO final b42b3ec74d6852c2d9017007ff646c8e1871b63338e0afa70008fc79de52363c: bios-cdrom, uefi-cdrom, bios-usb, uefi-usb PASSARAM | ok - logs/testes/resumo.txt
+- 2026-11-01 22:32:52 | H13 | ISO final + SHA-256 e guia iso/COMO-GRAVAR.md entregues; falta só o teste em hardware real pelo Eli | ok
+- 2026-11-01 23:58:19 | H13 | Teste em hardware confirmado pelo Eli: Marquina real, ok | ok

@@ -1,0 +1,79 @@
+#!/usr/bin/expect -f
+# Uso: boot-test.exp <nome> <log> <comando qemu...>
+# Liga a VM, escolhe a entrada serial do GRUB (tecla 's'), loga como root e roda os comandos do PRD.
+# Atenção: no expect, blocos { padrão ação ... } precisam ser MULTILINHA; em uma linha só
+# o bloco inteiro vira um único padrão literal.
+set nome [lindex $argv 0]
+set logf [lindex $argv 1]
+set cmd  [lrange $argv 2 end]
+set senha "semente"
+log_file -noappend $logf
+set timeout 900
+# Sem KVM (TCG) o guest é lento: digitar devagar (1 caractere a cada 0,1 s)
+set send_slow {1 .1}
+proc falha {msg} {
+  send_user "\n### TESTE FALHOU: $msg\n"
+  exit 1
+}
+eval spawn $cmd
+expect {
+  "console serial ttyS0" {
+    sleep 1
+    send "s"
+  }
+  timeout { falha "menu do GRUB não apareceu" }
+  eof { falha "qemu terminou antes do GRUB" }
+}
+expect {
+  -re "semente login: ?$" {}
+  "abrindo shell de emergência" { falha "initramfs não achou a mídia" }
+  "Kernel panic" { falha "kernel panic" }
+  timeout { falha "prompt de login não apareceu" }
+  eof { falha "qemu terminou antes do login" }
+}
+set logado 0
+for {set tent 1} {$tent <= 3 && !$logado} {incr tent} {
+  sleep 2
+  send -s "root\r"
+  expect {
+    "Password:" {}
+    timeout { falha "sem pedido de senha" }
+  }
+  sleep 2
+  send -s "$senha\r"
+  expect {
+    -re {bash-[0-9.]+# $} { set logado 1 }
+    "Login incorrect" {
+      send_user "\n### tentativa $tent: senha recusada\n"
+      expect -re "login: ?$"
+    }
+    "timed out" {
+      send_user "\n### tentativa $tent: login expirou\n"
+      expect -re "login: ?$"
+    }
+    timeout { falha "sem shell após login" }
+  }
+}
+if {!$logado} { falha "login falhou 3 vezes" }
+sleep 1
+send -s "PS1='TESTE# '\r"
+expect "TESTE# "
+set timeout 300
+foreach c {"uname -a" "ls /" "gcc --version" "cat /etc/os-release"} {
+  send -s "$c; echo RC=\$?\r"
+  expect {
+    -re "RC=0\r" {}
+    -re "RC=\[1-9\]" { falha "comando falhou: $c" }
+    timeout { falha "timeout em: $c" }
+  }
+}
+send -s "echo TESTE-OK-\$((40+2))\r"
+expect "TESTE-OK-42"
+send -s "poweroff\r"
+set timeout 300
+expect {
+  eof {}
+  timeout {}
+}
+send_user "\n### TESTE PASSOU: $nome\n"
+exit 0

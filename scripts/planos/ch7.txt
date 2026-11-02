@@ -1,0 +1,12 @@
+# H06 - capítulo 7
+ch7-changingowner|-|ch7/changingowner.sh|root
+ch7-creatingdirs|-|ch7/creatingdirs.sh|chroot
+ch7-createfiles|-|ch7/createfiles.sh|chroot
+ch7-gettext|gettext-0.26.tar.xz|ch7/gettext.sh|chroot
+ch7-bison|bison-3.8.2.tar.xz|ch7/bison.sh|chroot
+ch7-perl|perl-5.42.0.tar.xz|ch7/perl.sh|chroot
+ch7-python|Python-3.13.7.tar.xz|ch7/Python.sh|chroot
+ch7-texinfo|texinfo-7.2.tar.xz|ch7/texinfo.sh|chroot
+ch7-util-linux|util-linux-2.41.1.tar.xz|ch7/util-linux.sh|chroot
+ch7-cleanup|-|ch7/cleanup.sh|chroot
+ch7-backup|-|ch7/backup.sh|root

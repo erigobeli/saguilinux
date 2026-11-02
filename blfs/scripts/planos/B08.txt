@@ -1,0 +1,17 @@
+# B08 — gerado por aplicar-revisao.py
+b-cbindgen|cbindgen-0.29.0.tar.gz|pkgs/cbindgen.sh|chroot
+b-libarchive|libarchive-3.8.1.tar.xz|pkgs/libarchive.sh|chroot
+b-brotli|brotli-1.1.0.tar.gz|pkgs/brotli.sh|chroot
+b-c-ares|c-ares-1.34.5.tar.gz|pkgs/c-ares.sh|chroot
+b-libuv|libuv-v1.51.0.tar.gz|pkgs/libuv.sh|chroot
+b-nghttp2|nghttp2-1.66.0.tar.xz|pkgs/nghttp2.sh|chroot
+b-nodejs|node-v22.18.0.tar.xz|pkgs/nodejs.sh|chroot
+b-libevent|libevent-2.1.12-stable.tar.gz|pkgs/libevent.sh|chroot
+b-nasm|nasm-2.16.03.tar.xz|pkgs/nasm.sh|chroot
+b-libvpx|libvpx-1.15.2.tar.gz|pkgs/libvpx.sh|chroot
+b-libwebp|libwebp-1.6.0.tar.gz|pkgs/libwebp.sh|chroot
+b-nspr|nspr-4.37.tar.gz|pkgs/nspr.sh|chroot
+b-nss|nss-3.115.tar.gz|pkgs/nss.sh|chroot
+b-python3|Python-3.13.7.tar.xz|pkgs/python3.sh|chroot
+b-firefox|firefox-140.2.0esr.source.tar.xz|pkgs/firefox.sh|chroot
+b-lfs-backup-firefox|-|pkgs/lfs-backup-firefox.sh|root

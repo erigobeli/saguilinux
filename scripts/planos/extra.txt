@@ -1,0 +1,3 @@
+# Marco extra: instalação em disco
+extra-mtools|mtools-4.0.49.tar.bz2|live/mtools-sys.sh|chroot
+extra-instalador|-|live/instalador.sh|chroot

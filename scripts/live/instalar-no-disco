@@ -1,0 +1,103 @@
+#!/bin/bash
+# instalar-no-disco - instala o Semente Linux do live para um disco (marco extra do PRD).
+# Uso: instalar-no-disco /dev/sdX   (ou /dev/nvme0n1, /dev/vda)
+# Cria GPT com: 1) BIOS boot 1 MiB, 2) EFI 512 MiB (FAT32), 3) raiz ext4 (resto do disco),
+# copia o sistema (camada somente leitura do live) e instala o GRUB para BIOS (i386-pc) e UEFI (x86_64-efi).
+set -euo pipefail
+die() { echo "instalar-no-disco: $*" >&2; exit 1; }
+[ $# -ge 1 ] || die "uso: instalar-no-disco /dev/DISCO  [--sim]"
+DISK=$1; CONFIRMA=${2:-}
+[ "$(id -u)" = 0 ] || die "rode como root"
+[ -b "$DISK" ] || die "$DISK não é um dispositivo de bloco"
+[ -d /live/ro/usr ] || die "isto só funciona a partir do sistema live (falta /live/ro)"
+src=$(awk '$2=="/live/media"{print $1}' /proc/mounts)
+case "$src" in "$DISK"|"$DISK"[0-9]*|"$DISK"p[0-9]*) die "$DISK é a própria mídia do live";; esac
+
+echo "== Disco alvo: $DISK"
+lsblk -o NAME,SIZE,MODEL,FSTYPE,MOUNTPOINTS "$DISK" 2>/dev/null || true
+if [ "$CONFIRMA" != "--sim" ]; then
+  echo "TODOS OS DADOS DE $DISK SERÃO APAGADOS."
+  read -r -p "Digite SIM para continuar: " r
+  [ "$r" = "SIM" ] || die "cancelado"
+fi
+
+case "$DISK" in *[0-9]) P=${DISK}p;; *) P=$DISK;; esac
+umount -R /mnt/alvo 2>/dev/null || true
+for part in "$DISK"?*; do umount "$part" 2>/dev/null || true; done
+
+echo "== Particionando (GPT)"
+wipefs -a "$DISK" >/dev/null
+sfdisk --quiet --wipe always "$DISK" <<EOF
+label: gpt
+size=1MiB,   type=21686148-6449-6E6F-744E-656564454649, name=bios
+size=512MiB, type=C12A7328-F81F-11D2-BA4B-00A0C93EC93B, name=efi
+             type=0FC63DAF-8483-4772-8E79-3D69D8477DE4, name=semente
+EOF
+blockdev --rereadpt "$DISK" 2>/dev/null || partx -u "$DISK" || true
+for i in $(seq 1 20); do [ -b "${P}3" ] && break; sleep 0.5; done
+[ -b "${P}3" ] || die "partições não apareceram"
+
+echo "== Formatando"
+mformat -i "${P}2" -F -v EFI -T "$(blockdev --getsz "${P}2")" -h 1 -s 1 ::
+mkfs.ext4 -q -F -L SEMENTE "${P}3"
+
+echo "== Copiando o sistema (pode levar alguns minutos)"
+mkdir -p /mnt/alvo
+mount "${P}3" /mnt/alvo
+cp -a /live/ro/. /mnt/alvo/
+mkdir -p /mnt/alvo/boot/efi
+mount -t vfat "${P}2" /mnt/alvo/boot/efi
+
+UROOT=$(blkid -s UUID -o value "${P}3")
+# o kernel (sem initramfs) entende root=PARTUUID=, não root=UUID=
+PROOT=$(blkid -s PARTUUID -o value "${P}3")
+UEFI=$(blkid -s UUID -o value "${P}2")
+KVER=$(ls /mnt/alvo/lib/modules | head -1)
+KIMG=$(ls /mnt/alvo/boot/vmlinuz-* | head -1); KIMG=${KIMG#/mnt/alvo}
+
+cat > /mnt/alvo/etc/fstab <<EOF
+# Begin /etc/fstab (instalado por instalar-no-disco)
+
+# file system                              mount-point    type     options             dump  fsck
+UUID=$UROOT  /              ext4     defaults            1     1
+UUID=$UEFI                                  /boot/efi      vfat     umask=0077          0     2
+proc           /proc          proc     nosuid,noexec,nodev 0     0
+sysfs          /sys           sysfs    nosuid,noexec,nodev 0     0
+devpts         /dev/pts       devpts   gid=5,mode=620      0     0
+tmpfs          /run           tmpfs    defaults            0     0
+devtmpfs       /dev           devtmpfs mode=0755,nosuid    0     0
+tmpfs          /dev/shm       tmpfs    nosuid,nodev        0     0
+cgroup2        /sys/fs/cgroup cgroup2  nosuid,noexec,nodev 0     0
+
+# End /etc/fstab
+EOF
+sed -i 's/(LFS 12.4, live)/(LFS 12.4)/' /mnt/alvo/etc/os-release
+
+echo "== Instalando o GRUB (BIOS + UEFI)"
+for d in dev proc sys; do mount --bind /$d /mnt/alvo/$d; done
+chroot /mnt/alvo grub-install --target=i386-pc "$DISK"
+chroot /mnt/alvo grub-install --target=x86_64-efi --efi-directory=/boot/efi --removable --no-nvram
+cat > /mnt/alvo/boot/grub/grub.cfg <<EOF
+# Begin /boot/grub/grub.cfg (Semente Linux instalado)
+set default=0
+set timeout=5
+if serial --unit=0 --speed=115200; then
+  terminal_input --append serial
+  terminal_output --append serial
+fi
+insmod part_gpt
+insmod ext2
+search --no-floppy --fs-uuid --set=root $UROOT
+
+menuentry "Semente Linux 1.0 ($KVER)" --hotkey=n {
+  linux $KIMG root=PARTUUID=$PROOT rootwait ro console=tty0
+}
+menuentry "Semente Linux 1.0 ($KVER, console serial ttyS0)" --hotkey=s {
+  linux $KIMG root=PARTUUID=$PROOT rootwait ro console=tty0 console=ttyS0,115200
+}
+EOF
+sync
+for d in dev proc sys; do umount /mnt/alvo/$d; done
+umount /mnt/alvo/boot/efi
+umount /mnt/alvo
+echo "== Pronto. Remova o pendrive/ISO e reinicie (reboot). Login: root / semente (troque com passwd)."

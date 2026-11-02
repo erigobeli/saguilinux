@@ -1,0 +1,53 @@
+#!/usr/bin/expect -f
+# Teste do marco extra: dá boot na ISO com um disco virtio vazio e roda instalar-no-disco /dev/vda.
+# Uso: instalar-test.exp <log> <comando qemu...>   (blocos expect sempre multilinha)
+set logf [lindex $argv 0]
+set cmd  [lrange $argv 1 end]
+log_file -noappend $logf
+set timeout 900
+set send_slow {1 .1}
+proc falha {msg} {
+  send_user "\n### TESTE FALHOU: $msg\n"
+  exit 1
+}
+eval spawn $cmd
+expect {
+  "console serial ttyS0" {
+    sleep 1
+    send "s"
+  }
+  timeout { falha "menu do GRUB não apareceu" }
+}
+expect {
+  -re "semente login: ?$" {}
+  timeout { falha "sem login" }
+}
+sleep 2
+send -s "root\r"
+expect {
+  "Password:" {}
+  timeout { falha "sem senha" }
+}
+sleep 2
+send -s "semente\r"
+expect {
+  -re {bash-[0-9.]+# $} {}
+  timeout { falha "login falhou" }
+}
+sleep 1
+send -s "instalar-no-disco /dev/vda --sim; echo RC=\$?\r"
+set timeout 1800
+expect {
+  "== Pronto" {}
+  -re "RC=\[1-9\]" { falha "instalar-no-disco falhou" }
+  timeout { falha "instalação demorou demais" }
+}
+expect -re "RC=0"
+send -s "poweroff\r"
+set timeout 300
+expect {
+  eof {}
+  timeout {}
+}
+send_user "\n### TESTE PASSOU: instalacao\n"
+exit 0

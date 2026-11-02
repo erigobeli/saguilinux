@@ -1,0 +1,3 @@
+# B09 - kernel
+b-arte|-|sagui/copiar-arte.sh|root
+b-kernel|linux-6.16.1.tar.xz|sagui/kernel.sh|chroot

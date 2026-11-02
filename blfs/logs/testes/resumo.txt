@@ -1,0 +1,12 @@
+ISO testada: 09d5d8cb6e85f56e56c175ed7169d41708f9463f217477fe174d3375217af634  sagui-linux-2.0-x86_64.iso
+Data: 2026-11-02 07:11:58
+QEMU sem KVM (TCG), -vga std, 3 GB RAM, rede user (e1000)
+
+PASSOU bios-cdrom   (SeaBIOS, ISO como CD)
+PASSOU uefi-cdrom   (OVMF, ISO como CD)
+PASSOU bios-usb     (ISO como pendrive usb-storage em xHCI)
+
+Em cada teste: boot pela entrada serial do GRUB → login root no ttyS0 → uname -a, cat /etc/os-release,
+firefox --version (140.2.0esr) → autologin do sagui no tty1 sobe Xorg + xfce4-session + xfwm4 + xfce4-panel + xfdesktop
+→ DHCP pega IP (10.0.2.15) → captura do desktop → Firefox abre file:///usr/share/sagui/bemvindo.html → captura → poweroff.
+Capturas: <teste>-desktop.png e <teste>-firefox.png. Logs: <teste>.log

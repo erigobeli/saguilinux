@@ -1,0 +1,1 @@
+== bios-usb: qemu-system-x86_64 -machine q35 -cpu max -m 2048 -smp 4 -nographic -no-reboot -device qemu-xhci,id=xhci -drive if=none,id=pendrive,format=raw,readonly=on,file=/home/erigobeli/distro-ai/iso/semente-linux-1.0-x86_64.iso -device usb-storage,bus=xhci.0,drive=pendrive,bootindex=0

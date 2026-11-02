@@ -1,0 +1,9 @@
+# url [md5]  — fontes fora das páginas comuns da ordem
+https://files.pythonhosted.org/packages/source/M/Mako/mako-1.3.10.tar.gz c9dfb2bf42827459dd505c60f2262a7c
+https://files.pythonhosted.org/packages/source/P/PyYAML/pyyaml-6.0.2.tar.gz 9600ee49b2b4e1a0237cf4173b6dc594
+https://github.com/yaml/libyaml/releases/download/0.2.5/yaml-0.2.5.tar.gz bb15429d8fb787e7d3f1c83ae129a999
+https://downloads.sourceforge.net/dejavu/dejavu-fonts-ttf-2.37.tar.bz2
+https://www.linuxfromscratch.org/blfs/downloads/12.4/blfs-bootscripts-20250225.tar.xz
+https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-1.6.47-apng.patch.gz
+https://www.x.org/pub/individual/lib/libXdmcp-1.1.5.tar.xz ce0af51de211e4c99a111e64ae1df290
+https://download.gnome.org/sources/libxslt/1.1/libxslt-1.1.43.tar.xz 5dc0179c81be7a3082b43030ecfdebd4

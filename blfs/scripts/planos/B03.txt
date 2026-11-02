@@ -1,0 +1,17 @@
+# B03 — gerado por aplicar-revisao.py
+b-libtasn1|libtasn1-4.20.0.tar.gz|pkgs/libtasn1.sh|chroot
+b-p11-kit|p11-kit-0.25.5.tar.xz|pkgs/p11-kit.sh|chroot
+b-make-ca|make-ca-1.16.1.tar.gz|pkgs/make-ca.sh|chroot
+b-dhcpcd|dhcpcd-10.2.4.tar.xz|pkgs/dhcpcd.sh|chroot
+b-sudo|sudo-1.9.17p2.tar.gz|pkgs/sudo.sh|chroot
+b-libpng|libpng-1.6.50.tar.xz|pkgs/libpng.sh|chroot
+b-freetype2|freetype-2.13.3.tar.xz|pkgs/freetype2.sh|chroot
+b-fontconfig|fontconfig-2.17.1.tar.xz|pkgs/fontconfig.sh|chroot
+b-dbus|dbus-1.16.2.tar.xz|pkgs/dbus.sh|chroot
+b-which|which-2.23.tar.gz|pkgs/which.sh|chroot
+b-cmake|cmake-4.1.0.tar.gz|pkgs/cmake.sh|chroot
+b-libxml2|libxml2-2.14.5.tar.xz|pkgs/libxml2.sh|chroot
+b-pcre2|pcre2-10.45.tar.bz2|pkgs/pcre2.sh|chroot
+b-py-libyaml|yaml-0.2.5.tar.gz|pkgs/py-libyaml.sh|chroot
+b-py-pyyaml|pyyaml-6.0.2.tar.gz|pkgs/py-pyyaml.sh|chroot
+b-py-mako|mako-1.3.10.tar.gz|pkgs/py-mako.sh|chroot

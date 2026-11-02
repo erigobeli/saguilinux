@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download — Sagui Linux</title>
+<meta name="description" content="Baixe o Sagui Linux 2.0 (desktop XFCE) ou a edição de terminal 1.0. ISOs híbridas para pendrive e máquina virtual, BIOS e UEFI.">
+<link rel="icon" href="img/favicon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="faixa"></div>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="index.html"><img src="img/logo-sagui.svg" alt="">Sagui Linux</a>
+  <nav class="menu" aria-label="Principal">
+    <a href="index.html">Início</a>
+    <a href="download.html">Download</a>
+    <a href="instalar.html">Como gravar</a>
+    <a href="historia.html">Como foi feito</a>
+    <a href="sobre.html">Créditos e avisos</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Download</h1>
+  <p class="lead mut">Duas edições, ambas em formato <strong>live</strong>: você grava a imagem (ISO) num pendrive ou abre numa máquina virtual e o sistema roda direto dela, sem instalar nada no computador.</p>
+
+  <div class="perigo"><strong>Antes de baixar, entenda o que vai acontecer</strong>
+    O sistema roda <strong>inteiro na memória RAM</strong>. Tudo o que você criar, baixar ou alterar enquanto usa o Sagui Linux <strong>desaparece quando desligar ou reiniciar</strong> — inclusive arquivos que pareçam salvos na pasta pessoal. Gravar a ISO no pendrive <strong>apaga tudo o que havia nele</strong>. Leia os <a href="sobre.html#cuidados">cuidados antes de testar</a>.</div>
+
+  <div class="grade-2">
+    <section class="card destaque" id="desktop">
+      <span class="etiqueta verde">Recomendada</span>
+      <h2 style="margin-top:.4em">Sagui Linux 2.0 — Desktop</h2>
+      <p>Liga direto num desktop <strong>XFCE</strong> leve, com o tema do Sagui e as cores do Brasil.</p>
+      <ul>
+        <li>XFCE 4.20: painel, gerenciador de janelas, área de trabalho, Thunar (arquivos)</li>
+        <li>Firefox ESR 140 (compilado do código-fonte)</li>
+        <li>Terminal, Mousepad (editor), Ristretto (imagens), som (PulseAudio)</li>
+        <li>Internet por cabo automática (DHCP)</li>
+        <li>Entra sozinho com o usuário <code>sagui</code></li>
+      </ul>
+      <table>
+        <tr><th>Arquivo</th><td><code>sagui-linux-2.0-x86_64.iso</code></td></tr>
+        <tr><th>Tamanho</th><td>841 MB</td></tr>
+        <tr><th>Base</th><td>LFS 12.4 + BLFS 12.4, Linux 6.16.1</td></tr>
+        <tr><th>Memória</th><td>mínimo 2 GB de RAM (recomendado 4 GB)</td></tr>
+        <tr><th>Senhas</th><td><code>sagui</code> / <code>sagui</code> · <code>root</code> / <code>sagui</code></td></tr>
+      </table>
+      <div class="botoes">
+        <a class="btn primario" data-config="downloads.desktop.url" data-vazio="Download em breve" href="#">Baixar ISO (841 MB)</a>
+        <a class="btn secundario" data-config="downloads.desktop.sha256Url" data-vazio="SHA-256 em breve" href="#">Arquivo SHA-256</a>
+      </div>
+      <p class="pequeno mut">SHA-256: <code data-sha="fase2" style="overflow-wrap:anywhere">09d5d8cb6e85f56e56c175ed7169d41708f9463f217477fe174d3375217af634</code></p>
+    </section>
+
+    <section class="card terminal" id="terminal">
+      <span class="etiqueta azul">Para estudar</span>
+      <h2 style="margin-top:.4em">Edição de terminal 1.0</h2>
+      <p>O sistema base do <strong>Linux From Scratch</strong>, só com linha de comando. Foi a primeira versão do projeto e saiu com o nome provisório <strong>"Semente Linux"</strong> — é o que aparece dentro dela.</p>
+      <ul>
+        <li>Login em modo texto (sem interface gráfica)</li>
+        <li>GCC 15, glibc 2.42, Bash, Vim, ferramentas GNU</li>
+        <li>Muito leve: roda com pouca memória</li>
+        <li>Inclui o script <code>instalar-no-disco</code></li>
+        <li>Sem rede automática (o LFS não traz cliente DHCP)</li>
+      </ul>
+      <table>
+        <tr><th>Arquivo</th><td><code>semente-linux-1.0-x86_64.iso</code></td></tr>
+        <tr><th>Tamanho</th><td>295 MB</td></tr>
+        <tr><th>Base</th><td>LFS 12.4, Linux 6.16.1</td></tr>
+        <tr><th>Memória</th><td>mínimo 1 GB de RAM</td></tr>
+        <tr><th>Senha</th><td><code>root</code> / <code>semente</code></td></tr>
+      </table>
+      <div class="botoes">
+        <a class="btn primario" data-config="downloads.terminal.url" data-vazio="Download em breve" href="#">Baixar ISO (295 MB)</a>
+        <a class="btn secundario" data-config="downloads.terminal.sha256Url" data-vazio="SHA-256 em breve" href="#">Arquivo SHA-256</a>
+      </div>
+      <p class="pequeno mut">SHA-256: <code data-sha="fase1" style="overflow-wrap:anywhere">b42b3ec74d6852c2d9017007ff646c8e1871b63338e0afa70008fc79de52363c</code></p>
+    </section>
+  </div>
+
+  <p class="pequeno mut">Todas as versões, notas de lançamento e o <strong>código-fonte completo</strong> de cada ISO (exigência das licenças GPL) estão nas <a data-config="releases" href="https://github.com/erigobeli/saguilinux/releases">Releases do GitHub</a>.</p>
+
+  <h2>Qual escolher?</h2>
+  <div class="tabela"><table>
+    <thead><tr><th></th><th>Sagui Linux 2.0 (Desktop)</th><th>Edição de terminal 1.0</th></tr></thead>
+    <tbody>
+      <tr><td>Interface</td><td>Gráfica (XFCE), mouse e janelas</td><td>Só texto (linha de comando)</td></tr>
+      <tr><td>Navegador</td><td>Firefox</td><td>—</td></tr>
+      <tr><td>Internet</td><td>Automática por cabo (DHCP)</td><td>Configuração manual</td></tr>
+      <tr><td>Para quem</td><td>Quem quer ver e usar um desktop feito do zero</td><td>Quem quer estudar o núcleo do sistema</td></tr>
+      <tr><td>Livros usados</td><td>LFS + BLFS</td><td>LFS</td></tr>
+      <tr><td>Tamanho</td><td>841 MB</td><td>295 MB</td></tr>
+      <tr><td>Wi-Fi</td><td colspan="2">Não suportado em nenhuma das duas (só rede cabeada)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Live CD e live USB: como funciona</h2>
+  <div class="grade">
+    <div class="card"><h3>Live USB (pendrive)</h3><p>A forma recomendada. Você grava a ISO num pendrive com o <strong>balenaEtcher</strong> e liga o computador por ele. Pendrive de 1 GB (terminal) ou 2 GB (desktop) ou mais.</p><a href="instalar.html">Tutorial de gravação →</a></div>
+    <div class="card"><h3>Live CD / máquina virtual</h3><p>A mesma ISO funciona como CD/DVD virtual no VirtualBox, VMware ou QEMU — o jeito mais seguro de experimentar, sem mexer no computador.</p><a href="instalar.html#vm">Usar numa máquina virtual →</a></div>
+    <div class="card"><h3>BIOS e UEFI</h3><p>As ISOs são <strong>híbridas</strong>: dão boot em PCs antigos (BIOS/Legacy) e novos (UEFI). O <strong>Secure Boot precisa estar desligado</strong> — as imagens não são assinadas.</p></div>
+  </div>
+  <p>Ao ligar pelo pendrive, um pequeno programa de inicialização (<em>initramfs</em>) procura a mídia do Sagui, monta o sistema compactado (<code>squashfs</code>, só leitura) e coloca por cima uma camada gravável <strong>na memória RAM</strong> (<code>overlayfs</code>). Por isso o sistema funciona normalmente — dá para criar arquivos, abrir programas, mudar configurações — mas nada disso fica no pendrive nem no disco. Ao desligar, a RAM é apagada e tudo volta ao estado original.</p>
+
+  <h2>Requisitos</h2>
+  <ul>
+    <li>Computador de 64 bits (x86_64 / amd64) — Intel ou AMD.</li>
+    <li>Memória: 2 GB (desktop) ou 1 GB (terminal); com 4 GB o desktop fica confortável.</li>
+    <li>Vídeo: funciona em praticamente qualquer placa pelo modo genérico. Intel antigas, NVIDIA (nouveau) e máquinas virtuais têm driver próprio; AMD/Radeon e Intel recentes usam renderização por software nesta versão.</li>
+    <li>Rede: só cabo (Ethernet). Wi-Fi não é suportado.</li>
+  </ul>
+
+  <h2>Conferir o arquivo baixado</h2>
+  <p>Compare o SHA-256 do arquivo com o publicado acima. Se for diferente, o download veio corrompido — baixe de novo.</p>
+  <pre data-copiar># Windows (PowerShell)
+Get-FileHash .\sagui-linux-2.0-x86_64.iso -Algorithm SHA256
+
+# Linux
+sha256sum sagui-linux-2.0-x86_64.iso
+
+# macOS
+shasum -a 256 sagui-linux-2.0-x86_64.iso</pre>
+  <p>Próximo passo: <a href="instalar.html">gravar no pendrive com o balenaEtcher</a>.</p>
+</main>
+
+<footer class="rodape"><div class="wrap">
+  <div><h4>Sagui Linux</h4><p>Distribuição educacional feita do zero com LFS + BLFS.<br>Criado por <a data-config="canalYoutube" href="https://www.youtube.com/@EliRigobeliAI" data-texto="autor">Eli Rigobeli</a>.</p></div>
+  <div><h4>Projeto</h4><ul><li><a href="download.html">Download</a></li><li><a href="instalar.html">Como gravar e dar boot</a></li><li><a href="historia.html">Como foi feito</a></li><li><a data-config="repositorio" data-vazio="Código-fonte (em breve)" href="#">Código-fonte</a></li></ul></div>
+  <div><h4>Créditos</h4><ul><li><a href="https://www.linuxfromscratch.org/" target="_blank" rel="noopener">Linux From Scratch</a></li><li><a href="https://www.linuxfromscratch.org/blfs/" target="_blank" rel="noopener">Beyond Linux From Scratch</a></li><li><a href="sobre.html">Licenças e avisos</a></li></ul></div>
+</div></footer>
+<script src="js/config.js"></script>
+<script src="js/dados.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

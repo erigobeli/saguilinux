@@ -1,0 +1,6 @@
+# H04 - capítulo 5 (usuário lfs)
+ch5-binutils-pass1|binutils-2.45.tar.xz|ch5/binutils-pass1.sh|lfs
+ch5-gcc-pass1|gcc-15.2.0.tar.xz|ch5/gcc-pass1.sh|lfs
+ch5-linux-headers|linux-6.16.1.tar.xz|ch5/linux-headers.sh|lfs
+ch5-glibc|glibc-2.42.tar.xz|ch5/glibc.sh|lfs
+ch5-libstdc++|gcc-15.2.0.tar.xz|ch5/gcc-libstdc++.sh|lfs

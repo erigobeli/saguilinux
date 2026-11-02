@@ -1,0 +1,1343 @@
+{
+  "projeto": "Sagui Linux — desktop XFCE (Fase 2)",
+  "distro": "Sagui Linux 2.0",
+  "livro": "BLFS 12.4 (SysVinit) sobre LFS 12.4",
+  "marcos": [
+    {
+      "id": "B01",
+      "nome": "Planejamento: PRD, livro BLFS, índice de dependências, renomear para Sagui",
+      "peso": 3,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 01:02:55"
+    },
+    {
+      "id": "B02",
+      "nome": "Identidade visual: mascote, logo, wallpaper (Higgsfield) + derivados",
+      "peso": 4,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:07"
+    },
+    {
+      "id": "B03",
+      "nome": "Base: make-ca, dhcpcd, sudo, D-Bus, módulos Python, libs gerais",
+      "peso": 8,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 01:34:23"
+    },
+    {
+      "id": "B04",
+      "nome": "Xorg: libs, xcb, libdrm, Mesa (LLVM), servidor, xinit, drivers, fontes",
+      "peso": 16,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 02:44:37"
+    },
+    {
+      "id": "B05",
+      "nome": "Pilha GTK 3: GLib, cairo, pango, gdk-pixbuf, librsvg, at-spi2, GTK 3",
+      "peso": 12,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:07"
+    },
+    {
+      "id": "B06",
+      "nome": "XFCE núcleo",
+      "peso": 14,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:07"
+    },
+    {
+      "id": "B07",
+      "nome": "XFCE apps, som (ALSA/PulseAudio), Mousepad",
+      "peso": 6,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:07"
+    },
+    {
+      "id": "B08",
+      "nome": "Firefox ESR (Rust, Node.js, NSS, ICU)",
+      "peso": 14,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:07"
+    },
+    {
+      "id": "B09",
+      "nome": "Kernel: DRM/GPU, som, input",
+      "peso": 4,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:06"
+    },
+    {
+      "id": "B10",
+      "nome": "Integração: usuário sagui, autologin, tema Brasil, DHCP, polkit",
+      "peso": 6,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:06"
+    },
+    {
+      "id": "B11",
+      "nome": "Live + ISO híbrida Sagui",
+      "peso": 5,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:06"
+    },
+    {
+      "id": "B12",
+      "nome": "Testes QEMU (BIOS, UEFI, USB) com captura de tela",
+      "peso": 5,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 07:12:06"
+    },
+    {
+      "id": "B13",
+      "nome": "Entrega: ISO, SHA-256, guia, teste em hardware",
+      "peso": 3,
+      "status": "feito",
+      "fracao": 1.0,
+      "concluido_em": "2026-11-02 13:38:05"
+    }
+  ],
+  "acoes": [
+    {
+      "data": "2026-11-02 00:55:23",
+      "marco": "B01",
+      "texto": "Projeto Fase 2 criado em ~/distro-ai/blfs: PRD.md escrito pelo agente, livro BLFS 12.4, parser do livro (857 páginas) e cálculo de dependências (118 páginas na ordem)",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 00:55:23",
+      "marco": "B02",
+      "texto": "Higgsfield/Recraft V4.1: mascote, logo (2 tentativas) e wallpaper 2K gerados (~18 créditos)",
+      "resultado": "ok - arte/"
+    },
+    {
+      "data": "2026-11-02 01:02:55",
+      "marco": "B01",
+      "texto": "Revisão dos comandos do BLFS (scripts/revisao.txt → 123 passos em 6 planos), prelúdio do chroot, loop rodar-blfs.sh com espera de download",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 01:03:28",
+      "marco": "B03",
+      "texto": "b-p11-kit compilado e instalado",
+      "resultado": "ok - logs/b-p11-kit.log"
+    },
+    {
+      "data": "2026-11-02 01:03:58",
+      "marco": "B03",
+      "texto": "b-libtasn1 compilado e instalado",
+      "resultado": "ok - logs/b-libtasn1.log"
+    },
+    {
+      "data": "2026-11-02 01:04:20",
+      "marco": "B03",
+      "texto": "b-make-ca compilado e instalado",
+      "resultado": "ok - logs/b-make-ca.log"
+    },
+    {
+      "data": "2026-11-02 01:04:25",
+      "marco": "B03",
+      "texto": "b-dhcpcd compilado e instalado",
+      "resultado": "ok - logs/b-dhcpcd.log"
+    },
+    {
+      "data": "2026-11-02 01:05:28",
+      "marco": "B03",
+      "texto": "b-sudo compilado e instalado",
+      "resultado": "ok - logs/b-sudo.log"
+    },
+    {
+      "data": "2026-11-02 01:05:39",
+      "marco": "B03",
+      "texto": "b-libpng compilado e instalado",
+      "resultado": "ok - logs/b-libpng.log"
+    },
+    {
+      "data": "2026-11-02 01:05:53",
+      "marco": "B03",
+      "texto": "b-freetype2 compilado e instalado",
+      "resultado": "ok - logs/b-freetype2.log"
+    },
+    {
+      "data": "2026-11-02 01:06:19",
+      "marco": "B03",
+      "texto": "b-fontconfig compilado e instalado",
+      "resultado": "ok - logs/b-fontconfig.log"
+    },
+    {
+      "data": "2026-11-02 01:06:19",
+      "marco": "B03",
+      "texto": "Falha em b-dbus (rc=2)",
+      "resultado": "erro - logs/b-dbus.log"
+    },
+    {
+      "data": "2026-11-02 01:07:42",
+      "marco": "B03",
+      "texto": "Falha em b-dbus (rc=2)",
+      "resultado": "erro - logs/b-dbus.log"
+    },
+    {
+      "data": "2026-11-02 01:08:55",
+      "marco": "B03",
+      "texto": "b-dbus compilado e instalado",
+      "resultado": "ok - logs/b-dbus.log"
+    },
+    {
+      "data": "2026-11-02 01:09:00",
+      "marco": "B03",
+      "texto": "b-which compilado e instalado",
+      "resultado": "ok - logs/b-which.log"
+    },
+    {
+      "data": "2026-11-02 01:09:16",
+      "marco": "B02",
+      "texto": "Derivados da arte: ícones 16–256 px, logo de boot do kernel (PPM 80×80), fundo do GRUB 1024×768, página de boas-vindas do Firefox",
+      "resultado": "ok - arte/"
+    },
+    {
+      "data": "2026-11-02 01:11:06",
+      "marco": "B03",
+      "texto": "Falha em b-cmake (rc=2)",
+      "resultado": "erro - logs/b-cmake.log"
+    },
+    {
+      "data": "2026-11-02 01:19:53",
+      "marco": "B03",
+      "texto": "b-cmake compilado e instalado",
+      "resultado": "ok - logs/b-cmake.log"
+    },
+    {
+      "data": "2026-11-02 01:19:53",
+      "marco": "B03",
+      "texto": "Falha em b-libxml2 (rc=2)",
+      "resultado": "erro - logs/b-libxml2.log"
+    },
+    {
+      "data": "2026-11-02 01:21:19",
+      "marco": "B03",
+      "texto": "b-libxml2 compilado e instalado",
+      "resultado": "ok - logs/b-libxml2.log"
+    },
+    {
+      "data": "2026-11-02 01:21:43",
+      "marco": "B03",
+      "texto": "b-pcre2 compilado e instalado",
+      "resultado": "ok - logs/b-pcre2.log"
+    },
+    {
+      "data": "2026-11-02 01:21:51",
+      "marco": "B03",
+      "texto": "b-py-libyaml compilado e instalado",
+      "resultado": "ok - logs/b-py-libyaml.log"
+    },
+    {
+      "data": "2026-11-02 01:21:53",
+      "marco": "B03",
+      "texto": "b-py-pyyaml compilado e instalado",
+      "resultado": "ok - logs/b-py-pyyaml.log"
+    },
+    {
+      "data": "2026-11-02 01:21:55",
+      "marco": "B03",
+      "texto": "b-py-mako compilado e instalado",
+      "resultado": "ok - logs/b-py-mako.log"
+    },
+    {
+      "data": "2026-11-02 01:21:56",
+      "marco": "B04",
+      "texto": "b-xorg7 compilado e instalado",
+      "resultado": "ok - logs/b-xorg7.log"
+    },
+    {
+      "data": "2026-11-02 01:21:58",
+      "marco": "B04",
+      "texto": "b-util-macros compilado e instalado",
+      "resultado": "ok - logs/b-util-macros.log"
+    },
+    {
+      "data": "2026-11-02 01:21:59",
+      "marco": "B04",
+      "texto": "b-xorgproto compilado e instalado",
+      "resultado": "ok - logs/b-xorgproto.log"
+    },
+    {
+      "data": "2026-11-02 01:22:08",
+      "marco": "B04",
+      "texto": "b-libXau compilado e instalado",
+      "resultado": "ok - logs/b-libXau.log"
+    },
+    {
+      "data": "2026-11-02 01:22:10",
+      "marco": "B04",
+      "texto": "b-xcb-proto compilado e instalado",
+      "resultado": "ok - logs/b-xcb-proto.log"
+    },
+    {
+      "data": "2026-11-02 01:22:32",
+      "marco": "B04",
+      "texto": "b-libxcb compilado e instalado",
+      "resultado": "ok - logs/b-libxcb.log"
+    },
+    {
+      "data": "2026-11-02 01:27:36",
+      "marco": "B04",
+      "texto": "b-x7lib compilado e instalado",
+      "resultado": "ok - logs/b-x7lib.log"
+    },
+    {
+      "data": "2026-11-02 01:27:37",
+      "marco": "B04",
+      "texto": "b-libxcvt compilado e instalado",
+      "resultado": "ok - logs/b-libxcvt.log"
+    },
+    {
+      "data": "2026-11-02 01:27:49",
+      "marco": "B04",
+      "texto": "b-pixman compilado e instalado",
+      "resultado": "ok - logs/b-pixman.log"
+    },
+    {
+      "data": "2026-11-02 01:27:55",
+      "marco": "B04",
+      "texto": "b-libdrm compilado e instalado",
+      "resultado": "ok - logs/b-libdrm.log"
+    },
+    {
+      "data": "2026-11-02 01:34:23",
+      "marco": "B03",
+      "texto": "Base concluída: make-ca (507 CAs), dhcpcd, sudo, libpng+APNG, freetype, fontconfig, D-Bus, which, CMake, libxml2, PCRE2, libyaml/PyYAML/Mako",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 02:14:27",
+      "marco": "B03",
+      "texto": "Downloads concluídos: 216 arquivos (1,4 GB), 0 falhas, md5 do livro conferido onde informado",
+      "resultado": "ok - logs/B03-download.log"
+    },
+    {
+      "data": "2026-11-02 02:28:06",
+      "marco": "B04",
+      "texto": "b-llvm compilado e instalado",
+      "resultado": "ok - logs/b-llvm.log"
+    },
+    {
+      "data": "2026-11-02 02:33:14",
+      "marco": "B04",
+      "texto": "b-mesa compilado e instalado",
+      "resultado": "ok - logs/b-mesa.log"
+    },
+    {
+      "data": "2026-11-02 02:33:15",
+      "marco": "B04",
+      "texto": "b-xbitmaps compilado e instalado",
+      "resultado": "ok - logs/b-xbitmaps.log"
+    },
+    {
+      "data": "2026-11-02 02:33:24",
+      "marco": "B04",
+      "texto": "b-xcb-util compilado e instalado",
+      "resultado": "ok - logs/b-xcb-util.log"
+    },
+    {
+      "data": "2026-11-02 02:36:39",
+      "marco": "B04",
+      "texto": "b-x7app compilado e instalado",
+      "resultado": "ok - logs/b-x7app.log"
+    },
+    {
+      "data": "2026-11-02 02:36:41",
+      "marco": "B04",
+      "texto": "b-xcursor-themes compilado e instalado",
+      "resultado": "ok - logs/b-xcursor-themes.log"
+    },
+    {
+      "data": "2026-11-02 02:36:59",
+      "marco": "B04",
+      "texto": "b-x7font compilado e instalado",
+      "resultado": "ok - logs/b-x7font.log"
+    },
+    {
+      "data": "2026-11-02 02:37:02",
+      "marco": "B04",
+      "texto": "b-xkeyboard-config compilado e instalado",
+      "resultado": "ok - logs/b-xkeyboard-config.log"
+    },
+    {
+      "data": "2026-11-02 02:37:19",
+      "marco": "B04",
+      "texto": "b-libepoxy compilado e instalado",
+      "resultado": "ok - logs/b-libepoxy.log"
+    },
+    {
+      "data": "2026-11-02 02:37:28",
+      "marco": "B04",
+      "texto": "b-libtirpc compilado e instalado",
+      "resultado": "ok - logs/b-libtirpc.log"
+    },
+    {
+      "data": "2026-11-02 02:37:31",
+      "marco": "B04",
+      "texto": "Falha em b-xorg-server (rc=1)",
+      "resultado": "erro - logs/b-xorg-server.log"
+    },
+    {
+      "data": "2026-11-02 02:39:08",
+      "marco": "B04",
+      "texto": "b-libXdmcp compilado e instalado",
+      "resultado": "ok - logs/b-libXdmcp.log"
+    },
+    {
+      "data": "2026-11-02 02:39:55",
+      "marco": "B04",
+      "texto": "b-xorg-server compilado e instalado",
+      "resultado": "ok - logs/b-xorg-server.log"
+    },
+    {
+      "data": "2026-11-02 02:40:03",
+      "marco": "B04",
+      "texto": "b-xinit compilado e instalado",
+      "resultado": "ok - logs/b-xinit.log"
+    },
+    {
+      "data": "2026-11-02 02:40:09",
+      "marco": "B04",
+      "texto": "b-mtdev compilado e instalado",
+      "resultado": "ok - logs/b-mtdev.log"
+    },
+    {
+      "data": "2026-11-02 02:40:38",
+      "marco": "B04",
+      "texto": "b-x7driver compilado e instalado",
+      "resultado": "ok - logs/b-x7driver.log"
+    },
+    {
+      "data": "2026-11-02 02:40:39",
+      "marco": "B04",
+      "texto": "b-TTF-and-OTF-fonts compilado e instalado",
+      "resultado": "ok - logs/b-TTF-and-OTF-fonts.log"
+    },
+    {
+      "data": "2026-11-02 02:40:48",
+      "marco": "B04",
+      "texto": "b-lxde-icon-theme compilado e instalado",
+      "resultado": "ok - logs/b-lxde-icon-theme.log"
+    },
+    {
+      "data": "2026-11-02 02:42:47",
+      "marco": "B05",
+      "texto": "b-glib2 compilado e instalado",
+      "resultado": "ok - logs/b-glib2.log"
+    },
+    {
+      "data": "2026-11-02 02:43:22",
+      "marco": "B05",
+      "texto": "b-cairo compilado e instalado",
+      "resultado": "ok - logs/b-cairo.log"
+    },
+    {
+      "data": "2026-11-02 02:43:31",
+      "marco": "B05",
+      "texto": "Falha em b-curl (rc=2)",
+      "resultado": "erro - logs/b-curl.log"
+    },
+    {
+      "data": "2026-11-02 02:44:37",
+      "marco": "B04",
+      "texto": "Xorg concluído: libs, xcb, libdrm, LLVM 20 (clang), Mesa 25.1.8 (llvmpipe+crocus/i915/nouveau/r300/r600/radeonsi/svga/virgl), apps, fontes, xkeyboard-config, libepoxy, Xorg-Server 21.1.18 (wrapper suid), xinit, libinput, DejaVu, ícones nuoveXT2",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 02:45:34",
+      "marco": "B05",
+      "texto": "b-curl compilado e instalado",
+      "resultado": "ok - logs/b-curl.log"
+    },
+    {
+      "data": "2026-11-02 03:25:04",
+      "marco": "B05",
+      "texto": "b-rust compilado e instalado",
+      "resultado": "ok - logs/b-rust.log"
+    },
+    {
+      "data": "2026-11-02 03:29:25",
+      "marco": "B05",
+      "texto": "b-cargo-c compilado e instalado",
+      "resultado": "ok - logs/b-cargo-c.log"
+    },
+    {
+      "data": "2026-11-02 03:29:42",
+      "marco": "B05",
+      "texto": "b-libjpeg compilado e instalado",
+      "resultado": "ok - logs/b-libjpeg.log"
+    },
+    {
+      "data": "2026-11-02 03:32:08",
+      "marco": "B05",
+      "texto": "b-shared-mime-info compilado e instalado",
+      "resultado": "ok - logs/b-shared-mime-info.log"
+    },
+    {
+      "data": "2026-11-02 03:32:14",
+      "marco": "B05",
+      "texto": "Falha em b-gdk-pixbuf (rc=1)",
+      "resultado": "erro - logs/b-gdk-pixbuf.log"
+    },
+    {
+      "data": "2026-11-02 03:33:11",
+      "marco": "B05",
+      "texto": "b-gdk-pixbuf compilado e instalado",
+      "resultado": "ok - logs/b-gdk-pixbuf.log"
+    },
+    {
+      "data": "2026-11-02 03:34:48",
+      "marco": "B05",
+      "texto": "b-harfbuzz compilado e instalado",
+      "resultado": "ok - logs/b-harfbuzz.log"
+    },
+    {
+      "data": "2026-11-02 03:34:52",
+      "marco": "B05",
+      "texto": "b-fribidi compilado e instalado",
+      "resultado": "ok - logs/b-fribidi.log"
+    },
+    {
+      "data": "2026-11-02 03:35:13",
+      "marco": "B05",
+      "texto": "b-pango compilado e instalado",
+      "resultado": "ok - logs/b-pango.log"
+    },
+    {
+      "data": "2026-11-02 03:38:21",
+      "marco": "B05",
+      "texto": "b-librsvg compilado e instalado",
+      "resultado": "ok - logs/b-librsvg.log"
+    },
+    {
+      "data": "2026-11-02 03:38:24",
+      "marco": "B05",
+      "texto": "b-gsettings-desktop-schemas compilado e instalado",
+      "resultado": "ok - logs/b-gsettings-desktop-schemas.log"
+    },
+    {
+      "data": "2026-11-02 03:38:34",
+      "marco": "B05",
+      "texto": "b-at-spi2-core compilado e instalado",
+      "resultado": "ok - logs/b-at-spi2-core.log"
+    },
+    {
+      "data": "2026-11-02 03:38:52",
+      "marco": "B05",
+      "texto": "b-libxkbcommon compilado e instalado",
+      "resultado": "ok - logs/b-libxkbcommon.log"
+    },
+    {
+      "data": "2026-11-02 03:38:54",
+      "marco": "B05",
+      "texto": "b-hicolor-icon-theme compilado e instalado",
+      "resultado": "ok - logs/b-hicolor-icon-theme.log"
+    },
+    {
+      "data": "2026-11-02 03:40:35",
+      "marco": "B05",
+      "texto": "b-gtk3 compilado e instalado",
+      "resultado": "ok - logs/b-gtk3.log"
+    },
+    {
+      "data": "2026-11-02 03:42:54",
+      "marco": "B05",
+      "texto": "b-lfs-backup-gtk compilado e instalado",
+      "resultado": "ok - logs/b-lfs-backup-gtk.log"
+    },
+    {
+      "data": "2026-11-02 03:43:12",
+      "marco": "B06",
+      "texto": "b-libxfce4util compilado e instalado",
+      "resultado": "ok - logs/b-libxfce4util.log"
+    },
+    {
+      "data": "2026-11-02 03:43:36",
+      "marco": "B06",
+      "texto": "b-xfconf compilado e instalado",
+      "resultado": "ok - logs/b-xfconf.log"
+    },
+    {
+      "data": "2026-11-02 03:44:00",
+      "marco": "B06",
+      "texto": "b-libxfce4ui compilado e instalado",
+      "resultado": "ok - logs/b-libxfce4ui.log"
+    },
+    {
+      "data": "2026-11-02 03:44:21",
+      "marco": "B06",
+      "texto": "b-exo compilado e instalado",
+      "resultado": "ok - logs/b-exo.log"
+    },
+    {
+      "data": "2026-11-02 03:44:45",
+      "marco": "B06",
+      "texto": "b-garcon compilado e instalado",
+      "resultado": "ok - logs/b-garcon.log"
+    },
+    {
+      "data": "2026-11-02 03:44:53",
+      "marco": "B06",
+      "texto": "b-libwnck compilado e instalado",
+      "resultado": "ok - logs/b-libwnck.log"
+    },
+    {
+      "data": "2026-11-02 03:44:53",
+      "marco": "B06",
+      "texto": "b-hwdata compilado e instalado",
+      "resultado": "ok - logs/b-hwdata.log"
+    },
+    {
+      "data": "2026-11-02 03:44:57",
+      "marco": "B06",
+      "texto": "b-libdisplay-info compilado e instalado",
+      "resultado": "ok - logs/b-libdisplay-info.log"
+    },
+    {
+      "data": "2026-11-02 03:44:59",
+      "marco": "B06",
+      "texto": "Falha em b-xfce4-dev-tools (rc=2)",
+      "resultado": "erro - logs/b-xfce4-dev-tools.log"
+    },
+    {
+      "data": "2026-11-02 03:45:45",
+      "marco": "B05",
+      "texto": "Pilha GTK 3 concluída (GLib+GI, cairo, Rust 1.89, cargo-c, gdk-pixbuf, harfbuzz, pango, librsvg, at-spi2, libxkbcommon, GTK 3.24.50); backup backups/lfs-fase2-gtk3.tar.xz (862 MB)",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 03:46:06",
+      "marco": "B06",
+      "texto": "b-libxslt compilado e instalado",
+      "resultado": "ok - logs/b-libxslt.log"
+    },
+    {
+      "data": "2026-11-02 03:46:14",
+      "marco": "B06",
+      "texto": "b-xfce4-dev-tools compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-dev-tools.log"
+    },
+    {
+      "data": "2026-11-02 03:46:39",
+      "marco": "B06",
+      "texto": "b-libxfce4windowing compilado e instalado",
+      "resultado": "ok - logs/b-libxfce4windowing.log"
+    },
+    {
+      "data": "2026-11-02 03:47:41",
+      "marco": "B06",
+      "texto": "b-xfce4-panel compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-panel.log"
+    },
+    {
+      "data": "2026-11-02 03:47:45",
+      "marco": "B06",
+      "texto": "b-libgudev compilado e instalado",
+      "resultado": "ok - logs/b-libgudev.log"
+    },
+    {
+      "data": "2026-11-02 03:47:49",
+      "marco": "B06",
+      "texto": "b-libnotify compilado e instalado",
+      "resultado": "ok - logs/b-libnotify.log"
+    },
+    {
+      "data": "2026-11-02 03:48:43",
+      "marco": "B06",
+      "texto": "b-thunar compilado e instalado",
+      "resultado": "ok - logs/b-thunar.log"
+    },
+    {
+      "data": "2026-11-02 03:48:59",
+      "marco": "B06",
+      "texto": "b-thunar-volman compilado e instalado",
+      "resultado": "ok - logs/b-thunar-volman.log"
+    },
+    {
+      "data": "2026-11-02 03:49:25",
+      "marco": "B06",
+      "texto": "b-tumbler compilado e instalado",
+      "resultado": "ok - logs/b-tumbler.log"
+    },
+    {
+      "data": "2026-11-02 03:49:35",
+      "marco": "B06",
+      "texto": "b-xfce4-appfinder compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-appfinder.log"
+    },
+    {
+      "data": "2026-11-02 03:49:44",
+      "marco": "B06",
+      "texto": "b-libusb compilado e instalado",
+      "resultado": "ok - logs/b-libusb.log"
+    },
+    {
+      "data": "2026-11-02 03:49:49",
+      "marco": "B06",
+      "texto": "b-upower compilado e instalado",
+      "resultado": "ok - logs/b-upower.log"
+    },
+    {
+      "data": "2026-11-02 03:50:10",
+      "marco": "B06",
+      "texto": "b-duktape compilado e instalado",
+      "resultado": "ok - logs/b-duktape.log"
+    },
+    {
+      "data": "2026-11-02 03:50:12",
+      "marco": "B06",
+      "texto": "Falha em b-polkit (rc=1)",
+      "resultado": "erro - logs/b-polkit.log"
+    },
+    {
+      "data": "2026-11-02 03:50:32",
+      "marco": "B06",
+      "texto": "Falha em b-polkit (rc=9)",
+      "resultado": "erro - logs/b-polkit.log"
+    },
+    {
+      "data": "2026-11-02 03:51:22",
+      "marco": "B06",
+      "texto": "b-polkit compilado e instalado",
+      "resultado": "ok - logs/b-polkit.log"
+    },
+    {
+      "data": "2026-11-02 03:51:40",
+      "marco": "B06",
+      "texto": "b-xfce4-power-manager compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-power-manager.log"
+    },
+    {
+      "data": "2026-11-02 03:51:55",
+      "marco": "B06",
+      "texto": "b-iso-codes compilado e instalado",
+      "resultado": "ok - logs/b-iso-codes.log"
+    },
+    {
+      "data": "2026-11-02 03:52:04",
+      "marco": "B06",
+      "texto": "b-libxklavier compilado e instalado",
+      "resultado": "ok - logs/b-libxklavier.log"
+    },
+    {
+      "data": "2026-11-02 03:52:34",
+      "marco": "B06",
+      "texto": "b-xfce4-settings compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-settings.log"
+    },
+    {
+      "data": "2026-11-02 03:52:41",
+      "marco": "B06",
+      "texto": "b-startup-notification compilado e instalado",
+      "resultado": "ok - logs/b-startup-notification.log"
+    },
+    {
+      "data": "2026-11-02 03:52:59",
+      "marco": "B06",
+      "texto": "b-xfdesktop compilado e instalado",
+      "resultado": "ok - logs/b-xfdesktop.log"
+    },
+    {
+      "data": "2026-11-02 03:53:19",
+      "marco": "B06",
+      "texto": "b-xfwm4 compilado e instalado",
+      "resultado": "ok - logs/b-xfwm4.log"
+    },
+    {
+      "data": "2026-11-02 03:53:22",
+      "marco": "B06",
+      "texto": "b-desktop-file-utils compilado e instalado",
+      "resultado": "ok - logs/b-desktop-file-utils.log"
+    },
+    {
+      "data": "2026-11-02 03:53:41",
+      "marco": "B06",
+      "texto": "b-xfce4-session compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-session.log"
+    },
+    {
+      "data": "2026-11-02 03:53:49",
+      "marco": "B07",
+      "texto": "b-libogg compilado e instalado",
+      "resultado": "ok - logs/b-libogg.log"
+    },
+    {
+      "data": "2026-11-02 03:53:57",
+      "marco": "B07",
+      "texto": "b-libvorbis compilado e instalado",
+      "resultado": "ok - logs/b-libvorbis.log"
+    },
+    {
+      "data": "2026-11-02 03:54:14",
+      "marco": "B07",
+      "texto": "b-libcanberra compilado e instalado",
+      "resultado": "ok - logs/b-libcanberra.log"
+    },
+    {
+      "data": "2026-11-02 03:55:30",
+      "marco": "B07",
+      "texto": "b-sqlite compilado e instalado",
+      "resultado": "ok - logs/b-sqlite.log"
+    },
+    {
+      "data": "2026-11-02 03:55:46",
+      "marco": "B07",
+      "texto": "b-xfce4-notifyd compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-notifyd.log"
+    },
+    {
+      "data": "2026-11-02 03:55:47",
+      "marco": "B07",
+      "texto": "b-fast_float compilado e instalado",
+      "resultado": "ok - logs/b-fast_float.log"
+    },
+    {
+      "data": "2026-11-02 03:57:21",
+      "marco": "B07",
+      "texto": "b-icu compilado e instalado",
+      "resultado": "ok - logs/b-icu.log"
+    },
+    {
+      "data": "2026-11-02 03:57:49",
+      "marco": "B07",
+      "texto": "b-vte compilado e instalado",
+      "resultado": "ok - logs/b-vte.log"
+    },
+    {
+      "data": "2026-11-02 03:57:53",
+      "marco": "B07",
+      "texto": "Falha em b-xfce4-terminal (rc=4)",
+      "resultado": "erro - logs/b-xfce4-terminal.log"
+    },
+    {
+      "data": "2026-11-02 03:58:31",
+      "marco": "B06",
+      "texto": "XFCE núcleo concluído (libxfce4util, xfconf, libxfce4ui, exo, garcon, libwnck, libxfce4windowing, panel, thunar, tumbler, appfinder, power-manager, settings, xfdesktop, xfwm4, session) + polkit/upower",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 03:58:38",
+      "marco": "B07",
+      "texto": "b-xfce4-terminal compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-terminal.log"
+    },
+    {
+      "data": "2026-11-02 03:58:47",
+      "marco": "B07",
+      "texto": "b-libexif compilado e instalado",
+      "resultado": "ok - logs/b-libexif.log"
+    },
+    {
+      "data": "2026-11-02 03:58:51",
+      "marco": "B07",
+      "texto": "b-ristretto compilado e instalado",
+      "resultado": "ok - logs/b-ristretto.log"
+    },
+    {
+      "data": "2026-11-02 03:59:21",
+      "marco": "B07",
+      "texto": "b-libsndfile compilado e instalado",
+      "resultado": "ok - logs/b-libsndfile.log"
+    },
+    {
+      "data": "2026-11-02 03:59:50",
+      "marco": "B07",
+      "texto": "b-alsa-lib compilado e instalado",
+      "resultado": "ok - logs/b-alsa-lib.log"
+    },
+    {
+      "data": "2026-11-02 04:00:19",
+      "marco": "B07",
+      "texto": "b-speex compilado e instalado",
+      "resultado": "ok - logs/b-speex.log"
+    },
+    {
+      "data": "2026-11-02 04:00:52",
+      "marco": "B07",
+      "texto": "b-pulseaudio compilado e instalado",
+      "resultado": "ok - logs/b-pulseaudio.log"
+    },
+    {
+      "data": "2026-11-02 04:00:57",
+      "marco": "B07",
+      "texto": "b-xfce4-pulseaudio-plugin compilado e instalado",
+      "resultado": "ok - logs/b-xfce4-pulseaudio-plugin.log"
+    },
+    {
+      "data": "2026-11-02 04:00:59",
+      "marco": "B07",
+      "texto": "Falha em b-gtksourceview4 (rc=1)",
+      "resultado": "erro - logs/b-gtksourceview4.log"
+    },
+    {
+      "data": "2026-11-02 04:01:33",
+      "marco": "B07",
+      "texto": "b-gtksourceview4 compilado e instalado",
+      "resultado": "ok - logs/b-gtksourceview4.log"
+    },
+    {
+      "data": "2026-11-02 04:01:39",
+      "marco": "B07",
+      "texto": "b-mousepad compilado e instalado",
+      "resultado": "ok - logs/b-mousepad.log"
+    },
+    {
+      "data": "2026-11-02 04:02:36",
+      "marco": "B08",
+      "texto": "b-cbindgen compilado e instalado",
+      "resultado": "ok - logs/b-cbindgen.log"
+    },
+    {
+      "data": "2026-11-02 04:03:23",
+      "marco": "B08",
+      "texto": "b-libarchive compilado e instalado",
+      "resultado": "ok - logs/b-libarchive.log"
+    },
+    {
+      "data": "2026-11-02 04:03:36",
+      "marco": "B08",
+      "texto": "b-brotli compilado e instalado",
+      "resultado": "ok - logs/b-brotli.log"
+    },
+    {
+      "data": "2026-11-02 04:03:58",
+      "marco": "B08",
+      "texto": "b-c-ares compilado e instalado",
+      "resultado": "ok - logs/b-c-ares.log"
+    },
+    {
+      "data": "2026-11-02 04:04:11",
+      "marco": "B08",
+      "texto": "b-libuv compilado e instalado",
+      "resultado": "ok - logs/b-libuv.log"
+    },
+    {
+      "data": "2026-11-02 04:04:30",
+      "marco": "B08",
+      "texto": "b-nghttp2 compilado e instalado",
+      "resultado": "ok - logs/b-nghttp2.log"
+    },
+    {
+      "data": "2026-11-02 04:10:23",
+      "marco": "B07",
+      "texto": "Apps e som: xfce4-notifyd, ICU, VTE 0.80, xfce4-terminal, ristretto, alsa-lib, PulseAudio 17, plugin de som, gtksourceview4, Mousepad",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 04:45:54",
+      "marco": "B08",
+      "texto": "b-nodejs compilado e instalado",
+      "resultado": "ok - logs/b-nodejs.log"
+    },
+    {
+      "data": "2026-11-02 04:46:19",
+      "marco": "B08",
+      "texto": "b-libevent compilado e instalado",
+      "resultado": "ok - logs/b-libevent.log"
+    },
+    {
+      "data": "2026-11-02 04:46:21",
+      "marco": "B08",
+      "texto": "Falha em b-libvpx (rc=2)",
+      "resultado": "erro - logs/b-libvpx.log"
+    },
+    {
+      "data": "2026-11-02 04:47:28",
+      "marco": "B08",
+      "texto": "b-nasm compilado e instalado",
+      "resultado": "ok - logs/b-nasm.log"
+    },
+    {
+      "data": "2026-11-02 04:48:28",
+      "marco": "B08",
+      "texto": "b-libvpx compilado e instalado",
+      "resultado": "ok - logs/b-libvpx.log"
+    },
+    {
+      "data": "2026-11-02 04:48:54",
+      "marco": "B08",
+      "texto": "b-libwebp compilado e instalado",
+      "resultado": "ok - logs/b-libwebp.log"
+    },
+    {
+      "data": "2026-11-02 04:49:05",
+      "marco": "B08",
+      "texto": "b-nspr compilado e instalado",
+      "resultado": "ok - logs/b-nspr.log"
+    },
+    {
+      "data": "2026-11-02 04:51:09",
+      "marco": "B08",
+      "texto": "b-nss compilado e instalado",
+      "resultado": "ok - logs/b-nss.log"
+    },
+    {
+      "data": "2026-11-02 04:52:05",
+      "marco": "B08",
+      "texto": "Falha em b-firefox (rc=1)",
+      "resultado": "erro - logs/b-firefox.log"
+    },
+    {
+      "data": "2026-11-02 04:53:46",
+      "marco": "B08",
+      "texto": "Falha em b-firefox (rc=2)",
+      "resultado": "erro - logs/b-firefox.log"
+    },
+    {
+      "data": "2026-11-02 04:58:55",
+      "marco": "B08",
+      "texto": "b-python3 compilado e instalado",
+      "resultado": "ok - logs/b-python3.log"
+    },
+    {
+      "data": "2026-11-02 05:46:43",
+      "marco": "B08",
+      "texto": "b-firefox compilado e instalado",
+      "resultado": "ok - logs/b-firefox.log"
+    },
+    {
+      "data": "2026-11-02 05:49:11",
+      "marco": "B08",
+      "texto": "b-lfs-backup-firefox compilado e instalado",
+      "resultado": "ok - logs/b-lfs-backup-firefox.log"
+    },
+    {
+      "data": "2026-11-02 05:50:03",
+      "marco": "B08",
+      "texto": "Firefox ESR 140.2.0 compilado (Node.js 22, NSS/NSPR, libvpx, libwebp, ICU do sistema; sem marca oficial); Python recompilado com sqlite; backup backups/lfs-fase2-firefox.tar.xz",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 05:50:06",
+      "marco": "B09",
+      "texto": "b-arte compilado e instalado",
+      "resultado": "ok - logs/b-arte.log"
+    },
+    {
+      "data": "2026-11-02 05:50:29",
+      "marco": "B09",
+      "texto": "Falha em b-kernel (rc=1)",
+      "resultado": "erro - logs/b-kernel.log"
+    },
+    {
+      "data": "2026-11-02 05:59:48",
+      "marco": "B09",
+      "texto": "b-kernel compilado e instalado",
+      "resultado": "ok - logs/b-kernel.log"
+    },
+    {
+      "data": "2026-11-02 05:59:49",
+      "marco": "B10",
+      "texto": "b-arte2 compilado e instalado",
+      "resultado": "ok - logs/b-arte2.log"
+    },
+    {
+      "data": "2026-11-02 05:59:49",
+      "marco": "B10",
+      "texto": "Falha em b-integracao (rc=1)",
+      "resultado": "erro - logs/b-integracao.log"
+    },
+    {
+      "data": "2026-11-02 06:00:21",
+      "marco": "B10",
+      "texto": "b-integracao compilado e instalado",
+      "resultado": "ok - logs/b-integracao.log"
+    },
+    {
+      "data": "2026-11-02 06:00:33",
+      "marco": "B11",
+      "texto": "b-initramfs compilado e instalado",
+      "resultado": "ok - logs/b-initramfs.log"
+    },
+    {
+      "data": "2026-11-02 06:06:50",
+      "marco": "B11",
+      "texto": "b-squashfs compilado e instalado",
+      "resultado": "ok - logs/b-squashfs.log"
+    },
+    {
+      "data": "2026-11-02 06:06:54",
+      "marco": "B11",
+      "texto": "b-iso compilado e instalado",
+      "resultado": "ok - logs/b-iso.log"
+    },
+    {
+      "data": "2026-11-02 06:07:20",
+      "marco": "B11",
+      "texto": "ISO iso/sagui-linux-2.0-x86_64.iso gerada (841 MB; squashfs 802 MB)",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 06:23:50",
+      "marco": "B10",
+      "texto": "b-arte2 compilado e instalado",
+      "resultado": "ok - logs/b-arte2.log"
+    },
+    {
+      "data": "2026-11-02 06:23:56",
+      "marco": "B10",
+      "texto": "b-integracao compilado e instalado",
+      "resultado": "ok - logs/b-integracao.log"
+    },
+    {
+      "data": "2026-11-02 06:24:02",
+      "marco": "B11",
+      "texto": "b-initramfs compilado e instalado",
+      "resultado": "ok - logs/b-initramfs.log"
+    },
+    {
+      "data": "2026-11-02 06:29:52",
+      "marco": "B11",
+      "texto": "b-squashfs compilado e instalado",
+      "resultado": "ok - logs/b-squashfs.log"
+    },
+    {
+      "data": "2026-11-02 06:29:57",
+      "marco": "B11",
+      "texto": "b-iso compilado e instalado",
+      "resultado": "ok - logs/b-iso.log"
+    },
+    {
+      "data": "2026-11-02 06:36:07",
+      "marco": "B12",
+      "texto": "Teste bios-cdrom PASSOU: autologin → XFCE (Xorg, xfce4-panel, xfdesktop, xfwm4) com wallpaper e logo do Sagui; Firefox abriu a página de boas-vindas (capturas em logs/testes/)",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 06:48:31",
+      "marco": "B10",
+      "texto": "b-arte2 compilado e instalado",
+      "resultado": "ok - logs/b-arte2.log"
+    },
+    {
+      "data": "2026-11-02 06:48:37",
+      "marco": "B10",
+      "texto": "b-integracao compilado e instalado",
+      "resultado": "ok - logs/b-integracao.log"
+    },
+    {
+      "data": "2026-11-02 06:48:42",
+      "marco": "B11",
+      "texto": "b-initramfs compilado e instalado",
+      "resultado": "ok - logs/b-initramfs.log"
+    },
+    {
+      "data": "2026-11-02 06:54:29",
+      "marco": "B11",
+      "texto": "b-squashfs compilado e instalado",
+      "resultado": "ok - logs/b-squashfs.log"
+    },
+    {
+      "data": "2026-11-02 06:54:34",
+      "marco": "B11",
+      "texto": "b-iso compilado e instalado",
+      "resultado": "ok - logs/b-iso.log"
+    },
+    {
+      "data": "2026-11-02 07:12:06",
+      "marco": "B12",
+      "texto": "ISO final 09d5d8cb6e85f56e56c175ed7169d41708f9463f217477fe174d3375217af634: bios-cdrom, uefi-cdrom e bios-usb PASSARAM (XFCE, Firefox, DHCP; capturas em logs/testes/)",
+      "resultado": "ok - logs/testes/resumo.txt"
+    },
+    {
+      "data": "2026-11-02 07:12:07",
+      "marco": "B13",
+      "texto": "ISO + SHA-256 e iso/COMO-GRAVAR.md (Sagui) entregues; falta o teste em hardware pelo Eli",
+      "resultado": "ok"
+    },
+    {
+      "data": "2026-11-02 13:38:05",
+      "marco": "B13",
+      "texto": "Teste em hardware confirmado pelo Eli: notebook ok",
+      "resultado": "ok"
+    }
+  ],
+  "erros": [
+    {
+      "data": "2026-11-02 01:06:10",
+      "marco": "B03",
+      "pacote": "p11-kit / make-ca",
+      "sintoma": "/usr/sbin/make-ca: line 980: /usr/bin/trust: No such file or directory ... Failed!!! (e o passo terminou com código 0)",
+      "causa": "A ordem calculada colocou o p11-kit antes da libtasn1 (a libtasn1 é 'recomendada' do p11-kit, e sem ela o p11-kit não gera o módulo trust); o make-ca não propaga a falha no código de saída",
+      "correcao": "libtasn1 movida para antes do p11-kit em revisao.txt; p11-kit recompilado e make-ca -g --force: 507 certificados e ca-bundle.crt gerados",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 01:06:59",
+      "marco": "B03",
+      "pacote": "dbus",
+      "sintoma": "xz: (stdin): Unexpected end of input / tar: Unexpected EOF in archive",
+      "causa": "O sincronizador copiou para $LFS/sources uma tarball que ainda estava sendo baixada (sobrescrevendo a cópia completa da Fase 1)",
+      "correcao": "faltando.sh só copia arquivos parados há >2 min e que passam no teste de integridade (xz/gzip/bzip2 -t); dbus restaurado",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 01:11:34",
+      "marco": "B03",
+      "pacote": "cmake",
+      "sintoma": "CMAKE_USE_SYSTEM_CURL is ON but a curl is not found!",
+      "causa": "--system-libs do livro supõe as recomendadas curl, libarchive, libuv e nghttp2 já instaladas",
+      "correcao": "bootstrap sem --system-libs (bibliotecas embutidas do CMake)",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 01:20:22",
+      "marco": "B03",
+      "pacote": "libxml2",
+      "sintoma": "make: *** No rule to make target 'install'.",
+      "causa": "Erro na revisão: os blocos de instalação do livro (b3 b4) ficaram antes do configure ajustado",
+      "correcao": "Entrada da libxml2 só com os comandos ajustados; conferidas as demais entradas que misturam blocos e texto",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 01:34:22",
+      "marco": "B03",
+      "pacote": "libpng",
+      "sintoma": "gzip: ../libpng-1.6.47-apng.patch.gz: No such file or directory (build seguiu sem o patch)",
+      "causa": "O baixar.py só reconhecia URLs terminadas em .patch (este é .patch.gz) e o 'gzip -cd | patch' do livro não falha com set -e (pipe)",
+      "correcao": "Patch baixado (extras-download.txt); script sem pipe; libpng recompilada com APNG (png_get_next_frame_fcTL presente), necessária para o Firefox",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 01:34:23",
+      "marco": "B04",
+      "pacote": "mesa",
+      "sintoma": "mesa-25.1.8.tar.xz em $LFS/sources com 791907 bytes (parcial)",
+      "causa": "Cópia feita pela 1ª versão do sincronizador enquanto o download ainda corria",
+      "correcao": "Comparação de tamanho de todas as tarballs; a parcial foi apagada e o loop espera a cópia completa",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 02:38:57",
+      "marco": "B04",
+      "pacote": "xorg-server",
+      "sintoma": "ERROR: Dependency \"xdmcp\" not found",
+      "causa": "libXdmcp é só 'recomendada' (libxcb) no livro e não entrou no fecho de obrigatórias, mas o Xorg-Server a exige",
+      "correcao": "libXdmcp-1.1.5 (md5 ok) adicionada ao B04 antes do servidor",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 02:44:37",
+      "marco": "B05",
+      "pacote": "curl",
+      "sintoma": "configure: error: libpsl libs and/or directories were not found",
+      "causa": "libpsl é recomendada do curl e não foi incluída",
+      "correcao": "--without-libpsl",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 03:32:57",
+      "marco": "B05",
+      "pacote": "gdk-pixbuf",
+      "sintoma": "ERROR: No rst2man found, but man pages were explicitly enabled",
+      "causa": "Páginas de manual exigem docutils (opcional)",
+      "correcao": "-D man=false",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 03:45:45",
+      "marco": "B06",
+      "pacote": "xfce4-dev-tools",
+      "sintoma": "configure: error: package 'xsltproc' missing",
+      "causa": "libxslt não estava no fecho (é só recomendada para glib/gtk3/polkit), mas o xfce4-dev-tools exige xsltproc",
+      "correcao": "libxslt-1.1.43 (md5 ok) adicionada antes do xfce4-dev-tools",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 03:50:30",
+      "marco": "B06",
+      "pacote": "polkit",
+      "sintoma": "ERROR: C shared or static library 'pam' not found",
+      "causa": "polkit usa Linux-PAM por padrão (fora do escopo)",
+      "correcao": "-D authfw=shadow (autenticação via /etc/shadow, suportada pelo polkit)",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 03:58:31",
+      "marco": "B07",
+      "pacote": "xfce4-terminal",
+      "sintoma": "failed to load \"http://docbook.sourceforge.net/.../docbook.xsl\"",
+      "causa": "A página de manual exige DocBook-XSL (não instalado)",
+      "correcao": "subdir('doc') removido do meson.build",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 04:01:16",
+      "marco": "B07",
+      "pacote": "gtksourceview4",
+      "sintoma": "ERROR: Dependency \"vapigen\" not found",
+      "causa": "vapi habilitado por padrão; vala não instalado",
+      "correcao": "-D vapi=false",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 04:47:06",
+      "marco": "B08",
+      "pacote": "libvpx",
+      "sintoma": "Neither yasm nor nasm have been found",
+      "causa": "Na ordem do B08 o nasm vinha depois do libvpx (a relação é só 'recomendada' no livro)",
+      "correcao": "nasm movido para antes do libvpx",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 04:52:27",
+      "marco": "B08",
+      "pacote": "firefox",
+      "sintoma": "cd: null directory",
+      "causa": "O tarball do Firefox começa com a entrada './'; o build.sh pegava a 1ª entrada para descobrir o diretório",
+      "correcao": "build.sh ignora entradas vazias após remover './' (grep -m1 .)",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 04:54:20",
+      "marco": "B08",
+      "pacote": "firefox",
+      "sintoma": "ModuleNotFoundError: No module named '_sqlite3'",
+      "causa": "O Python do LFS foi compilado antes do SQLite; o BLFS lista Python 3 como dependência do Firefox para ser recompilado com sqlite",
+      "correcao": "Python 3.13.7 recompilado (mesmas opções do LFS) antes do Firefox",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 05:51:24",
+      "marco": "B09",
+      "pacote": "kernel",
+      "sintoma": "FALTA: CONFIG_SND_PCM=y / SND_HDA_CODEC_GENERIC=m / SND_HDA_CODEC_IDT=m",
+      "causa": "SND_PCM é selecionada (vira módulo junto com os drivers); GENERIC e IDT não existem com esses nomes no 6.16 (SND_HDA_GENERIC e SIGMATEL cobrem)",
+      "correcao": "Retiradas da lista de verificação",
+      "tentativas": "1"
+    },
+    {
+      "data": "2026-11-02 06:23:49",
+      "marco": "B12",
+      "pacote": "xfce4-session (integração)",
+      "sintoma": "Tela: 'Não foi possível carregar uma sessão de modo de segurança' (xfce4-panel/xfwm4/xfdesktop não sobem)",
+      "causa": "A integração sobrescreveu /etc/xdg/.../xfce4-session.xml (e xsettings.xml) com versões reduzidas, apagando a definição da sessão Failsafe",
+      "correcao": "XMLs do sistema restaurados dos tarballs do XFCE; preferências do Sagui gravadas na config do usuário (/etc/skel/.config/xfce4/xfconf); B10 e B11 refeitos",
+      "tentativas": "1"
+    }
+  ],
+  "proximo_passo": "Fase 2 (Sagui Linux 2.0) concluída.",
+  "bloqueios": "",
+  "ultimo_passo": "B13: Teste em hardware confirmado pelo Eli: notebook ok",
+  "atualizado_em": "2026-11-02 13:38:05",
+  "extra": {
+    "senhas": "root / sagui  ·  sagui / sagui (autologin no XFCE)",
+    "iso": "iso/sagui-linux-2.0-x86_64.iso (841 MB) sha256 09d5d8cb6e85f56e56c175ed7169d41708f9463f217477fe174d3375217af634"
+  },
+  "porcentagem": 100.0,
+  "marco_atual": "concluído"
+}

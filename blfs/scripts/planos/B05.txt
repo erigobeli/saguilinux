@@ -1,0 +1,19 @@
+# B05 — gerado por aplicar-revisao.py
+b-glib2|glib-2.84.4.tar.xz|pkgs/glib2.sh|chroot
+b-cairo|cairo-1.18.4.tar.xz|pkgs/cairo.sh|chroot
+b-curl|curl-8.15.0.tar.xz|pkgs/curl.sh|chroot
+b-rust|rustc-1.89.0-src.tar.xz|pkgs/rust.sh|chroot
+b-cargo-c|cargo-c-0.10.15.tar.gz|pkgs/cargo-c.sh|chroot
+b-libjpeg|libjpeg-turbo-3.0.1.tar.gz|pkgs/libjpeg.sh|chroot
+b-shared-mime-info|shared-mime-info-2.4.tar.gz|pkgs/shared-mime-info.sh|chroot
+b-gdk-pixbuf|gdk-pixbuf-2.42.12.tar.xz|pkgs/gdk-pixbuf.sh|chroot
+b-harfbuzz|harfbuzz-11.4.1.tar.xz|pkgs/harfbuzz.sh|chroot
+b-fribidi|fribidi-1.0.16.tar.xz|pkgs/fribidi.sh|chroot
+b-pango|pango-1.56.4.tar.xz|pkgs/pango.sh|chroot
+b-librsvg|librsvg-2.61.0.tar.xz|pkgs/librsvg.sh|chroot
+b-gsettings-desktop-schemas|gsettings-desktop-schemas-48.0.tar.xz|pkgs/gsettings-desktop-schemas.sh|chroot
+b-at-spi2-core|at-spi2-core-2.56.4.tar.xz|pkgs/at-spi2-core.sh|chroot
+b-libxkbcommon|libxkbcommon-1.11.0.tar.gz|pkgs/libxkbcommon.sh|chroot
+b-hicolor-icon-theme|hicolor-icon-theme-0.18.tar.xz|pkgs/hicolor-icon-theme.sh|chroot
+b-gtk3|gtk-3.24.50.tar.xz|pkgs/gtk3.sh|chroot
+b-lfs-backup-gtk|-|pkgs/lfs-backup-gtk.sh|root

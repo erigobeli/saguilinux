@@ -1,0 +1,8 @@
+# Arestas de alternativas "A ou B" (o livro lista todas como obrigatórias)
+x/libnotify general/notification-daemon
+x/libnotify xfce/xfce4-notifyd
+x/libnotify lxqt/lxqt-notificationd
+xfce/xfce4-settings x/gnome-icon-theme
+x/x7driver x/x7driver
+x/x7driver x/xorg-server
+postlfs/p11-kit postlfs/make-ca

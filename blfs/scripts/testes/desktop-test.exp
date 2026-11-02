@@ -1,0 +1,95 @@
+#!/usr/bin/expect -f
+# Uso: desktop-test.exp <nome> <dir-saida> <socket-monitor> <comando qemu...>
+# Boot pela entrada serial do GRUB (tecla 's'), login root no ttyS0, verifica Xorg/XFCE/Firefox
+# e tira capturas de tela do monitor gráfico (screendump) com o desktop e com o Firefox aberto.
+# Blocos expect SEMPRE multilinha (em uma linha só viram um padrão literal).
+set nome [lindex $argv 0]
+set out  [lindex $argv 1]
+set sock [lindex $argv 2]
+set cmd  [lrange $argv 3 end]
+log_file -noappend $out/$nome.log
+set timeout 1200
+set send_slow {1 .08}
+proc falha {msg} {
+  send_user "\n### TESTE FALHOU: $msg\n"
+  exit 1
+}
+proc tela {arq} {
+  global sock
+  catch {exec sh -c "printf 'screendump $arq\n' | nc -U -N $sock > /dev/null"}
+}
+proc roda {c} {
+  send -s "$c; echo RC=\$?\r"
+  expect {
+    -re "RC=0\r" {}
+    -re "RC=\[1-9\]" { falha "comando falhou: $c" }
+    timeout { falha "timeout em: $c" }
+  }
+}
+eval spawn $cmd
+expect {
+  "console serial ttyS0" {
+    sleep 1
+    send "s"
+  }
+  timeout { falha "menu do GRUB não apareceu" }
+  eof { falha "qemu terminou antes do GRUB" }
+}
+expect {
+  -re "sagui login: ?$" {}
+  "abrindo shell de emergência" { falha "initramfs não achou a mídia" }
+  "Kernel panic" { falha "kernel panic" }
+  timeout { falha "prompt de login não apareceu" }
+  eof { falha "qemu terminou antes do login" }
+}
+set logado 0
+for {set tent 1} {$tent <= 3 && !$logado} {incr tent} {
+  sleep 3
+  send -s "root\r"
+  expect {
+    "Password:" {}
+    timeout { falha "sem pedido de senha" }
+  }
+  sleep 2
+  send -s "sagui\r"
+  expect {
+    -re {bash-[0-9.]+# $} { set logado 1 }
+    -re {root@sagui[^\r\n]*# $} { set logado 1 }
+    "Login incorrect" {
+      send_user "\n### tentativa $tent: senha recusada\n"
+      expect -re "login: ?$"
+    }
+    "timed out" {
+      send_user "\n### tentativa $tent: login expirou\n"
+      expect -re "login: ?$"
+    }
+    timeout { falha "sem shell após login" }
+  }
+}
+if {!$logado} { falha "login falhou 3 vezes" }
+sleep 1
+send -s "PS1='TESTE# '\r"
+expect "TESTE# "
+set timeout 900
+roda "uname -a"
+roda "cat /etc/os-release"
+roda "firefox --version"
+# espera o XFCE subir (autologin do sagui no tty1)
+roda "for i in \$(seq 1 120); do pgrep -x xfce4-panel >/dev/null && pgrep -x xfdesktop >/dev/null && break; sleep 5; done; pgrep -a Xorg; pgrep -a xfce4-panel; pgrep -a xfdesktop; pgrep -x xfwm4"
+send_user "\n### XFCE no ar; esperando o desktop desenhar\n"
+sleep 60
+tela "$out/$nome-desktop.ppm"
+roda "ip -br addr"
+# abre o Firefox na sessão do sagui
+roda "su - sagui -c 'DISPLAY=:0 nohup firefox file:///usr/share/sagui/bemvindo.html >/tmp/firefox.log 2>&1 &'"
+roda "for i in \$(seq 1 90); do pgrep -f 'firefox' >/dev/null && DISPLAY=:0 XAUTHORITY=/home/sagui/.Xauthority xwininfo -root -tree 2>/dev/null | grep -qi 'Mozilla\\|Firefox\\|Sagui' && break; sleep 5; done; pgrep -a firefox | head -3"
+sleep 90
+tela "$out/$nome-firefox.ppm"
+send -s "poweroff\r"
+set timeout 300
+expect {
+  eof {}
+  timeout {}
+}
+send_user "\n### TESTE PASSOU: $nome\n"
+exit 0

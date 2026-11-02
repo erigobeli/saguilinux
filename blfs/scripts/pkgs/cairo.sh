@@ -1,0 +1,8 @@
+# REVISADO — x/cairo — Cairo-1.18.4
+set -e
+mkdir build &&
+cd    build &&
+
+meson setup --prefix=/usr --buildtype=release .. &&
+ninja
+ninja install

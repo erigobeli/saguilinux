@@ -1,0 +1,180 @@
+# Diário
+
+Log cronológico: data e hora | marco | o que foi feito | resultado
+
+- 2026-11-02 00:55:23 | B01 | Projeto Fase 2 criado em ~/distro-ai/blfs: PRD.md escrito pelo agente, livro BLFS 12.4, parser do livro (857 páginas) e cálculo de dependências (118 páginas na ordem) | ok
+- 2026-11-02 00:55:23 | B02 | Higgsfield/Recraft V4.1: mascote, logo (2 tentativas) e wallpaper 2K gerados (~18 créditos) | ok - arte/
+- 2026-11-02 01:02:55 | B01 | Revisão dos comandos do BLFS (scripts/revisao.txt → 123 passos em 6 planos), prelúdio do chroot, loop rodar-blfs.sh com espera de download | ok
+- 2026-11-02 01:03:28 | B03 | b-p11-kit compilado e instalado | ok - logs/b-p11-kit.log
+- 2026-11-02 01:03:58 | B03 | b-libtasn1 compilado e instalado | ok - logs/b-libtasn1.log
+- 2026-11-02 01:04:20 | B03 | b-make-ca compilado e instalado | ok - logs/b-make-ca.log
+- 2026-11-02 01:04:25 | B03 | b-dhcpcd compilado e instalado | ok - logs/b-dhcpcd.log
+- 2026-11-02 01:05:28 | B03 | b-sudo compilado e instalado | ok - logs/b-sudo.log
+- 2026-11-02 01:05:39 | B03 | b-libpng compilado e instalado | ok - logs/b-libpng.log
+- 2026-11-02 01:05:53 | B03 | b-freetype2 compilado e instalado | ok - logs/b-freetype2.log
+- 2026-11-02 01:06:19 | B03 | b-fontconfig compilado e instalado | ok - logs/b-fontconfig.log
+- 2026-11-02 01:06:19 | B03 | Falha em b-dbus (rc=2) | erro - logs/b-dbus.log
+- 2026-11-02 01:07:42 | B03 | Falha em b-dbus (rc=2) | erro - logs/b-dbus.log
+- 2026-11-02 01:08:55 | B03 | b-dbus compilado e instalado | ok - logs/b-dbus.log
+- 2026-11-02 01:09:00 | B03 | b-which compilado e instalado | ok - logs/b-which.log
+- 2026-11-02 01:09:16 | B02 | Derivados da arte: ícones 16–256 px, logo de boot do kernel (PPM 80×80), fundo do GRUB 1024×768, página de boas-vindas do Firefox | ok - arte/
+- 2026-11-02 01:11:06 | B03 | Falha em b-cmake (rc=2) | erro - logs/b-cmake.log
+- 2026-11-02 01:19:53 | B03 | b-cmake compilado e instalado | ok - logs/b-cmake.log
+- 2026-11-02 01:19:53 | B03 | Falha em b-libxml2 (rc=2) | erro - logs/b-libxml2.log
+- 2026-11-02 01:21:19 | B03 | b-libxml2 compilado e instalado | ok - logs/b-libxml2.log
+- 2026-11-02 01:21:43 | B03 | b-pcre2 compilado e instalado | ok - logs/b-pcre2.log
+- 2026-11-02 01:21:51 | B03 | b-py-libyaml compilado e instalado | ok - logs/b-py-libyaml.log
+- 2026-11-02 01:21:53 | B03 | b-py-pyyaml compilado e instalado | ok - logs/b-py-pyyaml.log
+- 2026-11-02 01:21:55 | B03 | b-py-mako compilado e instalado | ok - logs/b-py-mako.log
+- 2026-11-02 01:21:56 | B04 | b-xorg7 compilado e instalado | ok - logs/b-xorg7.log
+- 2026-11-02 01:21:58 | B04 | b-util-macros compilado e instalado | ok - logs/b-util-macros.log
+- 2026-11-02 01:21:59 | B04 | b-xorgproto compilado e instalado | ok - logs/b-xorgproto.log
+- 2026-11-02 01:22:08 | B04 | b-libXau compilado e instalado | ok - logs/b-libXau.log
+- 2026-11-02 01:22:10 | B04 | b-xcb-proto compilado e instalado | ok - logs/b-xcb-proto.log
+- 2026-11-02 01:22:32 | B04 | b-libxcb compilado e instalado | ok - logs/b-libxcb.log
+- 2026-11-02 01:27:36 | B04 | b-x7lib compilado e instalado | ok - logs/b-x7lib.log
+- 2026-11-02 01:27:37 | B04 | b-libxcvt compilado e instalado | ok - logs/b-libxcvt.log
+- 2026-11-02 01:27:49 | B04 | b-pixman compilado e instalado | ok - logs/b-pixman.log
+- 2026-11-02 01:27:55 | B04 | b-libdrm compilado e instalado | ok - logs/b-libdrm.log
+- 2026-11-02 01:34:23 | B03 | Base concluída: make-ca (507 CAs), dhcpcd, sudo, libpng+APNG, freetype, fontconfig, D-Bus, which, CMake, libxml2, PCRE2, libyaml/PyYAML/Mako | ok
+- 2026-11-02 02:14:27 | B03 | Downloads concluídos: 216 arquivos (1,4 GB), 0 falhas, md5 do livro conferido onde informado | ok - logs/B03-download.log
+- 2026-11-02 02:28:06 | B04 | b-llvm compilado e instalado | ok - logs/b-llvm.log
+- 2026-11-02 02:33:14 | B04 | b-mesa compilado e instalado | ok - logs/b-mesa.log
+- 2026-11-02 02:33:15 | B04 | b-xbitmaps compilado e instalado | ok - logs/b-xbitmaps.log
+- 2026-11-02 02:33:24 | B04 | b-xcb-util compilado e instalado | ok - logs/b-xcb-util.log
+- 2026-11-02 02:36:39 | B04 | b-x7app compilado e instalado | ok - logs/b-x7app.log
+- 2026-11-02 02:36:41 | B04 | b-xcursor-themes compilado e instalado | ok - logs/b-xcursor-themes.log
+- 2026-11-02 02:36:59 | B04 | b-x7font compilado e instalado | ok - logs/b-x7font.log
+- 2026-11-02 02:37:02 | B04 | b-xkeyboard-config compilado e instalado | ok - logs/b-xkeyboard-config.log
+- 2026-11-02 02:37:19 | B04 | b-libepoxy compilado e instalado | ok - logs/b-libepoxy.log
+- 2026-11-02 02:37:28 | B04 | b-libtirpc compilado e instalado | ok - logs/b-libtirpc.log
+- 2026-11-02 02:37:31 | B04 | Falha em b-xorg-server (rc=1) | erro - logs/b-xorg-server.log
+- 2026-11-02 02:39:08 | B04 | b-libXdmcp compilado e instalado | ok - logs/b-libXdmcp.log
+- 2026-11-02 02:39:55 | B04 | b-xorg-server compilado e instalado | ok - logs/b-xorg-server.log
+- 2026-11-02 02:40:03 | B04 | b-xinit compilado e instalado | ok - logs/b-xinit.log
+- 2026-11-02 02:40:09 | B04 | b-mtdev compilado e instalado | ok - logs/b-mtdev.log
+- 2026-11-02 02:40:38 | B04 | b-x7driver compilado e instalado | ok - logs/b-x7driver.log
+- 2026-11-02 02:40:39 | B04 | b-TTF-and-OTF-fonts compilado e instalado | ok - logs/b-TTF-and-OTF-fonts.log
+- 2026-11-02 02:40:48 | B04 | b-lxde-icon-theme compilado e instalado | ok - logs/b-lxde-icon-theme.log
+- 2026-11-02 02:42:47 | B05 | b-glib2 compilado e instalado | ok - logs/b-glib2.log
+- 2026-11-02 02:43:22 | B05 | b-cairo compilado e instalado | ok - logs/b-cairo.log
+- 2026-11-02 02:43:31 | B05 | Falha em b-curl (rc=2) | erro - logs/b-curl.log
+- 2026-11-02 02:44:37 | B04 | Xorg concluído: libs, xcb, libdrm, LLVM 20 (clang), Mesa 25.1.8 (llvmpipe+crocus/i915/nouveau/r300/r600/radeonsi/svga/virgl), apps, fontes, xkeyboard-config, libepoxy, Xorg-Server 21.1.18 (wrapper suid), xinit, libinput, DejaVu, ícones nuoveXT2 | ok
+- 2026-11-02 02:45:34 | B05 | b-curl compilado e instalado | ok - logs/b-curl.log
+- 2026-11-02 03:25:04 | B05 | b-rust compilado e instalado | ok - logs/b-rust.log
+- 2026-11-02 03:29:25 | B05 | b-cargo-c compilado e instalado | ok - logs/b-cargo-c.log
+- 2026-11-02 03:29:42 | B05 | b-libjpeg compilado e instalado | ok - logs/b-libjpeg.log
+- 2026-11-02 03:32:08 | B05 | b-shared-mime-info compilado e instalado | ok - logs/b-shared-mime-info.log
+- 2026-11-02 03:32:14 | B05 | Falha em b-gdk-pixbuf (rc=1) | erro - logs/b-gdk-pixbuf.log
+- 2026-11-02 03:33:11 | B05 | b-gdk-pixbuf compilado e instalado | ok - logs/b-gdk-pixbuf.log
+- 2026-11-02 03:34:48 | B05 | b-harfbuzz compilado e instalado | ok - logs/b-harfbuzz.log
+- 2026-11-02 03:34:52 | B05 | b-fribidi compilado e instalado | ok - logs/b-fribidi.log
+- 2026-11-02 03:35:13 | B05 | b-pango compilado e instalado | ok - logs/b-pango.log
+- 2026-11-02 03:38:21 | B05 | b-librsvg compilado e instalado | ok - logs/b-librsvg.log
+- 2026-11-02 03:38:24 | B05 | b-gsettings-desktop-schemas compilado e instalado | ok - logs/b-gsettings-desktop-schemas.log
+- 2026-11-02 03:38:34 | B05 | b-at-spi2-core compilado e instalado | ok - logs/b-at-spi2-core.log
+- 2026-11-02 03:38:52 | B05 | b-libxkbcommon compilado e instalado | ok - logs/b-libxkbcommon.log
+- 2026-11-02 03:38:54 | B05 | b-hicolor-icon-theme compilado e instalado | ok - logs/b-hicolor-icon-theme.log
+- 2026-11-02 03:40:35 | B05 | b-gtk3 compilado e instalado | ok - logs/b-gtk3.log
+- 2026-11-02 03:42:54 | B05 | b-lfs-backup-gtk compilado e instalado | ok - logs/b-lfs-backup-gtk.log
+- 2026-11-02 03:43:12 | B06 | b-libxfce4util compilado e instalado | ok - logs/b-libxfce4util.log
+- 2026-11-02 03:43:36 | B06 | b-xfconf compilado e instalado | ok - logs/b-xfconf.log
+- 2026-11-02 03:44:00 | B06 | b-libxfce4ui compilado e instalado | ok - logs/b-libxfce4ui.log
+- 2026-11-02 03:44:21 | B06 | b-exo compilado e instalado | ok - logs/b-exo.log
+- 2026-11-02 03:44:45 | B06 | b-garcon compilado e instalado | ok - logs/b-garcon.log
+- 2026-11-02 03:44:53 | B06 | b-libwnck compilado e instalado | ok - logs/b-libwnck.log
+- 2026-11-02 03:44:53 | B06 | b-hwdata compilado e instalado | ok - logs/b-hwdata.log
+- 2026-11-02 03:44:57 | B06 | b-libdisplay-info compilado e instalado | ok - logs/b-libdisplay-info.log
+- 2026-11-02 03:44:59 | B06 | Falha em b-xfce4-dev-tools (rc=2) | erro - logs/b-xfce4-dev-tools.log
+- 2026-11-02 03:45:45 | B05 | Pilha GTK 3 concluída (GLib+GI, cairo, Rust 1.89, cargo-c, gdk-pixbuf, harfbuzz, pango, librsvg, at-spi2, libxkbcommon, GTK 3.24.50); backup backups/lfs-fase2-gtk3.tar.xz (862 MB) | ok
+- 2026-11-02 03:46:06 | B06 | b-libxslt compilado e instalado | ok - logs/b-libxslt.log
+- 2026-11-02 03:46:14 | B06 | b-xfce4-dev-tools compilado e instalado | ok - logs/b-xfce4-dev-tools.log
+- 2026-11-02 03:46:39 | B06 | b-libxfce4windowing compilado e instalado | ok - logs/b-libxfce4windowing.log
+- 2026-11-02 03:47:41 | B06 | b-xfce4-panel compilado e instalado | ok - logs/b-xfce4-panel.log
+- 2026-11-02 03:47:45 | B06 | b-libgudev compilado e instalado | ok - logs/b-libgudev.log
+- 2026-11-02 03:47:49 | B06 | b-libnotify compilado e instalado | ok - logs/b-libnotify.log
+- 2026-11-02 03:48:43 | B06 | b-thunar compilado e instalado | ok - logs/b-thunar.log
+- 2026-11-02 03:48:59 | B06 | b-thunar-volman compilado e instalado | ok - logs/b-thunar-volman.log
+- 2026-11-02 03:49:25 | B06 | b-tumbler compilado e instalado | ok - logs/b-tumbler.log
+- 2026-11-02 03:49:35 | B06 | b-xfce4-appfinder compilado e instalado | ok - logs/b-xfce4-appfinder.log
+- 2026-11-02 03:49:44 | B06 | b-libusb compilado e instalado | ok - logs/b-libusb.log
+- 2026-11-02 03:49:49 | B06 | b-upower compilado e instalado | ok - logs/b-upower.log
+- 2026-11-02 03:50:10 | B06 | b-duktape compilado e instalado | ok - logs/b-duktape.log
+- 2026-11-02 03:50:12 | B06 | Falha em b-polkit (rc=1) | erro - logs/b-polkit.log
+- 2026-11-02 03:50:32 | B06 | Falha em b-polkit (rc=9) | erro - logs/b-polkit.log
+- 2026-11-02 03:51:22 | B06 | b-polkit compilado e instalado | ok - logs/b-polkit.log
+- 2026-11-02 03:51:40 | B06 | b-xfce4-power-manager compilado e instalado | ok - logs/b-xfce4-power-manager.log
+- 2026-11-02 03:51:55 | B06 | b-iso-codes compilado e instalado | ok - logs/b-iso-codes.log
+- 2026-11-02 03:52:04 | B06 | b-libxklavier compilado e instalado | ok - logs/b-libxklavier.log
+- 2026-11-02 03:52:34 | B06 | b-xfce4-settings compilado e instalado | ok - logs/b-xfce4-settings.log
+- 2026-11-02 03:52:41 | B06 | b-startup-notification compilado e instalado | ok - logs/b-startup-notification.log
+- 2026-11-02 03:52:59 | B06 | b-xfdesktop compilado e instalado | ok - logs/b-xfdesktop.log
+- 2026-11-02 03:53:19 | B06 | b-xfwm4 compilado e instalado | ok - logs/b-xfwm4.log
+- 2026-11-02 03:53:22 | B06 | b-desktop-file-utils compilado e instalado | ok - logs/b-desktop-file-utils.log
+- 2026-11-02 03:53:41 | B06 | b-xfce4-session compilado e instalado | ok - logs/b-xfce4-session.log
+- 2026-11-02 03:53:49 | B07 | b-libogg compilado e instalado | ok - logs/b-libogg.log
+- 2026-11-02 03:53:57 | B07 | b-libvorbis compilado e instalado | ok - logs/b-libvorbis.log
+- 2026-11-02 03:54:14 | B07 | b-libcanberra compilado e instalado | ok - logs/b-libcanberra.log
+- 2026-11-02 03:55:30 | B07 | b-sqlite compilado e instalado | ok - logs/b-sqlite.log
+- 2026-11-02 03:55:46 | B07 | b-xfce4-notifyd compilado e instalado | ok - logs/b-xfce4-notifyd.log
+- 2026-11-02 03:55:47 | B07 | b-fast_float compilado e instalado | ok - logs/b-fast_float.log
+- 2026-11-02 03:57:21 | B07 | b-icu compilado e instalado | ok - logs/b-icu.log
+- 2026-11-02 03:57:49 | B07 | b-vte compilado e instalado | ok - logs/b-vte.log
+- 2026-11-02 03:57:53 | B07 | Falha em b-xfce4-terminal (rc=4) | erro - logs/b-xfce4-terminal.log
+- 2026-11-02 03:58:31 | B06 | XFCE núcleo concluído (libxfce4util, xfconf, libxfce4ui, exo, garcon, libwnck, libxfce4windowing, panel, thunar, tumbler, appfinder, power-manager, settings, xfdesktop, xfwm4, session) + polkit/upower | ok
+- 2026-11-02 03:58:38 | B07 | b-xfce4-terminal compilado e instalado | ok - logs/b-xfce4-terminal.log
+- 2026-11-02 03:58:47 | B07 | b-libexif compilado e instalado | ok - logs/b-libexif.log
+- 2026-11-02 03:58:51 | B07 | b-ristretto compilado e instalado | ok - logs/b-ristretto.log
+- 2026-11-02 03:59:21 | B07 | b-libsndfile compilado e instalado | ok - logs/b-libsndfile.log
+- 2026-11-02 03:59:50 | B07 | b-alsa-lib compilado e instalado | ok - logs/b-alsa-lib.log
+- 2026-11-02 04:00:19 | B07 | b-speex compilado e instalado | ok - logs/b-speex.log
+- 2026-11-02 04:00:52 | B07 | b-pulseaudio compilado e instalado | ok - logs/b-pulseaudio.log
+- 2026-11-02 04:00:57 | B07 | b-xfce4-pulseaudio-plugin compilado e instalado | ok - logs/b-xfce4-pulseaudio-plugin.log
+- 2026-11-02 04:00:59 | B07 | Falha em b-gtksourceview4 (rc=1) | erro - logs/b-gtksourceview4.log
+- 2026-11-02 04:01:33 | B07 | b-gtksourceview4 compilado e instalado | ok - logs/b-gtksourceview4.log
+- 2026-11-02 04:01:39 | B07 | b-mousepad compilado e instalado | ok - logs/b-mousepad.log
+- 2026-11-02 04:02:36 | B08 | b-cbindgen compilado e instalado | ok - logs/b-cbindgen.log
+- 2026-11-02 04:03:23 | B08 | b-libarchive compilado e instalado | ok - logs/b-libarchive.log
+- 2026-11-02 04:03:36 | B08 | b-brotli compilado e instalado | ok - logs/b-brotli.log
+- 2026-11-02 04:03:58 | B08 | b-c-ares compilado e instalado | ok - logs/b-c-ares.log
+- 2026-11-02 04:04:11 | B08 | b-libuv compilado e instalado | ok - logs/b-libuv.log
+- 2026-11-02 04:04:30 | B08 | b-nghttp2 compilado e instalado | ok - logs/b-nghttp2.log
+- 2026-11-02 04:10:23 | B07 | Apps e som: xfce4-notifyd, ICU, VTE 0.80, xfce4-terminal, ristretto, alsa-lib, PulseAudio 17, plugin de som, gtksourceview4, Mousepad | ok
+- 2026-11-02 04:45:54 | B08 | b-nodejs compilado e instalado | ok - logs/b-nodejs.log
+- 2026-11-02 04:46:19 | B08 | b-libevent compilado e instalado | ok - logs/b-libevent.log
+- 2026-11-02 04:46:21 | B08 | Falha em b-libvpx (rc=2) | erro - logs/b-libvpx.log
+- 2026-11-02 04:47:28 | B08 | b-nasm compilado e instalado | ok - logs/b-nasm.log
+- 2026-11-02 04:48:28 | B08 | b-libvpx compilado e instalado | ok - logs/b-libvpx.log
+- 2026-11-02 04:48:54 | B08 | b-libwebp compilado e instalado | ok - logs/b-libwebp.log
+- 2026-11-02 04:49:05 | B08 | b-nspr compilado e instalado | ok - logs/b-nspr.log
+- 2026-11-02 04:51:09 | B08 | b-nss compilado e instalado | ok - logs/b-nss.log
+- 2026-11-02 04:52:05 | B08 | Falha em b-firefox (rc=1) | erro - logs/b-firefox.log
+- 2026-11-02 04:53:46 | B08 | Falha em b-firefox (rc=2) | erro - logs/b-firefox.log
+- 2026-11-02 04:58:55 | B08 | b-python3 compilado e instalado | ok - logs/b-python3.log
+- 2026-11-02 05:46:43 | B08 | b-firefox compilado e instalado | ok - logs/b-firefox.log
+- 2026-11-02 05:49:11 | B08 | b-lfs-backup-firefox compilado e instalado | ok - logs/b-lfs-backup-firefox.log
+- 2026-11-02 05:50:03 | B08 | Firefox ESR 140.2.0 compilado (Node.js 22, NSS/NSPR, libvpx, libwebp, ICU do sistema; sem marca oficial); Python recompilado com sqlite; backup backups/lfs-fase2-firefox.tar.xz | ok
+- 2026-11-02 05:50:06 | B09 | b-arte compilado e instalado | ok - logs/b-arte.log
+- 2026-11-02 05:50:29 | B09 | Falha em b-kernel (rc=1) | erro - logs/b-kernel.log
+- 2026-11-02 05:59:48 | B09 | b-kernel compilado e instalado | ok - logs/b-kernel.log
+- 2026-11-02 05:59:49 | B10 | b-arte2 compilado e instalado | ok - logs/b-arte2.log
+- 2026-11-02 05:59:49 | B10 | Falha em b-integracao (rc=1) | erro - logs/b-integracao.log
+- 2026-11-02 06:00:21 | B10 | b-integracao compilado e instalado | ok - logs/b-integracao.log
+- 2026-11-02 06:00:33 | B11 | b-initramfs compilado e instalado | ok - logs/b-initramfs.log
+- 2026-11-02 06:06:50 | B11 | b-squashfs compilado e instalado | ok - logs/b-squashfs.log
+- 2026-11-02 06:06:54 | B11 | b-iso compilado e instalado | ok - logs/b-iso.log
+- 2026-11-02 06:07:20 | B11 | ISO iso/sagui-linux-2.0-x86_64.iso gerada (841 MB; squashfs 802 MB) | ok
+- 2026-11-02 06:23:50 | B10 | b-arte2 compilado e instalado | ok - logs/b-arte2.log
+- 2026-11-02 06:23:56 | B10 | b-integracao compilado e instalado | ok - logs/b-integracao.log
+- 2026-11-02 06:24:02 | B11 | b-initramfs compilado e instalado | ok - logs/b-initramfs.log
+- 2026-11-02 06:29:52 | B11 | b-squashfs compilado e instalado | ok - logs/b-squashfs.log
+- 2026-11-02 06:29:57 | B11 | b-iso compilado e instalado | ok - logs/b-iso.log
+- 2026-11-02 06:36:07 | B12 | Teste bios-cdrom PASSOU: autologin → XFCE (Xorg, xfce4-panel, xfdesktop, xfwm4) com wallpaper e logo do Sagui; Firefox abriu a página de boas-vindas (capturas em logs/testes/) | ok
+- 2026-11-02 06:48:31 | B10 | b-arte2 compilado e instalado | ok - logs/b-arte2.log
+- 2026-11-02 06:48:37 | B10 | b-integracao compilado e instalado | ok - logs/b-integracao.log
+- 2026-11-02 06:48:42 | B11 | b-initramfs compilado e instalado | ok - logs/b-initramfs.log
+- 2026-11-02 06:54:29 | B11 | b-squashfs compilado e instalado | ok - logs/b-squashfs.log
+- 2026-11-02 06:54:34 | B11 | b-iso compilado e instalado | ok - logs/b-iso.log
+- 2026-11-02 07:12:06 | B12 | ISO final 09d5d8cb6e85f56e56c175ed7169d41708f9463f217477fe174d3375217af634: bios-cdrom, uefi-cdrom e bios-usb PASSARAM (XFCE, Firefox, DHCP; capturas em logs/testes/) | ok - logs/testes/resumo.txt
+- 2026-11-02 07:12:07 | B13 | ISO + SHA-256 e iso/COMO-GRAVAR.md (Sagui) entregues; falta o teste em hardware pelo Eli | ok
+- 2026-11-02 13:38:05 | B13 | Teste em hardware confirmado pelo Eli: notebook ok | ok

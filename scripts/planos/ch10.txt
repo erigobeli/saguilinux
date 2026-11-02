@@ -1,0 +1,1 @@
+ch10-kernel|linux-6.16.1.tar.xz|ch10/kernel.sh|chroot

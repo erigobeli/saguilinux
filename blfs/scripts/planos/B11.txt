@@ -1,0 +1,4 @@
+# B11 - live + ISO
+b-initramfs|-|live/initramfs.sh|chroot
+b-squashfs|-|live/squashfs.sh|root
+b-iso|-|live/iso.sh|root

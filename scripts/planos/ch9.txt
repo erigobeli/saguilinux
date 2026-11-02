@@ -1,0 +1,1 @@
+ch9-config|lfs-bootscripts-20250827.tar.xz|ch9/config.sh|chroot

@@ -1,0 +1,33 @@
+# ----------------------------------------------------------------------------
+# Fica FORA do repositório (grande demais, regenerável ou de terceiros)
+# ----------------------------------------------------------------------------
+# ISOs e staging -> publicadas como anexos das Releases do GitHub
+iso/*.iso
+iso/staging/
+blfs/iso/*.iso
+blfs/iso/staging/
+# Tarballs de código-fonte de terceiros -> publicados como anexos das Releases (exigência da GPL)
+sources/
+blfs/sources/
+# Backups do sistema alvo ($LFS)
+backups/
+# Cópias dos livros LFS/BLFS (licença CC BY-NC-SA dos autores; usamos o link oficial)
+livro/
+blfs/livro/
+# Logs completos de compilação (centenas de MB); os resumos dos testes ficam
+logs/*
+!logs/testes/
+logs/testes/*.expect-out
+blfs/logs/*
+!blfs/logs/testes/
+blfs/logs/testes/*.expect-out
+blfs/logs/testes/*.mon
+# lixo
+*.part
+*.pyc
+__pycache__/
+wget-log*
+blfs/wget-log
+
+# pacotes montados para as Releases do GitHub
+release/

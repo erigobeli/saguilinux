@@ -1,0 +1,19 @@
+# B07 — gerado por aplicar-revisao.py
+b-libogg|libogg-1.3.6.tar.xz|pkgs/libogg.sh|chroot
+b-libvorbis|libvorbis-1.3.7.tar.xz|pkgs/libvorbis.sh|chroot
+b-libcanberra|libcanberra-0.30.tar.xz|pkgs/libcanberra.sh|chroot
+b-sqlite|sqlite-autoconf-3500400.tar.gz|pkgs/sqlite.sh|chroot
+b-xfce4-notifyd|xfce4-notifyd-0.9.7.tar.bz2|pkgs/xfce4-notifyd.sh|chroot
+b-fast_float|fast_float-8.0.2.tar.gz|pkgs/fast_float.sh|chroot
+b-icu|icu4c-77_1-src.tgz|pkgs/icu.sh|chroot
+b-vte|vte-0.80.3.tar.gz|pkgs/vte.sh|chroot
+b-xfce4-terminal|xfce4-terminal-1.1.5.tar.xz|pkgs/xfce4-terminal.sh|chroot
+b-libexif|libexif-0.6.25.tar.bz2|pkgs/libexif.sh|chroot
+b-ristretto|ristretto-0.13.4.tar.xz|pkgs/ristretto.sh|chroot
+b-libsndfile|libsndfile-1.2.2.tar.xz|pkgs/libsndfile.sh|chroot
+b-alsa-lib|alsa-lib-1.2.14.tar.bz2|pkgs/alsa-lib.sh|chroot
+b-speex|speex-1.2.1.tar.gz|pkgs/speex.sh|chroot
+b-pulseaudio|pulseaudio-17.0.tar.xz|pkgs/pulseaudio.sh|chroot
+b-xfce4-pulseaudio-plugin|xfce4-pulseaudio-plugin-0.5.1.tar.xz|pkgs/xfce4-pulseaudio-plugin.sh|chroot
+b-gtksourceview4|gtksourceview-4.8.4.tar.xz|pkgs/gtksourceview4.sh|chroot
+b-mousepad|mousepad-0.6.5.tar.xz|pkgs/mousepad.sh|chroot

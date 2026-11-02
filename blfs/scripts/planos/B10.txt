@@ -1,0 +1,3 @@
+# B10 - integração
+b-arte2|-|sagui/copiar-arte.sh|root
+b-integracao|-|sagui/integracao.sh|chroot

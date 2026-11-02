@@ -1,0 +1,12 @@
+# Páginas fora do build (justificativa em docs/decisoes.md D04)
+general/python-modules      # agregador: Mako/PyYAML entram à mão (pkgs/python-mods)
+general/python-dependencies
+general/perl-modules
+general/perl-deps
+general/python3             # já no LFS
+general/notification-daemon # usamos xfce4-notifyd
+x/gnome-icon-theme          # usamos lxde-icon-theme
+general/doxygen
+x/qt6
+general/gtk-doc
+general/vala

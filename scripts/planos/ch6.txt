@@ -1,0 +1,18 @@
+# H05 - capítulo 6 (usuário lfs)
+ch6-m4|m4-1.4.20.tar.xz|ch6/m4.sh|lfs
+ch6-ncurses|ncurses-6.5-20250809.tgz|ch6/ncurses.sh|lfs
+ch6-bash|bash-5.3.tar.gz|ch6/bash.sh|lfs
+ch6-coreutils|coreutils-9.7.tar.xz|ch6/coreutils.sh|lfs
+ch6-diffutils|diffutils-3.12.tar.xz|ch6/diffutils.sh|lfs
+ch6-file|file-5.46.tar.gz|ch6/file.sh|lfs
+ch6-findutils|findutils-4.10.0.tar.xz|ch6/findutils.sh|lfs
+ch6-gawk|gawk-5.3.2.tar.xz|ch6/gawk.sh|lfs
+ch6-grep|grep-3.12.tar.xz|ch6/grep.sh|lfs
+ch6-gzip|gzip-1.14.tar.xz|ch6/gzip.sh|lfs
+ch6-make|make-4.4.1.tar.gz|ch6/make.sh|lfs
+ch6-patch|patch-2.8.tar.xz|ch6/patch.sh|lfs
+ch6-sed|sed-4.9.tar.xz|ch6/sed.sh|lfs
+ch6-tar|tar-1.35.tar.xz|ch6/tar.sh|lfs
+ch6-xz|xz-5.8.1.tar.xz|ch6/xz.sh|lfs
+ch6-binutils-pass2|binutils-2.45.tar.xz|ch6/binutils-pass2.sh|lfs
+ch6-gcc-pass2|gcc-15.2.0.tar.xz|ch6/gcc-pass2.sh|lfs

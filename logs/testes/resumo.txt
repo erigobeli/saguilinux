@@ -1,0 +1,14 @@
+ISO testada: b42b3ec74d6852c2d9017007ff646c8e1871b63338e0afa70008fc79de52363c  semente-linux-1.0-x86_64.iso
+Data: 2026-11-01 22:32:30
+
+PRD (seção 7):
+PASSOU bios-cdrom   (SeaBIOS, -nographic, console serial)
+PASSOU uefi-cdrom   (OVMF)
+PASSOU bios-usb     (ISO como pendrive usb-storage em xHCI)
+Extras:
+PASSOU uefi-usb     (pendrive + UEFI)
+PASSOU instalacao   (instalar-no-disco /dev/vda a partir do live)
+PASSOU disco-bios   (boot do disco instalado, BIOS)
+PASSOU disco-uefi   (boot do disco instalado, UEFI)
+
+Em cada boot: login root, uname -a, ls /, gcc --version, cat /etc/os-release (RC=0). Saídas em <teste>-saida.txt.

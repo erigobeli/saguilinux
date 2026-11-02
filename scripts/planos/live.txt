@@ -1,0 +1,3 @@
+# H10 - live system
+live-initramfs|-|live/initramfs.sh|chroot
+live-squashfs|-|live/squashfs.sh|root

@@ -1,0 +1,355 @@
+# Revisão dos comandos do BLFS 12.4, página a página (gera scripts/pkgs/*.sh com '# REVISADO').
+# Formato:  @@@ <página> [bN ...] [tar=<arquivo>|tar=-] [marco=Bxx]
+#   bN      blocos do rascunho mantidos (na ordem dada)
+#   linhas  seguintes: comandos extras (após os blocos) ou o script inteiro se não houver bN
+#   tar=-   não extrair tarball (o script cuida); padrão: 1ª URL da página
+# Testes foram retirados dos rascunhos (D06). Alterações em relação ao livro estão comentadas com 'DESVIO'.
+
+# ---------------- B03 base ----------------
+@@@ general/libtasn1 b0 b1 marco=B03
+@@@ postlfs/p11-kit b0 b1 b2 b3 marco=B03
+@@@ postlfs/make-ca b0 b1 b6 marco=B03
+@@@ basicnet/dhcpcd b0 b2 b3 marco=B03
+# DESVIO: serviço próprio (dhcpcd em todas as interfaces) instalado no B10; o ifconfig.eth0 do livro supõe nome eth0
+@@@ postlfs/sudo b0 b1 b2 marco=B03
+@@@ general/libpng marco=B03
+# Patch APNG (exigido pelo Firefox com --with-system-png); sem pipe para o erro não passar despercebido
+gzip -cd ../libpng-1.6.47-apng.patch.gz > /tmp/libpng-apng.patch
+patch -p1 < /tmp/libpng-apng.patch
+@b1
+@b2
+@@@ general/freetype2 b1 b2 marco=B03
+@@@ general/fontconfig b0 b1 marco=B03
+@@@ general/dbus b0 b1 b2 b3 b4 b5 b7 marco=B03
+bootscript dbus
+@@@ general/which b0 b1 marco=B03
+@@@ general/cmake marco=B03
+# DESVIO: sem --system-libs (curl/libarchive/libuv/nghttp2 ainda não instalados); usa as cópias embutidas do CMake
+sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake
+./bootstrap --prefix=/usr --mandir=/share/man --docdir=/share/doc/cmake-4.1.0 --parallel=$(nproc)
+make
+make install
+@@@ general/libxml2 marco=B03
+# DESVIO: sem --with-icu (ICU entra só no B07)
+./configure --prefix=/usr --sysconfdir=/etc --disable-static --with-history PYTHON=/usr/bin/python3 --docdir=/usr/share/doc/libxml2-2.14.5
+make
+make install
+rm -vf /usr/lib/libxml2.la
+sed '/libs=/s/xml2.*/xml2"/' -i /usr/bin/xml2-config
+@@@ general/pcre2 b0 b1 marco=B03
+@@@ py-libyaml tar=yaml-0.2.5.tar.gz marco=B03
+./configure --prefix=/usr --disable-static
+make
+make install
+@@@ py-pyyaml tar=pyyaml-6.0.2.tar.gz marco=B03
+pip3 wheel -w dist --no-build-isolation --no-deps --no-cache-dir $PWD
+pip3 install --no-index --find-links dist --no-user PyYAML
+@@@ py-mako tar=mako-1.3.10.tar.gz marco=B03
+pip3 wheel -w dist --no-build-isolation --no-deps --no-cache-dir $PWD
+pip3 install --no-index --find-links dist --no-user Mako
+
+# ---------------- B04 Xorg ----------------
+@@@ x/xorg7 tar=- marco=B04
+cat > /etc/profile.d/xorg.sh << "EOF"
+XORG_PREFIX="/usr"
+XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc --localstatedir=/var --disable-static"
+export XORG_PREFIX XORG_CONFIG
+EOF
+chmod 644 /etc/profile.d/xorg.sh
+install -dm755 /etc/sudoers.d
+cat > /etc/sudoers.d/xorg << "EOF"
+Defaults env_keep += XORG_PREFIX
+Defaults env_keep += XORG_CONFIG
+EOF
+@@@ x/util-macros b0 b1 marco=B04
+@@@ x/xorgproto b0 b1 marco=B04
+@@@ x/libXau b0 b1 marco=B04
+@@@ x/libXdmcp b0 b1 marco=B04
+@@@ x/xcb-proto b0 b1 b2 marco=B04
+@@@ x/libxcb b0 b1 b2 marco=B04
+@@@ x/x7lib tar=- marco=B04
+# As tarballs ficam em /sources (baixadas por scripts/baixar.py); o laço do livro espera ../lib-7.md5 e as tarballs no diretório atual
+rm -rf /sources/x7lib && mkdir -p /sources/x7lib && cd /sources/x7lib
+@b0
+mkdir -p d && cd d
+for f in $(grep -v '^#' ../lib-7.md5 | awk '{print $2}'); do ln -sf /sources/$f .; done
+@b5
+cd /sources && rm -rf /sources/x7lib
+@@@ x/libxcvt b0 b1 marco=B04
+@@@ general/pixman b0 b1 marco=B04
+@@@ x/libdrm b0 b1 marco=B04
+@@@ general/llvm b0 b1 b2 b3 b4 b5 b8 b9 marco=B04
+@@@ x/mesa marco=B04
+@b1
+# DESVIO: só X11; drivers explícitos (iris exige libclc, fora do escopo); sem Vulkan; sem codecs de vídeo patenteados
+mkdir build
+cd    build
+meson setup ..                 \
+      --prefix=$XORG_PREFIX    \
+      --buildtype=release      \
+      -D platforms=x11         \
+      -D gallium-drivers=llvmpipe,softpipe,crocus,i915,nouveau,r300,r600,radeonsi,svga,virgl \
+      -D vulkan-drivers=""     \
+      -D valgrind=disabled     \
+      -D libunwind=disabled
+ninja
+ninja install
+@@@ x/xbitmaps b0 b1 marco=B04
+@@@ x/xcb-util b0 b1 marco=B04
+@@@ x/x7app tar=- marco=B04
+# As tarballs ficam em /sources (baixadas por scripts/baixar.py); o laço do livro espera ../app-7.md5 e as tarballs no diretório atual
+rm -rf /sources/x7app && mkdir -p /sources/x7app && cd /sources/x7app
+@b0
+mkdir -p d && cd d
+for f in $(grep -v '^#' ../app-7.md5 | awk '{print $2}'); do ln -sf /sources/$f .; done
+@b4
+@b6
+cd /sources && rm -rf /sources/x7app
+@@@ x/xcursor-themes b0 b1 marco=B04
+@@@ x/x7font tar=- marco=B04
+# As tarballs ficam em /sources (baixadas por scripts/baixar.py); o laço do livro espera ../font-7.md5 e as tarballs no diretório atual
+rm -rf /sources/x7font && mkdir -p /sources/x7font && cd /sources/x7font
+@b0
+mkdir -p d && cd d
+for f in $(grep -v '^#' ../font-7.md5 | awk '{print $2}'); do ln -sf /sources/$f .; done
+@b4
+@b6
+cd /sources && rm -rf /sources/x7font
+@@@ x/xkeyboard-config b0 b1 b2 marco=B04
+@@@ x/libepoxy b0 b1 marco=B04
+@@@ basicnet/libtirpc b0 b1 b2 marco=B04
+@@@ x/xorg-server b0 marco=B04
+# DESVIO: sem elogind -> systemd_logind=false e wrapper suid (o livro descreve essa alternativa)
+mkdir build
+cd    build
+meson setup ..               \
+      --prefix=$XORG_PREFIX  \
+      --localstatedir=/var   \
+      -D glamor=true         \
+      -D systemd_logind=false \
+      -D suid_wrapper=true   \
+      -D xkb_output_dir=/var/lib/xkb
+ninja
+ninja install
+mkdir -pv /etc/X11/xorg.conf.d
+install -v -d -m1777 /tmp/.{ICE,X11}-unix
+grep -q '.X11-unix' /etc/sysconfig/createfiles || cat >> /etc/sysconfig/createfiles << "EOF"
+/tmp/.ICE-unix dir 1777 root root
+/tmp/.X11-unix dir 1777 root root
+EOF
+@@@ x/xinit b0 b1 b2 marco=B04
+@@@ general/mtdev b0 b1 marco=B04
+@@@ x/x7driver tar=- marco=B04
+# Só os pacotes necessários da página: libevdev, xf86-input-evdev, libinput, xf86-input-libinput
+cd /sources
+rm -rf libevdev-1.13.4 && tar xf libevdev-1.13.4.tar.xz && cd libevdev-1.13.4
+mkdir build && cd build
+meson setup .. --prefix=$XORG_PREFIX --buildtype=release -D documentation=disabled -D tests=disabled
+ninja && ninja install
+cd /sources && rm -rf libevdev-1.13.4
+rm -rf xf86-input-evdev-2.11.0 && tar xf xf86-input-evdev-2.11.0.tar.xz && cd xf86-input-evdev-2.11.0
+./configure $XORG_CONFIG && make && make install
+cd /sources && rm -rf xf86-input-evdev-2.11.0
+rm -rf libinput-1.29.0 && tar xf libinput-1.29.0.tar.gz && cd libinput-1.29.0
+mkdir build && cd build
+meson setup .. --prefix=$XORG_PREFIX --buildtype=release -D debug-gui=false -D tests=false -D libwacom=false -D udev-dir=/usr/lib/udev
+ninja && ninja install
+cd /sources && rm -rf libinput-1.29.0
+rm -rf xf86-input-libinput-1.5.0 && tar xf xf86-input-libinput-1.5.0.tar.xz && cd xf86-input-libinput-1.5.0
+./configure $XORG_CONFIG && make && make install
+cd /sources && rm -rf xf86-input-libinput-1.5.0
+@@@ x/TTF-and-OTF-fonts b0 tar=dejavu-fonts-ttf-2.37.tar.bz2 marco=B04
+@@@ x/lxde-icon-theme b0 b1 marco=B04
+
+# ---------------- B05 GTK ----------------
+@@@ general/glib2 marco=B05
+@b0
+@b1
+# DESVIO: sem páginas de manual (exigiriam libxslt/DocBook)
+mkdir build
+cd    build
+meson setup .. --prefix=/usr --buildtype=release -D introspection=disabled -D glib_debug=disabled -D man-pages=disabled -D sysprof=disabled
+ninja
+@b3
+@b4
+@b5
+@b6
+ninja install
+@@@ x/cairo b0 b1 marco=B05
+@@@ basicnet/curl marco=B05
+# DESVIO: sem libpsl (recomendada não instalada)
+./configure --prefix=/usr --disable-static --with-openssl --without-libpsl --with-ca-path=/etc/ssl/certs
+make
+make install
+@@@ general/rust b0 b1 b2 b5 b7 b8 marco=B05
+rm -fv /opt/rustc-1.89.0/share/doc/rustc-1.89.0/*.old
+@@@ general/cargo-c b0 b1 b2 b3 marco=B05
+@@@ general/libjpeg b0 b1 marco=B05
+@@@ general/shared-mime-info b0 b1 b2 marco=B05
+@@@ x/gdk-pixbuf marco=B05
+# DESVIO: sem páginas de manual (rst2man/docutils não instalado)
+mkdir build
+cd    build
+meson setup .. --prefix=/usr --buildtype=release -D others=enabled -D man=false --wrap-mode=nofallback
+ninja
+@b2
+@b3
+@@@ general/harfbuzz marco=B05
+# DESVIO: sem graphite2 (não instalado)
+mkdir build
+cd    build
+meson setup .. --prefix=/usr --buildtype=release -D graphite2=disabled
+ninja
+ninja install
+@@@ general/fribidi b0 b1 marco=B05
+@@@ x/pango b0 b2 marco=B05
+@@@ general/librsvg b1 b3 marco=B05
+gdk-pixbuf-query-loaders --update-cache
+@@@ gnome/gsettings-desktop-schemas b0 b1 b2 marco=B05
+@@@ x/at-spi2-core b0 b1 marco=B05
+@@@ general/libxkbcommon marco=B05
+# DESVIO: sem Wayland
+mkdir build
+cd    build
+meson setup .. --prefix=/usr --buildtype=release -D enable-docs=false -D enable-wayland=false
+ninja
+ninja install
+@@@ x/hicolor-icon-theme b0 b1 marco=B05
+@@@ x/gtk3 marco=B05
+# DESVIO: só backend X11 (sem Wayland/broadway), sem páginas de manual (docbook)
+mkdir build
+cd    build
+meson setup .. --prefix=/usr --buildtype=release -D man=false -D broadway_backend=false -D wayland_backend=false
+ninja
+@b1
+@b2
+@b3
+@@@ lfs-backup-gtk tar=- modo=root marco=B05
+# Backup do $LFS ao fim da pilha GTK (PRD seção 9)
+P=/home/erigobeli/distro-ai
+mountpoint -q $LFS/dev/shm && umount $LFS/dev/shm || true
+umount $LFS/dev/pts 2>/dev/null || true
+umount $LFS/{sys,proc,run,dev} 2>/dev/null || true
+cd $LFS
+tar --exclude=./sources -cpf - . | xz -T0 -3 > $P/backups/lfs-fase2-gtk3.tar.xz
+ls -l $P/backups/
+
+# ---------------- B06 XFCE núcleo ----------------
+@@@ xfce/libxfce4util b0 b1 marco=B06
+@@@ xfce/xfconf b0 b1 marco=B06
+@@@ xfce/libxfce4ui b0 b1 marco=B06
+@@@ xfce/exo b0 b1 marco=B06
+@@@ xfce/garcon b0 b1 marco=B06
+@@@ xfce/libwnck b0 b1 marco=B06
+@@@ general/hwdata b0 b1 marco=B06
+@@@ general/libdisplay-info b0 b1 marco=B06
+@@@ general/libxslt b0 b1 marco=B06
+@@@ xfce/xfce4-dev-tools b0 b1 marco=B06
+@@@ xfce/libxfce4windowing b0 b1 marco=B06
+@@@ xfce/xfce4-panel b0 b1 marco=B06
+@@@ general/libgudev b0 b1 marco=B06
+@@@ x/libnotify b0 b2 marco=B06
+@@@ xfce/thunar b0 b1 b2 marco=B06
+@@@ xfce/thunar-volman b0 b1 marco=B06
+@@@ xfce/tumbler b0 b1 b2 marco=B06
+@@@ xfce/xfce4-appfinder b0 b1 marco=B06
+@@@ general/libusb b0 b2 marco=B06
+@@@ general/upower b0 b1 marco=B06
+@@@ general/duktape b0 b1 marco=B06
+@@@ postlfs/polkit marco=B06
+groupadd -fg 27 polkitd
+id polkitd >/dev/null 2>&1 || useradd -c "PolicyKit Daemon Owner" -d /etc/polkit-1 -u 27 -g polkitd -s /bin/false polkitd
+# DESVIO: sem elogind -> session_tracking=ConsoleKit (só rastreamento opcional); sem man/testes
+mkdir build
+cd    build
+meson setup .. --prefix=/usr --buildtype=release -D man=false -D authfw=shadow -D session_tracking=ConsoleKit -D systemdsystemunitdir=/tmp -D tests=false
+ninja
+ninja install
+rm -fv /tmp/*.service
+rm -rf /usr/lib/{sysusers,tmpfiles}.d
+bootscript polkit 2>/dev/null || true
+@@@ xfce/xfce4-power-manager b0 b1 marco=B06
+@@@ general/iso-codes b0 b1 marco=B06
+@@@ x/libxklavier b0 b1 marco=B06
+@@@ xfce/xfce4-settings b0 b1 marco=B06
+@@@ x/startup-notification b0 b1 marco=B06
+@@@ xfce/xfdesktop b0 b1 marco=B06
+@@@ xfce/xfwm4 b0 b1 marco=B06
+@@@ general/desktop-file-utils b0 b1 b2 b3 marco=B06
+@@@ xfce/xfce4-session b0 b1 b2 marco=B06
+
+# ---------------- B07 apps e som ----------------
+@@@ multimedia/libogg b0 b1 marco=B07
+@@@ multimedia/libvorbis b0 b1 marco=B07
+@@@ multimedia/libcanberra b0 b1 b2 marco=B07
+@@@ server/sqlite b1 b2 marco=B07
+@@@ xfce/xfce4-notifyd b0 b1 marco=B07
+@@@ general/fast_float b0 b1 marco=B07
+@@@ general/icu b2 b3 b4 marco=B07
+@@@ gnome/vte marco=B07
+# DESVIO: sem GTK 4, sem GnuTLS, sem vala
+mkdir build
+cd    build
+meson setup .. --prefix=/usr --buildtype=release -D _systemd=false -D gtk4=false -D gnutls=false -D vapi=false
+ninja
+ninja install
+rm -fv /etc/profile.d/vte.*
+@@@ xfce/xfce4-terminal marco=B07
+# DESVIO: sem página de manual (exigiria DocBook-XSL)
+sed -i "/subdir('doc')/d" meson.build
+@b0
+@b1
+@@@ general/libexif b0 b1 marco=B07
+@@@ xfce/ristretto b0 b1 marco=B07
+@@@ multimedia/libsndfile b0 b1 b2 marco=B07
+@@@ multimedia/alsa-lib b0 b1 b3 marco=B07
+@@@ multimedia/speex b0 b1 b2 b3 marco=B07
+@@@ multimedia/pulseaudio b0 b1 b2 marco=B07
+@@@ xfce/xfce4-pulseaudio-plugin b0 b1 marco=B07
+@@@ x/gtksourceview4 marco=B07
+# DESVIO: sem vala (vapi)
+mkdir build
+cd    build
+meson setup .. --prefix=/usr --buildtype=release -D vapi=false
+ninja
+ninja install
+@@@ postlfs/mousepad b0 b1 marco=B07
+
+# ---------------- B08 Firefox ----------------
+@@@ general/cbindgen b0 b1 marco=B08
+@@@ general/libarchive b0 b1 b2 marco=B08
+@@@ general/brotli b0 b1 b2 b3 marco=B08
+@@@ basicnet/c-ares b0 b1 marco=B08
+@@@ general/libuv b0 b2 marco=B08
+@@@ basicnet/nghttp2 b0 b1 marco=B08
+@@@ general/nodejs b0 b1 marco=B08
+@@@ basicnet/libevent b0 b1 b3 marco=B08
+@@@ general/nasm b1 b2 marco=B08
+@@@ multimedia/libvpx b0 b1 b2 marco=B08
+@@@ general/libwebp b0 b1 marco=B08
+@@@ general/nspr b0 b1 marco=B08
+@@@ postlfs/nss b0 b2 b3 marco=B08
+@@@ general/python3 tar=Python-3.13.7.tar.xz marco=B08
+# Recompila o Python do LFS (mesma versão/opções) agora que o SQLite existe: o Firefox precisa do módulo _sqlite3
+./configure --prefix=/usr --enable-shared --with-system-expat --enable-optimizations --without-static-libpython
+make
+make install
+python3 -c 'import sqlite3; print("sqlite3", sqlite3.sqlite_version)'
+@@@ xsoft/firefox marco=B08
+@b0
+# DESVIO: a ISO é distribuída -> sem marca oficial (o livro avisa que não se pode distribuir o binário com ela)
+# e sem a chave do serviço de localização do Google
+sed -i -e '/--enable-official-branding/s/^/#/' -e '/google-location-service-api-keyfile/s/^/#/' mozconfig
+@b2
+@b3
+@b4
+@b5
+@b6
+@@@ lfs-backup-firefox tar=- modo=root marco=B08
+P=/home/erigobeli/distro-ai
+mountpoint -q $LFS/dev/shm && umount $LFS/dev/shm || true
+umount $LFS/dev/pts 2>/dev/null || true
+umount $LFS/{sys,proc,run,dev} 2>/dev/null || true
+cd $LFS
+tar --exclude=./sources -cpf - . | xz -T0 -3 > $P/backups/lfs-fase2-firefox.tar.xz
+ls -l $P/backups/

@@ -1,0 +1,1 @@
+== uefi-cdrom: qemu-system-x86_64 -machine q35 -cpu max -m 2048 -smp 4 -nographic -no-reboot -drive if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE_4M.fd -drive if=pflash,format=raw,file=/home/erigobeli/distro-ai/logs/testes/ovmf-vars.fd -cdrom /home/erigobeli/distro-ai/iso/semente-linux-1.0-x86_64.iso -boot d
