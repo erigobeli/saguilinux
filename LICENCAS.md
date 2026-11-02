@@ -36,7 +36,7 @@ As imagens do Sagui Linux contêm apenas software livre e de código aberto, com
 
 ### Código-fonte correspondente (GPL)
 
-Quem distribui binários de software GPL precisa disponibilizar o código-fonte correspondente. Por isso **cada Release traz, junto com a ISO, um arquivo com todos os tarballs de código-fonte originais** usados para compilá-la, e este repositório contém os scripts exatos de compilação e configuração (incluindo a configuração do kernel). Isso cumpre a obrigação de entregar o código-fonte completo.
+Quem distribui binários de software GPL precisa disponibilizar o código-fonte correspondente. Por isso **cada Release traz, junto com a ISO, todos os tarballs de código-fonte originais** usados para compilá-la — incluindo os pacotes extras fora dos livros e, na 2.0, as dependências Rust (crates) que o build baixou automaticamente do crates.io (`codigo-fonte-crates-rust.tar`) — e este repositório contém os scripts exatos de compilação e configuração (incluindo a configuração do kernel). Isso cumpre a obrigação de entregar o código-fonte completo.
 
 ## 4. Marcas
 
