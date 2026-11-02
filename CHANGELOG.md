@@ -2,6 +2,7 @@
 
 ## Site 1.0 — 2026-11-02
 - Primeira versão do site (HTML + CSS + JS): início, download, como gravar, como foi feito, créditos e avisos.
+- Links diretos para o código-fonte completo e os scripts de build ao lado de cada ISO (GPL).
 - Downloads diretos pelas Releases do GitHub; site publicado no GitHub Pages a partir do branch `gh-pages` (conteúdo da pasta `site/`).
 
 ## Sagui Linux 2.0 "mico" — 2026-11-02 (tag `v2.0`)
